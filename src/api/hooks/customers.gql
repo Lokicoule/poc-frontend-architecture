@@ -1,0 +1,59 @@
+query GetCustomers {
+  getCustomers {
+    address
+    code
+    city
+    createdAt
+    id
+    naming
+    updatedAt
+    zipCode
+  }
+}
+
+query GetCustomer($filter: GetCustomerInput!) {
+  getCustomer(filter: $filter) {
+    address
+    city
+    code
+    createdAt
+    id
+    naming
+    updatedAt
+    zipCode
+  }
+}
+
+mutation CreateCustomer($createCustomerInput: CreateCustomerInput!) {
+  createCustomer(createCustomerInput: $createCustomerInput) {
+    address
+    city
+    code
+    id
+    naming
+    zipCode
+  }
+}
+
+mutation RemoveCustomer($removeCustomerId: String!) {
+  removeCustomer(id: $removeCustomerId) {
+    id
+  }
+}
+
+mutation RemoveCustomers($ids: [String!]!) {
+  removeCustomers(ids: $ids)
+}
+
+mutation UpdateCustomer($updateCustomerInput: UpdateCustomerInput!) {
+  updateCustomer(updateCustomerInput: $updateCustomerInput) {
+    address
+    city
+    createdAt
+    code
+    id
+    naming
+    updatedAt
+    zipCode
+  }
+}

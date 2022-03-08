@@ -1,0 +1,49 @@
+query GetProduct($filter: GetProductInput!) {
+  getProduct(filter: $filter) {
+    code
+    createdAt
+    id
+    label
+    updatedAt
+  }
+}
+
+query GetProducts {
+  getProducts {
+    code
+    createdAt
+    id
+    label
+    updatedAt
+  }
+}
+
+mutation CreateProduct($createProductInput: CreateProductInput!) {
+  createProduct(createProductInput: $createProductInput) {
+    code
+    createdAt
+    id
+    label
+    updatedAt
+  }
+}
+
+mutation RemoveProduct($removeProductId: String!) {
+  removeProduct(id: $removeProductId) {
+    id
+  }
+}
+
+mutation RemoveProducts($ids: [String!]!) {
+  removeProducts(ids: $ids)
+}
+
+mutation UpdateProduct($updateProductInput: UpdateProductInput!) {
+  updateProduct(updateProductInput: $updateProductInput) {
+    id
+    code
+    createdAt
+    label
+    updatedAt
+  }
+}

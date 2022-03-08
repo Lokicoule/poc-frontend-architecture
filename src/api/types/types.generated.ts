@@ -1,0 +1,447 @@
+export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+/** All built-in and custom scalars, mapped to their actual values */
+export type Scalars = {
+  ID: string;
+  String: string;
+  Boolean: boolean;
+  Int: number;
+  Float: number;
+  /** A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format. */
+  DateTime: any;
+};
+
+export type CreateCustomerInput = {
+  address: Scalars['String'];
+  city: Scalars['String'];
+  code?: InputMaybe<Scalars['String']>;
+  naming: Scalars['String'];
+  zipCode: Scalars['String'];
+};
+
+export type CreateOrderInput = {
+  billingDate?: InputMaybe<Scalars['DateTime']>;
+  code?: InputMaybe<Scalars['String']>;
+  dueDate?: InputMaybe<Scalars['DateTime']>;
+  items?: InputMaybe<Array<OrderItemInput>>;
+};
+
+export type CreateProductInput = {
+  code?: InputMaybe<Scalars['String']>;
+  label: Scalars['String'];
+};
+
+export type CreateReferentialCustomerInput = {
+  parameters: Array<ParameterReferentialCustomerInput>;
+  useCase: UseCaseReferentialEnum;
+};
+
+export type CreateReferentialOrderInput = {
+  parameters: Array<ParameterReferentialOrderInput>;
+  useCase: UseCaseReferentialEnum;
+};
+
+export type CreateReferentialProductInput = {
+  parameters: Array<ParameterReferentialProductInput>;
+  useCase: UseCaseReferentialEnum;
+};
+
+export type Customer = {
+  __typename?: 'Customer';
+  address: Scalars['String'];
+  city: Scalars['String'];
+  code: Scalars['String'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id: Scalars['String'];
+  naming: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  zipCode: Scalars['String'];
+};
+
+export type GetCustomerInput = {
+  code?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']>;
+};
+
+export type GetOrderInput = {
+  code?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']>;
+};
+
+export type GetProductInput = {
+  code?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']>;
+};
+
+export type GetReferentialCustomerInput = {
+  useCase: UseCaseReferentialEnum;
+};
+
+export type GetReferentialOrderInput = {
+  useCase: UseCaseReferentialEnum;
+};
+
+export type GetReferentialProductInput = {
+  useCase: UseCaseReferentialEnum;
+};
+
+export type Mutation = {
+  __typename?: 'Mutation';
+  createCustomer: Customer;
+  createOrder: Order;
+  createProduct: Product;
+  createReferentialCustomer: ReferentialCustomer;
+  createReferentialOrder: ReferentialOrder;
+  createReferentialProduct: ReferentialProduct;
+  removeCustomer: Customer;
+  removeCustomers: Scalars['Boolean'];
+  removeOrder: Order;
+  removeOrders: Scalars['Boolean'];
+  removeProduct: Product;
+  removeProducts: Scalars['Boolean'];
+  removeReferentialCustomer: ReferentialCustomer;
+  removeReferentialCustomers: Scalars['Boolean'];
+  removeReferentialOrder: ReferentialOrder;
+  removeReferentialOrders: Scalars['Boolean'];
+  removeReferentialProduct: ReferentialProduct;
+  removeReferentialProducts: Scalars['Boolean'];
+  updateCustomer: Customer;
+  updateOrder: Order;
+  updateProduct: Product;
+  updateReferentialCustomer: ReferentialCustomer;
+  updateReferentialOrder: ReferentialOrder;
+  updateReferentialProduct: ReferentialProduct;
+};
+
+
+export type MutationCreateCustomerArgs = {
+  createCustomerInput: CreateCustomerInput;
+};
+
+
+export type MutationCreateOrderArgs = {
+  createOrderInput: CreateOrderInput;
+};
+
+
+export type MutationCreateProductArgs = {
+  createProductInput: CreateProductInput;
+};
+
+
+export type MutationCreateReferentialCustomerArgs = {
+  createReferentialCustomerInput: CreateReferentialCustomerInput;
+};
+
+
+export type MutationCreateReferentialOrderArgs = {
+  createReferentialOrderInput: CreateReferentialOrderInput;
+};
+
+
+export type MutationCreateReferentialProductArgs = {
+  createReferentialProductInput: CreateReferentialProductInput;
+};
+
+
+export type MutationRemoveCustomerArgs = {
+  id: Scalars['String'];
+};
+
+
+export type MutationRemoveCustomersArgs = {
+  ids: Array<Scalars['String']>;
+};
+
+
+export type MutationRemoveOrderArgs = {
+  id: Scalars['String'];
+};
+
+
+export type MutationRemoveOrdersArgs = {
+  ids: Array<Scalars['String']>;
+};
+
+
+export type MutationRemoveProductArgs = {
+  id: Scalars['String'];
+};
+
+
+export type MutationRemoveProductsArgs = {
+  ids: Array<Scalars['String']>;
+};
+
+
+export type MutationRemoveReferentialCustomerArgs = {
+  id: Scalars['String'];
+};
+
+
+export type MutationRemoveReferentialCustomersArgs = {
+  ids: Array<Scalars['String']>;
+};
+
+
+export type MutationRemoveReferentialOrderArgs = {
+  id: Scalars['String'];
+};
+
+
+export type MutationRemoveReferentialOrdersArgs = {
+  ids: Array<Scalars['String']>;
+};
+
+
+export type MutationRemoveReferentialProductArgs = {
+  id: Scalars['String'];
+};
+
+
+export type MutationRemoveReferentialProductsArgs = {
+  ids: Array<Scalars['String']>;
+};
+
+
+export type MutationUpdateCustomerArgs = {
+  updateCustomerInput: UpdateCustomerInput;
+};
+
+
+export type MutationUpdateOrderArgs = {
+  updateOrderInput: UpdateOrderInput;
+};
+
+
+export type MutationUpdateProductArgs = {
+  updateProductInput: UpdateProductInput;
+};
+
+
+export type MutationUpdateReferentialCustomerArgs = {
+  updateReferentialCustomerInput: UpdateReferentialCustomerInput;
+};
+
+
+export type MutationUpdateReferentialOrderArgs = {
+  updateReferentialOrderInput: UpdateReferentialOrderInput;
+};
+
+
+export type MutationUpdateReferentialProductArgs = {
+  updateReferentialProductInput: UpdateReferentialProductInput;
+};
+
+export type Order = {
+  __typename?: 'Order';
+  billingDate?: Maybe<Scalars['DateTime']>;
+  code: Scalars['String'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  dueDate?: Maybe<Scalars['DateTime']>;
+  id: Scalars['String'];
+  items?: Maybe<Array<OrderItem>>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type OrderItemsArgs = {
+  populate: Scalars['Boolean'];
+};
+
+export type OrderItem = {
+  __typename?: 'OrderItem';
+  amount: Scalars['Float'];
+  product: Product;
+  unitPrice: Scalars['Float'];
+};
+
+export type OrderItemInput = {
+  amount: Scalars['Float'];
+  product: Scalars['String'];
+  unitPrice: Scalars['Float'];
+};
+
+export type ParameterReferentialCustomer = {
+  __typename?: 'ParameterReferentialCustomer';
+  key: ParameterReferentialEnum;
+  value: Scalars['String'];
+};
+
+export type ParameterReferentialCustomerInput = {
+  key: ParameterReferentialEnum;
+  value: Scalars['String'];
+};
+
+export enum ParameterReferentialEnum {
+  Counter = 'COUNTER',
+  Prefix = 'PREFIX',
+  Suffix = 'SUFFIX'
+}
+
+export type ParameterReferentialOrder = {
+  __typename?: 'ParameterReferentialOrder';
+  key: ParameterReferentialEnum;
+  value: Scalars['String'];
+};
+
+export type ParameterReferentialOrderInput = {
+  key: ParameterReferentialEnum;
+  value: Scalars['String'];
+};
+
+export type ParameterReferentialProduct = {
+  __typename?: 'ParameterReferentialProduct';
+  key: ParameterReferentialEnum;
+  value: Scalars['String'];
+};
+
+export type ParameterReferentialProductInput = {
+  key: ParameterReferentialEnum;
+  value: Scalars['String'];
+};
+
+export type Product = {
+  __typename?: 'Product';
+  code: Scalars['String'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id: Scalars['String'];
+  label: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type Query = {
+  __typename?: 'Query';
+  getCustomer?: Maybe<Customer>;
+  getCustomers?: Maybe<Array<Customer>>;
+  getOrder?: Maybe<Order>;
+  getOrders?: Maybe<Array<Order>>;
+  getProduct?: Maybe<Product>;
+  getProducts?: Maybe<Array<Product>>;
+  getReferentialCustomer?: Maybe<ReferentialCustomer>;
+  getReferentialCustomers?: Maybe<Array<ReferentialCustomer>>;
+  getReferentialOrder?: Maybe<ReferentialOrder>;
+  getReferentialOrders?: Maybe<Array<ReferentialOrder>>;
+  getReferentialProduct?: Maybe<ReferentialProduct>;
+  getReferentialProducts?: Maybe<Array<ReferentialProduct>>;
+};
+
+
+export type QueryGetCustomerArgs = {
+  filter: GetCustomerInput;
+};
+
+
+export type QueryGetOrderArgs = {
+  filter: GetOrderInput;
+};
+
+
+export type QueryGetProductArgs = {
+  filter: GetProductInput;
+};
+
+
+export type QueryGetReferentialCustomerArgs = {
+  filter: GetReferentialCustomerInput;
+};
+
+
+export type QueryGetReferentialOrderArgs = {
+  filter: GetReferentialOrderInput;
+};
+
+
+export type QueryGetReferentialProductArgs = {
+  filter: GetReferentialProductInput;
+};
+
+export type ReferentialCustomer = {
+  __typename?: 'ReferentialCustomer';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id: Scalars['String'];
+  parameters?: Maybe<Array<ParameterReferentialCustomer>>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  useCase: UseCaseReferentialEnum;
+};
+
+
+export type ReferentialCustomerParametersArgs = {
+  populate: Scalars['Boolean'];
+};
+
+export type ReferentialOrder = {
+  __typename?: 'ReferentialOrder';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id: Scalars['String'];
+  parameters?: Maybe<Array<ParameterReferentialOrder>>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  useCase: UseCaseReferentialEnum;
+};
+
+
+export type ReferentialOrderParametersArgs = {
+  populate: Scalars['Boolean'];
+};
+
+export type ReferentialProduct = {
+  __typename?: 'ReferentialProduct';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id: Scalars['String'];
+  parameters?: Maybe<Array<ParameterReferentialProduct>>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  useCase: UseCaseReferentialEnum;
+};
+
+
+export type ReferentialProductParametersArgs = {
+  populate: Scalars['Boolean'];
+};
+
+export type UpdateCustomerInput = {
+  address?: InputMaybe<Scalars['String']>;
+  city?: InputMaybe<Scalars['String']>;
+  code?: InputMaybe<Scalars['String']>;
+  id: Scalars['String'];
+  naming?: InputMaybe<Scalars['String']>;
+  zipCode?: InputMaybe<Scalars['String']>;
+};
+
+export type UpdateOrderInput = {
+  billingDate?: InputMaybe<Scalars['DateTime']>;
+  code?: InputMaybe<Scalars['String']>;
+  dueDate?: InputMaybe<Scalars['DateTime']>;
+  id: Scalars['String'];
+  items?: InputMaybe<Array<OrderItemInput>>;
+};
+
+export type UpdateProductInput = {
+  code?: InputMaybe<Scalars['String']>;
+  id: Scalars['String'];
+  label?: InputMaybe<Scalars['String']>;
+};
+
+export type UpdateReferentialCustomerInput = {
+  id: Scalars['String'];
+  parameters?: InputMaybe<Array<ParameterReferentialCustomerInput>>;
+  useCase?: InputMaybe<UseCaseReferentialEnum>;
+};
+
+export type UpdateReferentialOrderInput = {
+  id: Scalars['String'];
+  parameters?: InputMaybe<Array<ParameterReferentialOrderInput>>;
+  useCase?: InputMaybe<UseCaseReferentialEnum>;
+};
+
+export type UpdateReferentialProductInput = {
+  id: Scalars['String'];
+  parameters?: InputMaybe<Array<ParameterReferentialProductInput>>;
+  useCase?: InputMaybe<UseCaseReferentialEnum>;
+};
+
+export enum UseCaseReferentialEnum {
+  CodeGenerator = 'CODE_GENERATOR'
+}
