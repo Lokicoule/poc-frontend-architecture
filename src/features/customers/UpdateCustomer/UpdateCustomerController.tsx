@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import {
   GetCustomerQuery,
   useGetCustomerQuery,
@@ -14,6 +16,7 @@ type UpdateCustomerControllerProps = {
 export const UpdateCustomerController = ({
   customerId,
 }: UpdateCustomerControllerProps) => {
+  const navigate = useNavigate();
   const { data, loading } = useGetCustomerQuery({
     variables: {
       filter: { id: customerId },
@@ -49,6 +52,14 @@ export const UpdateCustomerController = ({
       variables: {
         updateCustomerInput: mapViewModelToDto(dataVM),
       },
+      onCompleted: ({ updateCustomer }) => {
+        toast.success(`${updateCustomer.naming} a été modifié(e) avec succès.`);
+        navigate(`/backoffice/customers/view/${updateCustomer.id}`);
+      },
+      onError: () =>
+        toast.error(
+          `La modification du client ${data?.getCustomer?.naming} a échouée.`
+        ),
     });
   };
 

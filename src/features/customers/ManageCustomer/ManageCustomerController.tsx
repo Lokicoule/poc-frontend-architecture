@@ -16,7 +16,7 @@ type ManageCustomerControllerProps = {
 export const ManageCustomerController = ({
   customerId = "",
 }: ManageCustomerControllerProps) => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const [removeCustomer] = useRemoveCustomerMutation();
   const { data, loading } = useGetCustomerQuery({
     variables: {

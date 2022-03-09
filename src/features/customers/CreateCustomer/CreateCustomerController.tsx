@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useCreateCustomerMutation } from "../../../api/hooks/customers.generated";
 import { CreateCustomerViewModel } from "../../../view-models/domain/customers";
 import { CreateCustomerLogic } from "./CreateCustomerLogic";
@@ -11,6 +13,7 @@ const defaultValues = {
 } as CreateCustomerViewModel;
 
 export const CreateCustomerController = () => {
+  const navigate = useNavigate();
   const [createCustomer, { error }] = useCreateCustomerMutation({});
 
   const mapViewModelToDto = (data: CreateCustomerViewModel) => ({
@@ -26,6 +29,12 @@ export const CreateCustomerController = () => {
       variables: {
         createCustomerInput: mapViewModelToDto(data),
       },
+      onCompleted: ({ createCustomer }) => {
+        toast.success(`${createCustomer.naming} a été ajouté(e) avec succès.`);
+        navigate(`/backoffice/customers/view/${createCustomer.id}`);
+      },
+      onError: () =>
+        toast.error(`La suppression du client ${data.naming} a échouée.`),
     });
   };
 

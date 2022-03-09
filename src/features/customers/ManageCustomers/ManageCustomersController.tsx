@@ -1,18 +1,18 @@
-import { Loader } from "../../../components";
+import { toast } from "react-toastify";
 import {
   GetCustomersQuery,
   useGetCustomersQuery,
   useRemoveCustomersMutation,
 } from "../../../api/hooks/customers.generated";
-import { ManageCustomersLogic } from "./ManageCustomersLogic";
+import { Loader } from "../../../components";
 import { CustomerViewModel } from "../../../view-models/domain/customers/CustomerViewModel";
+import { ManageCustomersLogic } from "./ManageCustomersLogic";
 
 export const ManageCustomersController = () => {
   const { data, loading } = useGetCustomersQuery({
     fetchPolicy: "cache-and-network",
     pollInterval: 300000,
   });
-
   const [removeCustomers] = useRemoveCustomersMutation({
     refetchQueries: ["GetCustomers"],
   });
@@ -22,6 +22,13 @@ export const ManageCustomersController = () => {
       variables: {
         ids,
       },
+      onCompleted: () => {
+        toast.success(
+          `Les clients sélectionné(e)s ont étés supprimé(e)s avec succès.`
+        );
+      },
+      onError: () =>
+        toast.error(`La suppression des clients sélectionné(e)s a échouée.`),
     });
   };
 
