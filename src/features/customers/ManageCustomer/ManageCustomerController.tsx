@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import {
   GetCustomerQuery,
   useGetCustomerQuery,
@@ -43,10 +44,12 @@ export const ManageCustomerController = ({
       variables: {
         removeCustomerId: customerId,
       },
-      onCompleted: () =>
-        window.setTimeout(() => {
-          navigate("/backoffice/customers");
-        }, 500),
+      onCompleted: () => {
+        toast.success(
+          `${data?.getCustomer?.naming} a été supprimé(e) avec succès.`
+        );
+        navigate("/backoffice/customers");
+      },
     });
 
   if (loading) return <Loader></Loader>;
