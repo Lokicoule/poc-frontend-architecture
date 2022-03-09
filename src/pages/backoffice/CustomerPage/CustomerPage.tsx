@@ -1,12 +1,13 @@
+import { useParams } from "react-router-dom";
 import { Page } from "../../../components/Page/Page";
-import { CreateCustomerController } from "../../../features/customers/CreateCustomer/CreateCustomerController";
+import { ManageCustomer } from "../../../features/customers/ManageCustomer";
 
 export const CustomerPage = () => {
-  //const { customerId } = useParams();
+  const { customerId } = useParams();
 
   return (
     <Page title="Customer">
-      <CreateCustomerController></CreateCustomerController>
+      <ManageCustomer customerId={customerId} />
     </Page>
   );
 };

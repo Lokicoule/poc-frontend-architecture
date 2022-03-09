@@ -1,6 +1,6 @@
 import { useCreateCustomerMutation } from "../../../api/hooks/customers.generated";
-import { CreateCustomerLogic } from "./CreateCustomerLogic";
 import { CreateCustomerViewModel } from "../../../view-models/domain/customers";
+import { CreateCustomerLogic } from "./CreateCustomerLogic";
 
 const defaultValues = {
   code: "",

@@ -39,7 +39,7 @@ export const Form: FC<FormProps> = ({
           sx={{ mt: 3, mb: 2 }}
           endIcon={<SendIcon />}
         >
-          Submit
+          Save
         </Button>
       )}
       {onReset && (

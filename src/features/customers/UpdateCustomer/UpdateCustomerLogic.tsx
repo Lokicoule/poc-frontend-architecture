@@ -2,20 +2,20 @@ import { FetchResult } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { CreateCustomerMutation } from "../../../api/hooks/customers.generated";
-import { CreateCustomerViewModel } from "../../../view-models/domain/customers";
+import { UpdateCustomerMutation } from "../../../api/hooks/customers.generated";
+import { UpdateCustomerViewModel } from "../../../view-models/domain/customers";
 import {
-  CreateCustomerView,
-  CreateCustomerViewProps,
-} from "./CreateCustomerView";
+  UpdateCustomerView,
+  UpdateCustomerViewProps,
+} from "./UpdateCustomerView";
 
-type CreateCustomerLogicProps = Pick<CreateCustomerViewProps, "errors"> & {
-  defaultValues: CreateCustomerViewModel;
+type UpdateCustomerLogicProps = Pick<UpdateCustomerViewProps, "errors"> & {
+  defaultValues: UpdateCustomerViewModel;
   onSubmit: (
-    data: CreateCustomerViewModel
+    data: UpdateCustomerViewModel
   ) => Promise<
     FetchResult<
-      CreateCustomerMutation,
+      UpdateCustomerMutation,
       Record<string, any>,
       Record<string, any>
     >
@@ -25,6 +25,10 @@ type CreateCustomerLogicProps = Pick<CreateCustomerViewProps, "errors"> & {
 const postalCodeRule = new RegExp(/^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$/);
 
 const schema = yup.object().shape({
+  code: yup
+    .string()
+    .required("Le code du client est requis.")
+    .min(5, "Le code client doit contenir au moins 5 caractères."),
   naming: yup.string().required("Le nom du client est requis."),
   zipCode: yup
     .string()
@@ -34,17 +38,17 @@ const schema = yup.object().shape({
   address: yup.string().required("L'adresse du client est requise."),
 });
 
-export const CreateCustomerLogic = ({
+export const UpdateCustomerLogic = ({
   defaultValues,
   onSubmit,
   errors,
-}: CreateCustomerLogicProps) => {
-  const form = useForm<CreateCustomerViewModel>({
+}: UpdateCustomerLogicProps) => {
+  const form = useForm<UpdateCustomerViewModel>({
     defaultValues: defaultValues,
     resolver: yupResolver(schema),
   });
 
-  const handleSubmit = async (data: CreateCustomerViewModel) => {
+  const handleSubmit = async (data: UpdateCustomerViewModel) => {
     await onSubmit(data)
       .then(() => {
         //send snackbar success
@@ -62,11 +66,11 @@ export const CreateCustomerLogic = ({
   const handleReset = () => form.reset();
 
   return (
-    <CreateCustomerView
+    <UpdateCustomerView
       form={form}
       onSubmit={handleSubmit}
       onReset={handleReset}
       errors={errors}
-    ></CreateCustomerView>
+    ></UpdateCustomerView>
   );
 };

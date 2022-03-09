@@ -26,9 +26,9 @@ export const ManageCustomersController = () => {
   };
 
   const mapDtoToViewModel = (
-    responseDto: GetCustomersQuery | null | undefined
+    dataDto: GetCustomersQuery | null | undefined
   ): CustomerViewModel[] => {
-    return responseDto?.getCustomers?.map(
+    return dataDto?.getCustomers?.map(
       (customer) =>
         ({
           id: customer?.id,
@@ -41,25 +41,6 @@ export const ManageCustomersController = () => {
     ) as CustomerViewModel[];
   };
 
-  /* const handleRemove = (customer: Customer) =>
-    removeCustomer({
-      variables: {
-        removeCustomerId: customer.id,
-      },
-      update(cache, { data: removeCustomerData }) {
-        cache.modify({
-          fields: {
-            customers(existingCustomersRef, { readField }) {
-              return existingCustomersRef.filter(
-                (customerRef: any) =>
-                  removeCustomerData?.removeCustomer.id !==
-                  readField("id", customerRef)
-              );
-            },
-          },
-        });
-      },
-    }); */
   if (loading) return <Loader></Loader>;
   return (
     <ManageCustomersLogic

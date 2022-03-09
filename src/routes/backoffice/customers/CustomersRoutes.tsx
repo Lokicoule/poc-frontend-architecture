@@ -18,6 +18,22 @@ const CustomerPage = Loadable(
   )
 );
 
+const CreateCustomerPage = Loadable(
+  lazy(() =>
+    import("../../../pages/backoffice").then((module) => ({
+      default: module.CreateCustomerPage,
+    }))
+  )
+);
+
+const UpdateCustomerPage = Loadable(
+  lazy(() =>
+    import("../../../pages/backoffice").then((module) => ({
+      default: module.UpdateCustomerPage,
+    }))
+  )
+);
+
 export const CustomersRoutes: RouteObject[] = [
   {
     path: "customers",
@@ -37,14 +53,14 @@ export const CustomersRoutes: RouteObject[] = [
       },
       {
         path: "create",
-        element: <CustomerPage />,
+        element: <CreateCustomerPage />,
       },
       {
         path: "update",
         children: [
           {
             path: ":customerId",
-            element: <CustomerPage />,
+            element: <UpdateCustomerPage />,
           },
         ],
       },

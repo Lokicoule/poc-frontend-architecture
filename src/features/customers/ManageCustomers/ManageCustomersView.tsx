@@ -14,9 +14,11 @@ export const ManageCustomersView = ({ data = [], onRemove }: Props) => {
   const columns: ColumnProps[] = [
     {
       label: "Code client",
-      path: "code",
       key: "code",
       sortable: true,
+      content: (item: Customer) => (
+        <Link to={`/backoffice/customers/view/${item.id}`}>{item.code}</Link>
+      ),
     },
     {
       label: "Nom",
@@ -35,7 +37,7 @@ export const ManageCustomersView = ({ data = [], onRemove }: Props) => {
       path: "",
       key: "update",
       content: (item: Customer) => (
-        <Link to={`/backoffice/consumer/update/${item.id}`}>
+        <Link to={`/backoffice/customers/update/${item.id}`}>
           <IconButton>
             <EditIcon />
           </IconButton>

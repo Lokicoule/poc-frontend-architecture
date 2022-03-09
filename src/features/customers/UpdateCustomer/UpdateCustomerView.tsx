@@ -4,23 +4,22 @@ import { FeatureLayout } from "../../../layouts";
 import { UseFormReturn } from "react-hook-form";
 import { Form } from "../../../components/Form";
 import { FormInputText } from "../../../components/Form/FormInputs";
-import { CreateCustomerViewModel } from "../../../view-models/domain/customers";
+import { UpdateCustomerViewModel } from "../../../view-models/domain/customers";
 
-export type CreateCustomerViewProps = {
-  form: UseFormReturn<CreateCustomerViewModel>;
+export type UpdateCustomerViewProps = {
+  form: UseFormReturn<UpdateCustomerViewModel>;
   errors: GraphQLErrors | undefined;
-  onSubmit: (data: CreateCustomerViewModel) => Promise<void>;
+  onSubmit: (data: UpdateCustomerViewModel) => Promise<void>;
   onReset: () => void;
 };
 
-export const CreateCustomerView = ({
+export const UpdateCustomerView = ({
   form,
   onSubmit,
   onReset,
   errors,
-}: CreateCustomerViewProps) => {
+}: UpdateCustomerViewProps) => {
   const { formState, handleSubmit, control } = form;
-
   return (
     <FeatureLayout title="Formulaire client">
       <Form errors={errors} onSubmit={handleSubmit(onSubmit)} onReset={onReset}>
@@ -31,6 +30,7 @@ export const CreateCustomerView = ({
               control={control}
               label="Code client"
               fullWidth
+              required
               error={!!formState?.errors?.code}
               helperText={formState?.errors?.code?.message}
             />
