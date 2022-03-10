@@ -1,22 +1,22 @@
 import SearchIcon from "@mui/icons-material/Search";
-import { Button, Grid, InputAdornment, TextField } from "@mui/material";
+import { Button, InputAdornment, Stack, TextField } from "@mui/material";
 import { SetStateAction } from "react";
 import { Link } from "react-router-dom";
 import { Customer } from "../../../api/types/types.generated";
 import { ColumnProps, EnhancedTable } from "../../../components/Tables";
 import { CustomerViewModel } from "../../../view-models/domain/customers";
 
-export interface Props {
+export type ManageCustomersViewProps = {
   data: CustomerViewModel[];
   onRemove: (ids: string[]) => Promise<void>;
   onSearch: (event: { target: { value: SetStateAction<string> } }) => void;
-}
+};
 
 export const ManageCustomersView = ({
   data = [],
   onRemove,
   onSearch,
-}: Props) => {
+}: ManageCustomersViewProps) => {
   const columns: ColumnProps[] = [
     {
       label: "Code client",
@@ -48,27 +48,35 @@ export const ManageCustomersView = ({
 
   return (
     <>
-      <Grid mt={2} mb={2} container justifyContent={"space-between"}>
-        <Grid item>
-          <TextField
-            label="Rechercher"
-            onChange={onSearch}
-            variant="standard"
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon />
-                </InputAdornment>
-              ),
-            }}
-          ></TextField>
-        </Grid>
-        <Grid item>
-          <Button style={{ textTransform: "none" }} variant="contained">
-            Ajouter un nouveau client
-          </Button>
-        </Grid>
-      </Grid>
+      <Stack
+        direction="row"
+        alignItems="center"
+        justifyContent="space-between"
+        mb={5}
+        mt={3}
+      >
+        <TextField
+          label="Rechercher"
+          onChange={onSearch}
+          variant="standard"
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon />
+              </InputAdornment>
+            ),
+          }}
+        ></TextField>
+        <Button
+          component={Link}
+          variant="contained"
+          style={{ textTransform: "none" }}
+          to="/backoffice/customers/create"
+        >
+          Ajouter un nouveau client
+        </Button>
+      </Stack>
+
       <EnhancedTable
         columns={columns}
         data={data}

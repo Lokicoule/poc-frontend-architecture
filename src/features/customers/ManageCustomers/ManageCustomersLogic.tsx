@@ -1,9 +1,12 @@
 import { FetchResult } from "@apollo/client";
 import { SetStateAction, useState } from "react";
 import { RemoveCustomersMutation } from "../../../api/hooks/customers.generated";
-import { ManageCustomersView, Props as ViewProps } from "./ManageCustomersView";
+import {
+  ManageCustomersView,
+  ManageCustomersViewProps,
+} from "./ManageCustomersView";
 
-interface Props extends Pick<ViewProps, "data"> {
+type ManageCustomersLogicProps = Pick<ManageCustomersViewProps, "data"> & {
   onRemove: (
     ids: string[]
   ) => Promise<
@@ -13,15 +16,20 @@ interface Props extends Pick<ViewProps, "data"> {
       Record<string, any>
     >
   >;
-}
+};
 
-export const ManageCustomersLogic = ({ data, onRemove }: Props) => {
+export const ManageCustomersLogic = ({
+  data,
+  onRemove,
+}: ManageCustomersLogicProps) => {
   const [search, setSearch] = useState("");
+
   const handleSearch = (event: {
     target: { value: SetStateAction<string> };
   }) => {
     setSearch(event.target.value);
   };
+
   const handleRemove = async (ids: string[]) => {
     await onRemove(ids).catch((err) => console.error(err));
   };

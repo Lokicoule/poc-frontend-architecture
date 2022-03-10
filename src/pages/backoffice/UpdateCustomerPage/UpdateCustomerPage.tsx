@@ -12,5 +12,5 @@ export const UpdateCustomerPage = () => {
     <CreateCustomer></CreateCustomer>
   );
 
-  return <Page title="Customer">{upsertComponent}</Page>;
+  return <Page title="UpdateCustomer">{upsertComponent}</Page>;
 };

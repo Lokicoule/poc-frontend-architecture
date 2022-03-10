@@ -44,22 +44,12 @@ export const CreateCustomerLogic = ({
     resolver: yupResolver(schema),
   });
 
-  const handleSubmit = async (data: CreateCustomerViewModel) => {
-    await onSubmit(data)
-      .then(() => {
-        //send snackbar success
-        //wait 5 secondes before redirection
-        //redirection
-        //cancel redirection
-        form.reset();
-      })
-      .catch((err) => {
-        console.error(err);
-        //send snackbar error
-      });
-  };
-
   const handleReset = () => form.reset();
+  const handleSubmit = async (data: CreateCustomerViewModel) => {
+    await onSubmit(data).then(() => {
+      handleReset();
+    });
+  };
 
   return (
     <CreateCustomerView

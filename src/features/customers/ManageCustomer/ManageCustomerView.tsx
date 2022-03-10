@@ -1,21 +1,13 @@
-import { FetchResult } from "@apollo/client";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import { Button, Grid, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
-import { RemoveCustomerMutation } from "../../../api/hooks/customers.generated";
 import { FeatureLayout } from "../../../layouts";
 import { CustomerViewModel } from "../../../view-models/domain/customers";
 
 export type ManageCustomerViewProps = {
   defaultValues: CustomerViewModel;
-  onRemove: () => Promise<
-    FetchResult<
-      RemoveCustomerMutation,
-      Record<string, any>,
-      Record<string, any>
-    >
-  >;
+  onRemove: () => Promise<void>;
 };
 
 export const ManageCustomerView = ({

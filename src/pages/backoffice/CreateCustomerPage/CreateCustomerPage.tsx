@@ -3,7 +3,7 @@ import { CreateCustomer } from "../../../features/customers/CreateCustomer";
 
 export const CreateCustomerPage = () => {
   return (
-    <Page title="Customer">
+    <Page title="CreateCustomer">
       <CreateCustomer></CreateCustomer>
     </Page>
   );

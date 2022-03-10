@@ -1,5 +1,6 @@
 import { FetchResult } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { isEqual } from "lodash";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { UpdateCustomerMutation } from "../../../api/hooks/customers.generated";
@@ -49,17 +50,9 @@ export const UpdateCustomerLogic = ({
   });
 
   const handleSubmit = async (data: UpdateCustomerViewModel) => {
-    await onSubmit(data)
-      .then(() => {
-        //send snackbar success
-        //wait 5 secondes before redirection
-        //redirection
-        //cancel redirection
+    if (!isEqual(defaultValues, data))
+      await onSubmit(data).then(() => {
         form.reset();
-      })
-      .catch((err) => {
-        console.error(err);
-        //send snackbar error
       });
   };
 

@@ -10,7 +10,7 @@ const defaultValues = {
   zipCode: "",
   city: "",
   address: "",
-} as CreateCustomerViewModel;
+} as Readonly<CreateCustomerViewModel>;
 
 export const CreateCustomerController = () => {
   const navigate = useNavigate();

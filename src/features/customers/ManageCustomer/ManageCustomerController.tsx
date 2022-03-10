@@ -27,7 +27,7 @@ export const ManageCustomerController = ({
 
   const mapDtoToViewModel = (
     dataDto: GetCustomerQuery | undefined
-  ): CustomerViewModel => {
+  ): Readonly<CustomerViewModel> => {
     const customer = dataDto?.getCustomer;
     return {
       address: customer?.address || "",
@@ -39,10 +39,10 @@ export const ManageCustomerController = ({
     };
   };
 
-  const handleRemove = () =>
+  const handleRemove = (id: string) =>
     removeCustomer({
       variables: {
-        removeCustomerId: customerId,
+        removeCustomerId: id,
       },
       onCompleted: () => {
         toast.success(
