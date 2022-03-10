@@ -5,7 +5,6 @@ import Table from "@mui/material/Table";
 import TableContainer from "@mui/material/TableContainer";
 import TablePagination from "@mui/material/TablePagination";
 import { sortBy } from "lodash";
-import { useMemo } from "react";
 import { EnhancedTableBody, EnhancedTableBodyProps } from "./EnhancedTableBody";
 import { EnhancedTableHeader } from "./EnhancedTableHeader";
 import { EnhancedTableToolbar } from "./EnhancedTableToolbar";
@@ -45,13 +44,9 @@ export const EnhancedTable = ({
     handleDeselectAll();
   };
 
-  const sortedList = useMemo(
-    () =>
-      sort.isReverse
-        ? sortBy(data, sort.property).reverse()
-        : sortBy(data, sort.property),
-    [data, sort.isReverse, sort.property]
-  );
+  const sortedList = sort.isReverse
+    ? sortBy(data, sort.property).reverse()
+    : sortBy(data, sort.property);
 
   return (
     <>
