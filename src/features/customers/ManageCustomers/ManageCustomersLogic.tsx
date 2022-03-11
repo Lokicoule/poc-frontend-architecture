@@ -34,7 +34,7 @@ export const ManageCustomersLogic = ({
     await onRemove(ids).catch((err) => console.error(err));
   };
 
-  const filteredDataVM = data.filter(
+  const filteredDataVM = data?.filter(
     (item) =>
       item.naming.toLowerCase().includes(search.toLowerCase()) ||
       item.code.toLowerCase().includes(search.toLowerCase()) ||
