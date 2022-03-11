@@ -14,7 +14,22 @@ const defaultValues = {
 
 export const CreateCustomerController = () => {
   const navigate = useNavigate();
-  const [createCustomer, { error }] = useCreateCustomerMutation({});
+  const [createCustomer, { error }] = useCreateCustomerMutation({
+    update(cache, { data: addedCustomer }) {
+      cache.modify({
+        fields: {
+          getCustomers: (existingItems = [], { toReference }) => {
+            return (
+              addedCustomer?.createCustomer && [
+                ...existingItems,
+                toReference(addedCustomer.createCustomer),
+              ]
+            );
+          },
+        },
+      });
+    },
+  });
 
   const mapViewModelToDto = (data: CreateCustomerViewModel) => ({
     address: data.address,
@@ -33,8 +48,7 @@ export const CreateCustomerController = () => {
         toast.success(`${createCustomer.naming} a été ajouté(e) avec succès.`);
         navigate(`/backoffice/customers/view/${createCustomer.id}`);
       },
-      onError: () =>
-        toast.error(`La suppression du client ${data.naming} a échouée.`),
+      onError: () => toast.error(`L'ajout du client ${data.naming} a échoué.`),
     });
   };
 

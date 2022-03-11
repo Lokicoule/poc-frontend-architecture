@@ -61,33 +61,6 @@ export type Customer = {
   zipCode: Scalars['String'];
 };
 
-export type GetCustomerInput = {
-  code?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['String']>;
-};
-
-export type GetOrderInput = {
-  code?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['String']>;
-};
-
-export type GetProductInput = {
-  code?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['String']>;
-};
-
-export type GetReferentialCustomerInput = {
-  useCase: UseCaseReferentialEnum;
-};
-
-export type GetReferentialOrderInput = {
-  useCase: UseCaseReferentialEnum;
-};
-
-export type GetReferentialProductInput = {
-  useCase: UseCaseReferentialEnum;
-};
-
 export type Mutation = {
   __typename?: 'Mutation';
   createCustomer: Customer;
@@ -208,16 +181,19 @@ export type MutationRemoveReferentialProductsArgs = {
 
 
 export type MutationUpdateCustomerArgs = {
+  id: Scalars['String'];
   updateCustomerInput: UpdateCustomerInput;
 };
 
 
 export type MutationUpdateOrderArgs = {
+  id: Scalars['String'];
   updateOrderInput: UpdateOrderInput;
 };
 
 
 export type MutationUpdateProductArgs = {
+  id: Scalars['String'];
   updateProductInput: UpdateProductInput;
 };
 
@@ -331,32 +307,32 @@ export type Query = {
 
 
 export type QueryGetCustomerArgs = {
-  filter: GetCustomerInput;
+  id: Scalars['String'];
 };
 
 
 export type QueryGetOrderArgs = {
-  filter: GetOrderInput;
+  id: Scalars['String'];
 };
 
 
 export type QueryGetProductArgs = {
-  filter: GetProductInput;
+  id: Scalars['String'];
 };
 
 
 export type QueryGetReferentialCustomerArgs = {
-  filter: GetReferentialCustomerInput;
+  id: Scalars['String'];
 };
 
 
 export type QueryGetReferentialOrderArgs = {
-  filter: GetReferentialOrderInput;
+  id: Scalars['String'];
 };
 
 
 export type QueryGetReferentialProductArgs = {
-  filter: GetReferentialProductInput;
+  id: Scalars['String'];
 };
 
 export type ReferentialCustomer = {
@@ -405,7 +381,6 @@ export type UpdateCustomerInput = {
   address?: InputMaybe<Scalars['String']>;
   city?: InputMaybe<Scalars['String']>;
   code?: InputMaybe<Scalars['String']>;
-  id: Scalars['String'];
   naming?: InputMaybe<Scalars['String']>;
   zipCode?: InputMaybe<Scalars['String']>;
 };
@@ -420,7 +395,6 @@ export type UpdateOrderInput = {
 
 export type UpdateProductInput = {
   code?: InputMaybe<Scalars['String']>;
-  id: Scalars['String'];
   label?: InputMaybe<Scalars['String']>;
 };
 

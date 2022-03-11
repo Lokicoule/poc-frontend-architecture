@@ -19,11 +19,26 @@ export const UpdateCustomerController = ({
   const navigate = useNavigate();
   const { data, loading } = useGetCustomerQuery({
     variables: {
-      filter: { id: customerId },
+      getCustomerId: customerId,
     },
-    fetchPolicy: "no-cache",
   });
-  const [updateCustomer, { error }] = useUpdateCustomerMutation({});
+  const [updateCustomer, { error }] = useUpdateCustomerMutation({
+    update(cache, { data: updatedCustomer }) {
+      /* cache.modify({
+        fields: {
+          getCustomers(existingCustomersRef, { readField }) {
+            console.log(existingCustomersRef);
+            return existingCustomersRef.map((customerRef: any) =>
+              updatedCustomer?.updateCustomer.id ===
+              readField("id", customerRef)
+                ? updatedCustomer?.updateCustomer
+                : customerRef
+            );
+          },
+        },
+      }); */
+    },
+  });
 
   const mapViewModelToDto = (dataVM: UpdateCustomerViewModel) => ({
     address: dataVM.address,
@@ -31,7 +46,6 @@ export const UpdateCustomerController = ({
     code: dataVM.code,
     naming: dataVM.naming,
     zipCode: dataVM.zipCode,
-    id: customerId,
   });
 
   const mapDtoToViewModel = (
@@ -50,6 +64,7 @@ export const UpdateCustomerController = ({
   const handleSubmit = (dataVM: UpdateCustomerViewModel) => {
     return updateCustomer({
       variables: {
+        updateCustomerId: customerId,
         updateCustomerInput: mapViewModelToDto(dataVM),
       },
       onCompleted: ({ updateCustomer }) => {

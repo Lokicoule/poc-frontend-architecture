@@ -46,9 +46,7 @@ export const CreateCustomerLogic = ({
 
   const handleReset = () => form.reset();
   const handleSubmit = async (data: CreateCustomerViewModel) => {
-    await onSubmit(data).then(() => {
-      handleReset();
-    });
+    await onSubmit(data);
   };
 
   return (

@@ -10,7 +10,7 @@ import { ManageCustomersLogic } from "./ManageCustomersLogic";
 
 export const ManageCustomersController = () => {
   const { data, loading } = useGetCustomersQuery({
-    fetchPolicy: "cache-and-network",
+    fetchPolicy: "cache-first", //default
     pollInterval: 300000,
   });
   const [removeCustomers] = useRemoveCustomersMutation({

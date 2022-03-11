@@ -17,12 +17,26 @@ export const ManageCustomerController = ({
   customerId = "",
 }: ManageCustomerControllerProps) => {
   const navigate = useNavigate();
-  const [removeCustomer] = useRemoveCustomerMutation();
+  const [removeCustomer] = useRemoveCustomerMutation({
+    update(cache, { data: removeCustomerData }) {
+      cache.modify({
+        fields: {
+          getCustomers(existingCustomersRef, { readField }) {
+            return existingCustomersRef.filter(
+              (customerRef: any) =>
+                removeCustomerData?.removeCustomer.id !==
+                readField("id", customerRef)
+            );
+          },
+        },
+      });
+    },
+  });
   const { data, loading } = useGetCustomerQuery({
     variables: {
-      filter: { id: customerId },
+      getCustomerId: customerId,
     },
-    fetchPolicy: "no-cache",
+    onError: () => navigate("/backoffice/customers"),
   });
 
   const mapDtoToViewModel = (
@@ -38,7 +52,6 @@ export const ManageCustomerController = ({
       id: customerId,
     };
   };
-
   const handleRemove = (id: string) =>
     removeCustomer({
       variables: {
@@ -53,6 +66,7 @@ export const ManageCustomerController = ({
     });
 
   if (loading) return <Loader></Loader>;
+
   return (
     <ManageCustomerLogic
       defaultValues={mapDtoToViewModel(data)}
