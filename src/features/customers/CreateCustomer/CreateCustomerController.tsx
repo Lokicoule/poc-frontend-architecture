@@ -18,12 +18,18 @@ export const CreateCustomerController = () => {
     update(cache, { data: addedCustomer }) {
       cache.modify({
         fields: {
+          getCustomer(existingCustomer, { toReference }) {
+            return addedCustomer
+              ? toReference(addedCustomer)
+              : existingCustomer;
+          },
           getCustomers: (existingItems = [], { toReference }) => {
             return (
-              addedCustomer?.createCustomer && [
+              (addedCustomer?.createCustomer && [
                 ...existingItems,
                 toReference(addedCustomer.createCustomer),
-              ]
+              ]) ||
+              existingItems
             );
           },
         },

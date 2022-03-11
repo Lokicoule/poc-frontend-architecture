@@ -50,10 +50,7 @@ export const UpdateCustomerLogic = ({
   });
 
   const handleSubmit = async (data: UpdateCustomerViewModel) => {
-    if (!isEqual(defaultValues, data))
-      await onSubmit(data).then(() => {
-        form.reset();
-      });
+    if (!isEqual(defaultValues, data)) await onSubmit(data);
   };
 
   const handleReset = () => form.reset();

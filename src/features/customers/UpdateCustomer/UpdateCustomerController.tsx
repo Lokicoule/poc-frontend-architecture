@@ -24,29 +24,27 @@ export const UpdateCustomerController = ({
   });
   const [updateCustomer, { error }] = useUpdateCustomerMutation({
     update(cache, { data: updatedCustomer }) {
-      /* cache.modify({
+      cache.modify({
         fields: {
-          getCustomers(existingCustomersRef, { readField }) {
-            console.log(existingCustomersRef);
-            return existingCustomersRef.map((customerRef: any) =>
-              updatedCustomer?.updateCustomer.id ===
-              readField("id", customerRef)
-                ? updatedCustomer?.updateCustomer
-                : customerRef
-            );
+          getCustomer(existingCustomer, { toReference }) {
+            return updatedCustomer
+              ? toReference(updatedCustomer)
+              : existingCustomer;
           },
         },
-      }); */
+      });
     },
   });
 
-  const mapViewModelToDto = (dataVM: UpdateCustomerViewModel) => ({
-    address: dataVM.address,
-    city: dataVM.city,
-    code: dataVM.code,
-    naming: dataVM.naming,
-    zipCode: dataVM.zipCode,
-  });
+  const mapViewModelToDto = (dataVM: UpdateCustomerViewModel) => {
+    return {
+      address: dataVM.address,
+      city: dataVM.city,
+      code: dataVM.code,
+      naming: dataVM.naming,
+      zipCode: dataVM.zipCode,
+    };
+  };
 
   const mapDtoToViewModel = (
     dataDto: GetCustomerQuery | undefined
