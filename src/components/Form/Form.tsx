@@ -1,5 +1,4 @@
 import { GraphQLErrors } from "@apollo/client/errors";
-import SendIcon from "@mui/icons-material/Send";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { FC } from "react";
@@ -32,22 +31,25 @@ export const Form: FC<FormProps> = ({
           ))}
         </Typography>
       )}
-      {onSubmit && (
-        <Button
-          type="submit"
-          variant="contained"
-          sx={{ mt: 3, mb: 2 }}
-          endIcon={<SendIcon />}
-        >
-          Save
-        </Button>
-      )}
+
       {onReset && (
-        <Grid container justifyContent="flex-end">
+        <Grid
+          container
+          justifyContent={"flex-end"}
+          sx={{ mt: 3, mb: 2 }}
+          spacing={3}
+        >
           <Grid item>
             <Button onClick={onReset} variant={"outlined"}>
               Reset
             </Button>
+          </Grid>
+          <Grid item>
+            {onSubmit && (
+              <Button type="submit" variant="contained">
+                Enregistrer
+              </Button>
+            )}
           </Grid>
         </Grid>
       )}

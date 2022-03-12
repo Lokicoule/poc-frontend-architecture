@@ -9,7 +9,8 @@ export const FeatureLayout: FC<FeatureLayoutProps> = ({ title, children }) => {
   return (
     <Paper
       sx={{
-        padding: 5,
+        mt: 2,
+        padding: 2,
       }}
     >
       <Typography variant="h5">{title}</Typography>

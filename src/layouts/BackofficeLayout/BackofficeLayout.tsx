@@ -3,10 +3,27 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import * as React from "react";
 import { Outlet } from "react-router-dom";
+import { Breadcrumbs, BreadcrumbsProps } from "../../components";
+import { uiConfiguration } from "../../constants/uiConfiguration";
 import { Header } from "./components/Header";
 import { LogoSection } from "./components/Header/LogoSection/LogoSection";
 import { SideBar } from "./components/SideBar";
-import { uiConfiguration } from "../../constants/uiConfiguration";
+
+const breadcrumbNameMap: Readonly<BreadcrumbsProps> = {
+  crumbs: {
+    "/backoffice": { alias: "Backoffice" },
+    "/backoffice/customers": { alias: "Clients" },
+    "/backoffice/customers/create": {
+      alias: "Nouveau client",
+      last: true,
+    },
+    "/backoffice/customers/view": { alias: "Information client", last: true },
+    "/backoffice/customers/update": {
+      alias: "Mise à jour client",
+      last: true,
+    },
+  },
+};
 
 export const BackofficeLayout = () => {
   const theme = useTheme();
@@ -50,6 +67,7 @@ export const BackofficeLayout = () => {
         }}
       >
         <Toolbar />
+        <Breadcrumbs crumbs={breadcrumbNameMap.crumbs}></Breadcrumbs>
         <Outlet></Outlet>
       </Container>
     </Box>
