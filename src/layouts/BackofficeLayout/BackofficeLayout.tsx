@@ -22,6 +22,16 @@ const breadcrumbNameMap: Readonly<BreadcrumbsProps> = {
       alias: "Mise à jour client",
       last: true,
     },
+    "/backoffice/products": { alias: "Produits" },
+    "/backoffice/products/create": {
+      alias: "Nouveau produit",
+      last: true,
+    },
+    "/backoffice/products/view": { alias: "Information produit", last: true },
+    "/backoffice/products/update": {
+      alias: "Mise à jour produit",
+      last: true,
+    },
   },
 };
 
