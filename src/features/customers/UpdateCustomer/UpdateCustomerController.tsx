@@ -6,7 +6,7 @@ import {
   useUpdateCustomerMutation,
 } from "../../../api/hooks/customers.generated";
 import { Loader } from "../../../components";
-import { UpdateCustomerViewModel } from "../../../view-models/domain/customers";
+import { UpdateCustomerViewModel } from "../../../view-models/customers";
 import { UpdateCustomerLogic } from "./UpdateCustomerLogic";
 
 type UpdateCustomerControllerProps = {

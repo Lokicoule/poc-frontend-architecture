@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useCreateProductMutation } from "../../../api/hooks/products.generated";
-import { CreateProductViewModel } from "../../../view-models/domain/products";
+import { CreateProductViewModel } from "../../../view-models/products";
 import { CreateProductLogic } from "./CreateProductLogic";
 
 const defaultValues = {

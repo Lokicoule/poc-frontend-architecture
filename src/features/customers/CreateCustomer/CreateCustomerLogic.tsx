@@ -3,7 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { CreateCustomerMutation } from "../../../api/hooks/customers.generated";
-import { CreateCustomerViewModel } from "../../../view-models/domain/customers";
+import { CreateCustomerViewModel } from "../../../view-models/customers";
 import {
   CreateCustomerView,
   CreateCustomerViewProps,

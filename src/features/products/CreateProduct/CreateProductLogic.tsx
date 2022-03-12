@@ -3,7 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { CreateProductMutation } from "../../../api/hooks/products.generated";
-import { CreateProductViewModel } from "../../../view-models/domain/products";
+import { CreateProductViewModel } from "../../../view-models/products";
 import { CreateProductView, CreateProductViewProps } from "./CreateProductView";
 
 type CreateProductLogicProps = Pick<CreateProductViewProps, "errors"> & {

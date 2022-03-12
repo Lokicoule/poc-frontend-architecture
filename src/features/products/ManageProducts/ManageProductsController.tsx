@@ -5,7 +5,7 @@ import {
   useRemoveProductsMutation,
 } from "../../../api/hooks/products.generated";
 import { Loader } from "../../../components";
-import { ProductViewModel } from "../../../view-models/domain/products/ProductViewModel";
+import { ProductViewModel } from "../../../view-models/products";
 import { ManageProductsLogic } from "./ManageProductsLogic";
 
 export const ManageProductsController = () => {

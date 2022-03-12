@@ -6,7 +6,7 @@ import {
   useUpdateProductMutation,
 } from "../../../api/hooks/products.generated";
 import { Loader } from "../../../components";
-import { UpdateProductViewModel } from "../../../view-models/domain/products";
+import { UpdateProductViewModel } from "../../../view-models/products";
 import { UpdateProductLogic } from "./UpdateProductLogic";
 
 type UpdateProductControllerProps = {

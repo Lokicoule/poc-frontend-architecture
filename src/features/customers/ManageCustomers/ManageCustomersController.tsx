@@ -5,7 +5,7 @@ import {
   useRemoveCustomersMutation,
 } from "../../../api/hooks/customers.generated";
 import { Loader } from "../../../components";
-import { CustomerViewModel } from "../../../view-models/domain/customers/CustomerViewModel";
+import { CustomerViewModel } from "../../../view-models/customers";
 import { ManageCustomersLogic } from "./ManageCustomersLogic";
 
 export const ManageCustomersController = () => {

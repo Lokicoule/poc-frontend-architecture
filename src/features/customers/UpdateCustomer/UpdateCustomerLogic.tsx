@@ -4,7 +4,7 @@ import { isEqual } from "lodash";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { UpdateCustomerMutation } from "../../../api/hooks/customers.generated";
-import { UpdateCustomerViewModel } from "../../../view-models/domain/customers";
+import { UpdateCustomerViewModel } from "../../../view-models/customers";
 import {
   UpdateCustomerView,
   UpdateCustomerViewProps,

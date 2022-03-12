@@ -4,7 +4,7 @@ import { isEqual } from "lodash";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { UpdateProductMutation } from "../../../api/hooks/products.generated";
-import { UpdateProductViewModel } from "../../../view-models/domain/products";
+import { UpdateProductViewModel } from "../../../view-models/products";
 import { UpdateProductView, UpdateProductViewProps } from "./UpdateProductView";
 
 type UpdateProductLogicProps = Pick<UpdateProductViewProps, "errors"> & {

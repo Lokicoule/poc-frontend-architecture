@@ -4,7 +4,7 @@ import { SetStateAction } from "react";
 import { Link } from "react-router-dom";
 import { Customer } from "../../../api/types/types.generated";
 import { ColumnProps, EnhancedTable } from "../../../components/Tables";
-import { CustomerViewModel } from "../../../view-models/domain/customers";
+import { CustomerViewModel } from "../../../view-models/customers";
 
 export type ManageCustomersViewProps = {
   data: CustomerViewModel[];
