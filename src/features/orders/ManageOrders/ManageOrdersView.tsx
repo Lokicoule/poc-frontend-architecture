@@ -2,13 +2,12 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Button, InputAdornment, Stack, TextField } from "@mui/material";
 import { SetStateAction } from "react";
 import { Link } from "react-router-dom";
-import { Order } from "../../../api/types/types.generated";
-import { ColumnProps, EnhancedTable } from "../../../components/Tables";
-import { OrderViewModel } from "../../../view-models/orders";
+import { OrdersTable, OrdersTableProps } from "./components/OrdersTable";
 
-export type ManageOrdersViewProps = {
-  data: OrderViewModel[];
-  onRemove: (ids: string[]) => Promise<void>;
+export type ManageOrdersViewProps = Pick<
+  OrdersTableProps,
+  "data" | "onRemove"
+> & {
   onSearch: (event: { target: { value: SetStateAction<string> } }) => void;
 };
 
@@ -17,39 +16,6 @@ export const ManageOrdersView = ({
   onRemove,
   onSearch,
 }: ManageOrdersViewProps) => {
-  const columns: ColumnProps[] = [
-    {
-      label: "Code commande",
-      key: "code",
-      sortable: true,
-      content: (item: Order) => (
-        <Link to={`/backoffice/orders/view/${item.id}`}>{item.code}</Link>
-      ),
-    },
-    {
-      label: "Montant commande",
-      key: "totalOrder",
-      sortable: true,
-      content: (order: Order) =>
-        order.items?.reduce(
-          (acc, item) => acc + item.unitPrice * item.amount,
-          0
-        ),
-    },
-    {
-      label: "Date commande",
-      path: "billingDate",
-      key: "billingDate",
-      sortable: true,
-    },
-    {
-      label: "Date échéance",
-      path: "dueDate",
-      key: "dueDate",
-      sortable: true,
-    },
-  ];
-
   return (
     <>
       <Stack
@@ -81,12 +47,7 @@ export const ManageOrdersView = ({
         </Button>
       </Stack>
 
-      <EnhancedTable
-        columns={columns}
-        data={data}
-        title="Liste commandes"
-        onRemove={onRemove}
-      ></EnhancedTable>
+      <OrdersTable data={data} onRemove={onRemove}></OrdersTable>
     </>
   );
 };
