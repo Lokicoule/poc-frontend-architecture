@@ -1,0 +1,65 @@
+query GetOrder($getOrderId: String!, $populate: Boolean!) {
+  getOrder(id: $getOrderId) {
+    billingDate
+    code
+    dueDate
+    id
+    items(populate: $populate) {
+      id
+      unitPrice
+      product {
+        label
+        id
+        code
+      }
+      amount
+    }
+  }
+}
+
+query GetOrders($populate: Boolean!) {
+  getOrders {
+    billingDate
+    code
+    dueDate
+    id
+    items(populate: $populate) {
+      id
+      amount
+      product {
+        id
+        code
+        label
+      }
+      unitPrice
+    }
+  }
+}
+
+mutation CreateOrder($createOrderInput: CreateOrderInput!) {
+  createOrder(createOrderInput: $createOrderInput) {
+    code
+    id
+  }
+}
+
+mutation UpdateOrder(
+  $updateOrderId: String!
+  $updateOrderInput: UpdateOrderInput!
+) {
+  updateOrder(id: $updateOrderId, updateOrderInput: $updateOrderInput) {
+    code
+    id
+  }
+}
+
+mutation RemoveOrder($removeOrderId: String!) {
+  removeOrder(id: $removeOrderId) {
+    code
+    id
+  }
+}
+
+mutation RemoveOrders($ids: [String!]!) {
+  removeOrders(ids: $ids)
+}

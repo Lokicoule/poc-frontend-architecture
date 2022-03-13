@@ -1,16 +1,8 @@
 import { Paper, Table as MuiTable, TableContainer } from "@mui/material";
-import { ColumnProps } from "..";
-import { TableBody } from "./TableBody";
+import { TableBody, TableBodyProps } from "./TableBody";
 import { TableHeader } from "./TableHeader";
 
-interface DataProps {
-  id: string;
-}
-
-interface TableProps {
-  columns: ColumnProps[];
-  data: DataProps[];
-}
+type TableProps = TableBodyProps;
 
 export const Table = ({ columns, data }: TableProps) => {
   return (

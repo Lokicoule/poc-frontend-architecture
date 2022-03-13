@@ -231,8 +231,11 @@ export type OrderItemsArgs = {
 export type OrderItem = {
   __typename?: 'OrderItem';
   amount: Scalars['Float'];
-  product: Product;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id: Scalars['String'];
+  product?: Maybe<Product>;
   unitPrice: Scalars['Float'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
 export type OrderItemInput = {
@@ -389,7 +392,6 @@ export type UpdateOrderInput = {
   billingDate?: InputMaybe<Scalars['DateTime']>;
   code?: InputMaybe<Scalars['String']>;
   dueDate?: InputMaybe<Scalars['DateTime']>;
-  id: Scalars['String'];
   items?: InputMaybe<Array<OrderItemInput>>;
 };
 

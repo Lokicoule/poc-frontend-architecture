@@ -1,1 +1,1 @@
-export { UpdateProductPage } from "./UpdateCustomerPage";
+export { UpdateProductPage } from "./UpdateProductPage";

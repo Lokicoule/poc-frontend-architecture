@@ -5,16 +5,13 @@ import {
   TableRow,
   useTheme,
 } from "@mui/material";
-import { ColumnProps } from "..";
+import { ColumnProps } from "../column.props";
+import { DataProps } from "../data.props";
 
-interface DataProps {
-  id: string;
-}
-
-interface TableBodyProps {
+export type TableBodyProps = {
   columns: ColumnProps[];
   data: DataProps[];
-}
+};
 
 export const TableBody = ({ data, columns }: TableBodyProps) => {
   const theme = useTheme();

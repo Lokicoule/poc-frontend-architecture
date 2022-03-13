@@ -1,10 +1,10 @@
 import { TableCell, TableHead, TableRow, useTheme } from "@mui/material";
 import { FC } from "react";
-import { ColumnProps } from "..";
+import { ColumnProps } from "../column.props";
 
-interface TableHeaderProps {
+export type TableHeaderProps = {
   columns: ColumnProps[];
-}
+};
 
 export const TableHeader: FC<TableHeaderProps> = ({ columns }) => {
   const theme = useTheme();
