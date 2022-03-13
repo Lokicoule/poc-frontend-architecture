@@ -9,43 +9,7 @@ import { Header } from "./components/Header";
 import { LogoSection } from "./components/Header/LogoSection/LogoSection";
 import { SideBar } from "./components/SideBar";
 
-const breadcrumbNameMap: Readonly<BreadcrumbsProps> = {
-  crumbs: {
-    "/backoffice": { alias: "Backoffice" },
-    "/backoffice/customers": { alias: "Clients" },
-    "/backoffice/customers/create": {
-      alias: "Nouveau client",
-      last: true,
-    },
-    "/backoffice/customers/view": { alias: "Information client", last: true },
-    "/backoffice/customers/update": {
-      alias: "Mise à jour client",
-      last: true,
-    },
-    "/backoffice/products": { alias: "Produits" },
-    "/backoffice/products/create": {
-      alias: "Nouveau produit",
-      last: true,
-    },
-    "/backoffice/products/view": { alias: "Information produit", last: true },
-    "/backoffice/products/update": {
-      alias: "Mise à jour produit",
-      last: true,
-    },
-    "/backoffice/orders": { alias: "Commandes" },
-    "/backoffice/orders/create": {
-      alias: "Nouvelle commande",
-      last: true,
-    },
-    "/backoffice/orders/view": { alias: "Information commande", last: true },
-    "/backoffice/orders/update": {
-      alias: "Mise à jour commande",
-      last: true,
-    },
-  },
-};
-
-export const BackofficeLayout = () => {
+export const BackofficeLayout = ({ crumbs }: BreadcrumbsProps) => {
   const theme = useTheme();
   const matchUpMd = useMediaQuery(theme.breakpoints.up("md"));
   const [open, setOpen] = React.useState(false);
@@ -87,7 +51,7 @@ export const BackofficeLayout = () => {
         }}
       >
         <Toolbar />
-        <Breadcrumbs crumbs={breadcrumbNameMap.crumbs}></Breadcrumbs>
+        <Breadcrumbs crumbs={crumbs}></Breadcrumbs>
         <Outlet></Outlet>
       </Container>
     </Box>

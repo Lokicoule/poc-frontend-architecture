@@ -1,4 +1,4 @@
-import { Loadable } from "../../../components";
+import { CrumbProps, Loadable } from "../../../components";
 import { lazy } from "react";
 import { RouteObject } from "react-router-dom";
 
@@ -33,6 +33,19 @@ const UpdateProductPage = Loadable(
     }))
   )
 );
+
+export const ProductsCrumbs: Readonly<CrumbProps> = {
+  "/backoffice/products": { alias: "Produits" },
+  "/backoffice/products/create": {
+    alias: "Nouveau produit",
+    last: true,
+  },
+  "/backoffice/products/view": { alias: "Information produit", last: true },
+  "/backoffice/products/update": {
+    alias: "Mise à jour produit",
+    last: true,
+  },
+};
 
 export const ProductsRoutes: RouteObject[] = [
   {

@@ -1,13 +1,21 @@
 import { RouteObject } from "react-router-dom";
+import { CrumbProps } from "../../components/Breadcrumbs";
 import { BackofficeLayout } from "../../layouts";
 import { BackofficePage } from "../../pages/backoffice/BackofficePage";
-import { CustomersRoutes } from "./customers/CustomersRoutes";
-import { OrdersRoutes } from "./orders/OrdersRoutes";
-import { ProductsRoutes } from "./products/ProductsRoutes";
+import { CustomersCrumbs, CustomersRoutes } from "./customers/CustomersRoutes";
+import { OrdersCrumbs, OrdersRoutes } from "./orders/OrdersRoutes";
+import { ProductsCrumbs, ProductsRoutes } from "./products/ProductsRoutes";
+
+const BackofficeCrumbs: Readonly<CrumbProps> = {
+  "/backoffice": { alias: "Backoffice" },
+  ...CustomersCrumbs,
+  ...OrdersCrumbs,
+  ...ProductsCrumbs,
+};
 
 export const BackofficeRoutes: RouteObject = {
   path: "backoffice",
-  element: <BackofficeLayout />,
+  element: <BackofficeLayout crumbs={BackofficeCrumbs} />,
   children: [
     {
       path: "",

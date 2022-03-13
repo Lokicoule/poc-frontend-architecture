@@ -1,6 +1,6 @@
-import { Loadable } from "../../../components";
 import { lazy } from "react";
 import { RouteObject } from "react-router-dom";
+import { CrumbProps, Loadable } from "../../../components";
 
 const CustomersPage = Loadable(
   lazy(() =>
@@ -33,6 +33,19 @@ const UpdateCustomerPage = Loadable(
     }))
   )
 );
+
+export const CustomersCrumbs: Readonly<CrumbProps> = {
+  "/backoffice/customers": { alias: "Clients" },
+  "/backoffice/customers/create": {
+    alias: "Nouveau client",
+    last: true,
+  },
+  "/backoffice/customers/view": { alias: "Information client", last: true },
+  "/backoffice/customers/update": {
+    alias: "Mise à jour client",
+    last: true,
+  },
+};
 
 export const CustomersRoutes: RouteObject[] = [
   {

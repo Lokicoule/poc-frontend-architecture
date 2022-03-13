@@ -3,8 +3,10 @@ import { useLocation } from "react-router-dom";
 import { LinkRouter } from "../Link";
 import { Crumb } from "./Crumb";
 
+export type CrumbProps = { [key: string]: { alias: string; last?: boolean } };
+
 export type BreadcrumbsProps = {
-  crumbs: { [key: string]: { alias: string; last?: boolean } };
+  crumbs: CrumbProps;
 };
 
 export const Breadcrumbs = ({ crumbs }: BreadcrumbsProps) => {
