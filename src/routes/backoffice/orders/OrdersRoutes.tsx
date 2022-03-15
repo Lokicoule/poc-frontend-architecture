@@ -34,6 +34,14 @@ const UpdateOrderPage = Loadable(
   )
 );
 
+const CustomerPage = Loadable(
+  lazy(() =>
+    import("../../../pages/backoffice").then((module) => ({
+      default: module.CustomerPage,
+    }))
+  )
+);
+
 export const OrdersCrumbs: Readonly<CrumbProps> = {
   "/backoffice/orders": { alias: "Commandes" },
   "/backoffice/orders/create": {
@@ -45,6 +53,7 @@ export const OrdersCrumbs: Readonly<CrumbProps> = {
     alias: "Mise à jour commande",
     last: true,
   },
+  "/backoffice/orders/customer": { alias: "Information client", last: true },
 };
 
 export const OrdersRoutes: RouteObject[] = [
@@ -74,6 +83,15 @@ export const OrdersRoutes: RouteObject[] = [
           {
             path: ":orderId",
             element: <UpdateOrderPage />,
+          },
+        ],
+      },
+      {
+        path: "customer",
+        children: [
+          {
+            path: ":customerId",
+            element: <CustomerPage />,
           },
         ],
       },

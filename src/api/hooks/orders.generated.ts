@@ -5,18 +5,20 @@ import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export type GetOrderQueryVariables = Types.Exact<{
   getOrderId: Types.Scalars['String'];
-  populate: Types.Scalars['Boolean'];
+  populateCustomer: Types.Scalars['Boolean'];
+  populateItems: Types.Scalars['Boolean'];
 }>;
 
 
-export type GetOrderQuery = { __typename?: 'Query', getOrder?: { __typename?: 'Order', billingDate?: any | null, code: string, dueDate?: any | null, id: string, items?: Array<{ __typename?: 'OrderItem', id: string, unitPrice: number, amount: number, product?: { __typename?: 'Product', label: string, id: string, code: string } | null }> | null } | null };
+export type GetOrderQuery = { __typename?: 'Query', getOrder?: { __typename?: 'Order', billingDate?: any | null, code: string, dueDate?: any | null, id: string, customer: { __typename?: 'Customer', id: string, code: string }, items?: Array<{ __typename?: 'OrderItem', id: string, amount: number, unitPrice: number, product?: { __typename?: 'Product', id: string, code: string, label: string } | null }> | null } | null };
 
 export type GetOrdersQueryVariables = Types.Exact<{
-  populate: Types.Scalars['Boolean'];
+  populateItems: Types.Scalars['Boolean'];
+  populateCustomer: Types.Scalars['Boolean'];
 }>;
 
 
-export type GetOrdersQuery = { __typename?: 'Query', getOrders?: Array<{ __typename?: 'Order', billingDate?: any | null, code: string, dueDate?: any | null, id: string, items?: Array<{ __typename?: 'OrderItem', id: string, amount: number, unitPrice: number, product?: { __typename?: 'Product', id: string, code: string, label: string } | null }> | null }> | null };
+export type GetOrdersQuery = { __typename?: 'Query', getOrders?: Array<{ __typename?: 'Order', billingDate?: any | null, code: string, dueDate?: any | null, id: string, items?: Array<{ __typename?: 'OrderItem', amount: number, id: string, unitPrice: number, product?: { __typename?: 'Product', id: string, code: string, label: string } | null }> | null, customer: { __typename?: 'Customer', id: string, code: string } }> | null };
 
 export type CreateOrderMutationVariables = Types.Exact<{
   createOrderInput: Types.CreateOrderInput;
@@ -49,22 +51,26 @@ export type RemoveOrdersMutation = { __typename?: 'Mutation', removeOrders: bool
 
 
 export const GetOrderDocument = gql`
-    query GetOrder($getOrderId: String!, $populate: Boolean!) {
+    query GetOrder($getOrderId: String!, $populateCustomer: Boolean!, $populateItems: Boolean!) {
   getOrder(id: $getOrderId) {
     billingDate
     code
-    dueDate
-    id
-    items(populate: $populate) {
+    customer(populate: $populateCustomer) {
       id
-      unitPrice
+      code
+    }
+    items(populate: $populateItems) {
+      id
       product {
-        label
         id
         code
+        label
       }
       amount
+      unitPrice
     }
+    dueDate
+    id
   }
 }
     `;
@@ -82,7 +88,8 @@ export const GetOrderDocument = gql`
  * const { data, loading, error } = useGetOrderQuery({
  *   variables: {
  *      getOrderId: // value for 'getOrderId'
- *      populate: // value for 'populate'
+ *      populateCustomer: // value for 'populateCustomer'
+ *      populateItems: // value for 'populateItems'
  *   },
  * });
  */
@@ -98,21 +105,25 @@ export type GetOrderQueryHookResult = ReturnType<typeof useGetOrderQuery>;
 export type GetOrderLazyQueryHookResult = ReturnType<typeof useGetOrderLazyQuery>;
 export type GetOrderQueryResult = Apollo.QueryResult<GetOrderQuery, GetOrderQueryVariables>;
 export const GetOrdersDocument = gql`
-    query GetOrders($populate: Boolean!) {
+    query GetOrders($populateItems: Boolean!, $populateCustomer: Boolean!) {
   getOrders {
     billingDate
     code
     dueDate
     id
-    items(populate: $populate) {
-      id
+    items(populate: $populateItems) {
       amount
+      id
       product {
         id
         code
         label
       }
       unitPrice
+    }
+    customer(populate: $populateCustomer) {
+      id
+      code
     }
   }
 }
@@ -130,7 +141,8 @@ export const GetOrdersDocument = gql`
  * @example
  * const { data, loading, error } = useGetOrdersQuery({
  *   variables: {
- *      populate: // value for 'populate'
+ *      populateItems: // value for 'populateItems'
+ *      populateCustomer: // value for 'populateCustomer'
  *   },
  * });
  */

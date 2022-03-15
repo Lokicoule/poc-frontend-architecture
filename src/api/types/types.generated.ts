@@ -25,6 +25,7 @@ export type CreateCustomerInput = {
 export type CreateOrderInput = {
   billingDate?: InputMaybe<Scalars['DateTime']>;
   code?: InputMaybe<Scalars['String']>;
+  customer: Scalars['String'];
   dueDate?: InputMaybe<Scalars['DateTime']>;
   items?: InputMaybe<Array<OrderItemInput>>;
 };
@@ -217,10 +218,16 @@ export type Order = {
   billingDate?: Maybe<Scalars['DateTime']>;
   code: Scalars['String'];
   createdAt?: Maybe<Scalars['DateTime']>;
+  customer: Customer;
   dueDate?: Maybe<Scalars['DateTime']>;
   id: Scalars['String'];
   items?: Maybe<Array<OrderItem>>;
   updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type OrderCustomerArgs = {
+  populate: Scalars['Boolean'];
 };
 
 
@@ -391,6 +398,7 @@ export type UpdateCustomerInput = {
 export type UpdateOrderInput = {
   billingDate?: InputMaybe<Scalars['DateTime']>;
   code?: InputMaybe<Scalars['String']>;
+  customer?: InputMaybe<Scalars['String']>;
   dueDate?: InputMaybe<Scalars['DateTime']>;
   items?: InputMaybe<Array<OrderItemInput>>;
 };

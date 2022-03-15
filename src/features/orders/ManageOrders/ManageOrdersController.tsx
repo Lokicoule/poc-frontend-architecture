@@ -13,7 +13,8 @@ export const ManageOrdersController = () => {
     fetchPolicy: "cache-first", //default
     pollInterval: 300000,
     variables: {
-      populate: true,
+      populateCustomer: true,
+      populateItems: true,
     },
   });
   console.log(data);
@@ -46,6 +47,10 @@ export const ManageOrdersController = () => {
           code: order?.code,
           billingDate: order?.billingDate,
           dueDate: order?.dueDate,
+          customer: {
+            id: order.customer.id,
+            code: order.customer.code,
+          },
           items: order?.items || [],
         } as OrderViewModel)
     ) as OrderViewModel[];

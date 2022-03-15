@@ -22,6 +22,19 @@ export const OrdersTableLogic = ({
       ),
     },
     {
+      label: "Code client",
+      content: (order: Order) => {
+        console.log(order.customer);
+        return (
+          <Link to={`/backoffice/orders/customer/${order.customer.id}`}>
+            {order.customer.code}
+          </Link>
+        );
+      },
+      key: "customer.code",
+      sortable: true,
+    },
+    {
       label: "Montant commande",
       key: "totalOrder",
       sortable: true,
@@ -33,18 +46,18 @@ export const OrdersTableLogic = ({
     },
     {
       label: "Date commande",
-      path: "billingDate",
       key: "billingDate",
       sortable: true,
+      content: (order: Order) =>
+        new Date(order?.billingDate).toLocaleDateString(),
     },
     {
       label: "Date échéance",
-      path: "dueDate",
       key: "dueDate",
       sortable: true,
+      content: (order: Order) => new Date(order?.dueDate).toLocaleDateString(),
     },
   ];
-
   return (
     <OrdersTableView
       columns={columns}
