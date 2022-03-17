@@ -15,7 +15,16 @@ type CreateOrderLogicProps = Pick<CreateOrderViewProps, "errors"> & {
   >;
 };
 
-const schema = yup.object().shape({});
+const schema = yup.object().shape({
+  customer: yup.string().required("Veuillez sélectionner un client."),
+  items: yup.array().of(
+    yup.object().shape({
+      product: yup.string().required("Un produit doit être sélectionné."),
+      amount: yup.number().required("Le nombre de colis est requis."),
+      unitPrice: yup.number().required("Le prix par colis est requis."),
+    })
+  ),
+});
 
 export const CreateOrderLogic = ({
   defaultValues,

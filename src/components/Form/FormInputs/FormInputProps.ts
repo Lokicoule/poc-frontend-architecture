@@ -13,4 +13,7 @@ export interface FormInputProps {
   setValue?: Function;
   options?: Option[];
   sx?: SxProps<Theme> | undefined;
+  error?: boolean;
+  helperText?: string | undefined;
+  defaultValue?: string;
 }

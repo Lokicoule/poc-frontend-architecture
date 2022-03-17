@@ -20,7 +20,8 @@ export const UpdateOrderController = ({
   const { data, loading } = useGetOrderQuery({
     variables: {
       getOrderId: orderId,
-      populate: true,
+      populateCustomer: true,
+      populateItems: true,
     },
   });
   const [updateOrder, { error }] = useUpdateOrderMutation({

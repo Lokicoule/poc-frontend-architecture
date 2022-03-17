@@ -1,16 +1,34 @@
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useCreateOrderMutation } from "../../../api/hooks/orders.generated";
-import { CreateOrderViewModel } from "../../../view-models/orders";
+import {
+  CreateOrderInput,
+  OrderItemInput,
+} from "../../../api/types/types.generated";
+import { addDays } from "../../../utils/DateUtils";
+import {
+  CreateOrderItemViewModel,
+  CreateOrderViewModel,
+} from "../../../view-models/orders";
 import { CreateOrderLogic } from "./CreateOrderLogic";
 
 const defaultValues = {
   code: "",
-  label: "",
+  customer: "",
+  dueDate: addDays(new Date(), 30),
+  billingDate: new Date(),
+  items: [
+    {
+      amount: 0,
+      unitPrice: 0,
+      product: "",
+    },
+  ],
 } as Readonly<CreateOrderViewModel>;
 
 export const CreateOrderController = () => {
   const navigate = useNavigate();
+
   const [createOrder, { error }] = useCreateOrderMutation({
     update(cache, { data: addedOrder }) {
       cache.modify({
@@ -32,8 +50,24 @@ export const CreateOrderController = () => {
     },
   });
 
-  const mapViewModelToDto = (data: CreateOrderViewModel) => ({
-    code: data.code,
+  const mapItemsViewModelToDto = (
+    items: CreateOrderItemViewModel[]
+  ): OrderItemInput[] =>
+    items.map(
+      (item) =>
+        ({
+          amount: Number(item.amount),
+          product: item.product,
+          unitPrice: Number(item.unitPrice),
+        } as OrderItemInput)
+    );
+
+  const mapViewModelToDto = (data: CreateOrderViewModel): CreateOrderInput => ({
+    code: data?.code,
+    customer: data.customer,
+    billingDate: data?.billingDate,
+    dueDate: data?.dueDate,
+    items: mapItemsViewModelToDto(data?.items),
   });
 
   const handleSubmit = (data: CreateOrderViewModel) => {

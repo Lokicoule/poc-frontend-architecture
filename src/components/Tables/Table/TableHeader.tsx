@@ -1,4 +1,4 @@
-import { TableCell, TableHead, TableRow, useTheme } from "@mui/material";
+import { TableCell, TableHead, TableRow } from "@mui/material";
 import { FC } from "react";
 import { ColumnProps } from "../column.props";
 
@@ -7,27 +7,14 @@ export type TableHeaderProps = {
 };
 
 export const TableHeader: FC<TableHeaderProps> = ({ columns }) => {
-  const theme = useTheme();
   return (
     <TableHead>
-      <TableRow
-        sx={{
-          root: {
-            "&:nth-of-type(odd)": {
-              backgroundColor: theme.palette.action.hover,
-            },
-            "&:last-child td, &:last-child th": {
-              border: 0,
-            },
-          },
-        }}
-      >
+      <TableRow>
         {columns?.map((column: ColumnProps) => (
           <TableCell
             sx={{
-              backgroundColor: theme.palette.primary.main,
-              color: theme.palette.common.white,
               fontSize: 16,
+              fontWeight: "bold",
             }}
             align="center"
             key={column.path || column.key}

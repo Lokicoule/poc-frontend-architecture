@@ -10,41 +10,37 @@ import { DataProps } from "../data.props";
 
 export type TableBodyProps = {
   columns: ColumnProps[];
-  data: DataProps[];
+  data: Partial<DataProps>[];
 };
 
 export const TableBody = ({ data, columns }: TableBodyProps) => {
   const theme = useTheme();
 
-  const createKey = (item: DataProps, column: ColumnProps) => {
-    return item.id + (column.path || column.key);
+  const createKey = (
+    item: Partial<DataProps>,
+    column: ColumnProps,
+    idx: number
+  ) => {
+    return (item.id ? item.id : idx) + (column.path || column.key);
   };
 
-  const renderCell = (item: DataProps, column: ColumnProps) => {
-    if (column.content) return column.content(item);
+  const renderCell = (
+    item: Partial<DataProps>,
+    column: ColumnProps,
+    idx: number
+  ) => {
+    if (column.content) return column.content(item, idx);
     if (column.path) return _.get(item, column.path);
     throw new Error("Content or path should be defined.");
   };
 
   return (
     <MuiTableBody>
-      {data?.map((item) => (
-        <TableRow
-          sx={{
-            root: {
-              "&:nth-of-type(odd)": {
-                backgroundColor: theme.palette.action.hover,
-              },
-              "&:last-child td, &:last-child th": {
-                border: 0,
-              },
-            },
-          }}
-          key={item.id}
-        >
+      {data?.map((item, idx) => (
+        <TableRow sx={{}} key={item.id ? item.id : idx}>
           {columns?.map((column) => (
-            <TableCell align="center" key={createKey(item, column)}>
-              {renderCell(item, column)}
+            <TableCell align="center" key={createKey(item, column, idx)}>
+              {renderCell(item, column, idx)}
             </TableCell>
           ))}
         </TableRow>
