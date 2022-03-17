@@ -29,26 +29,7 @@ const defaultValues = {
 export const CreateOrderController = () => {
   const navigate = useNavigate();
 
-  const [createOrder, { error }] = useCreateOrderMutation({
-    update(cache, { data: addedOrder }) {
-      cache.modify({
-        fields: {
-          getOrder(existingOrder, { toReference }) {
-            return addedOrder ? toReference(addedOrder) : existingOrder;
-          },
-          getOrders: (existingItems = [], { toReference }) => {
-            return (
-              (addedOrder?.createOrder && [
-                ...existingItems,
-                toReference(addedOrder.createOrder),
-              ]) ||
-              existingItems
-            );
-          },
-        },
-      });
-    },
-  });
+  const [createOrder, { error }] = useCreateOrderMutation({});
 
   const mapItemsViewModelToDto = (
     items: FormOrderItemViewModel[]

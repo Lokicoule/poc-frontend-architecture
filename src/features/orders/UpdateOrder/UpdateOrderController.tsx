@@ -32,27 +32,7 @@ export const UpdateOrderController = ({
     },
   });
   const [updateOrder, { error }] = useUpdateOrderMutation({
-    update(cache, { data: updatedOrder }) {
-      cache.modify({
-        fields: {
-          getOrder(existingOrder, { toReference }) {
-            return updatedOrder ? toReference(updatedOrder) : existingOrder;
-          },
-          getOrders: (existingItems = [], { toReference }) => {
-            console.log("====================================");
-            console.log(existingItems);
-            console.log("====================================");
-            return (
-              (updatedOrder?.updateOrder && [
-                ...existingItems,
-                toReference(updatedOrder.updateOrder),
-              ]) ||
-              existingItems
-            );
-          },
-        },
-      });
-    },
+    refetchQueries: ["GetOrder"],
   });
 
   const mapDtoToViewModel = (
