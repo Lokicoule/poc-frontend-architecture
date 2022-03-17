@@ -31,7 +31,7 @@ export const ManageOrderView = ({
             label="Client"
             fullWidth
             disabled
-            //defaultValue={defaultValues.code}
+            defaultValue={defaultValues.customer.code}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -39,7 +39,7 @@ export const ManageOrderView = ({
             label="Date commande "
             fullWidth
             disabled
-            defaultValue={defaultValues?.billingDate}
+            defaultValue={defaultValues?.billingDate?.toLocaleDateString()}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -47,7 +47,7 @@ export const ManageOrderView = ({
             label="Date échéance"
             fullWidth
             disabled
-            defaultValue={defaultValues?.dueDate}
+            defaultValue={defaultValues?.dueDate?.toLocaleDateString()}
           />
         </Grid>
         <Grid item xs={12}>

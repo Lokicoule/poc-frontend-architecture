@@ -5,8 +5,13 @@ import {
   useGetOrderQuery,
   useRemoveOrderMutation,
 } from "../../../api/hooks/orders.generated";
-import { OrderItem, Product } from "../../../api/types/types.generated";
+import {
+  Customer,
+  OrderItem,
+  Product,
+} from "../../../api/types/types.generated";
 import { Loader } from "../../../components";
+import { CustomerViewModel } from "../../../view-models/customers";
 import {
   OrderItemViewModel,
   OrderViewModel,
@@ -39,7 +44,8 @@ export const ManageOrderController = ({
   const { data, loading } = useGetOrderQuery({
     variables: {
       getOrderId: orderId,
-      populate: true,
+      populateCustomer: true,
+      populateItems: true,
     },
     onError: () => navigate("/backoffice/orders"),
   });
@@ -64,15 +70,25 @@ export const ManageOrderController = ({
         } as OrderItemViewModel)
     ) as OrderItemViewModel[];
 
+  const mapCustomerDtoToViewModel = (
+    customer: Pick<Customer, "id" | "code"> | null | undefined
+  ): CustomerViewModel =>
+    ({
+      id: customer?.id,
+      code: customer?.code,
+    } as CustomerViewModel);
+
   const mapDtoToViewModel = (
     dataDto: GetOrderQuery | undefined
   ): Readonly<OrderViewModel> => {
     const order = dataDto?.getOrder;
+
     return {
       code: order?.code || "",
-      billingDate: order?.billingDate,
-      dueDate: order?.dueDate,
+      billingDate: new Date(order?.billingDate),
+      dueDate: new Date(order?.dueDate),
       items: mapItemsDtoToViewModel(order?.items),
+      customer: mapCustomerDtoToViewModel(order?.customer),
       id: orderId,
     };
   };
