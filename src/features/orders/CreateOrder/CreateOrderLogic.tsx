@@ -3,13 +3,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { CreateOrderMutation } from "../../../api/hooks/orders.generated";
-import { CreateOrderViewModel } from "../../../view-models/orders";
+import { FormOrderViewModel } from "../../../view-models/orders";
 import { CreateOrderView, CreateOrderViewProps } from "./CreateOrderView";
 
 type CreateOrderLogicProps = Pick<CreateOrderViewProps, "errors"> & {
-  defaultValues: CreateOrderViewModel;
+  defaultValues: FormOrderViewModel;
   onSubmit: (
-    data: CreateOrderViewModel
+    data: FormOrderViewModel
   ) => Promise<
     FetchResult<CreateOrderMutation, Record<string, any>, Record<string, any>>
   >;
@@ -31,13 +31,12 @@ export const CreateOrderLogic = ({
   onSubmit,
   errors,
 }: CreateOrderLogicProps) => {
-  const form = useForm<CreateOrderViewModel>({
+  const form = useForm<FormOrderViewModel>({
     defaultValues: defaultValues,
     resolver: yupResolver(schema),
   });
 
-  const handleReset = () => form.reset();
-  const handleSubmit = async (data: CreateOrderViewModel) => {
+  const handleSubmit = async (data: FormOrderViewModel) => {
     await onSubmit(data);
   };
 
@@ -45,7 +44,6 @@ export const CreateOrderLogic = ({
     <CreateOrderView
       form={form}
       onSubmit={handleSubmit}
-      onReset={handleReset}
       errors={errors}
     ></CreateOrderView>
   );

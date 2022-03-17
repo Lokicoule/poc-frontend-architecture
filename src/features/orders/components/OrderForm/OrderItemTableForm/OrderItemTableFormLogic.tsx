@@ -4,21 +4,21 @@ import { Control, FormState, useFieldArray } from "react-hook-form";
 import { ColumnProps } from "../../../../../components";
 import { FormInputText } from "../../../../../components/Form/FormInputs";
 import {
-  CreateOrderItemViewModel,
-  CreateOrderViewModel,
+  FormOrderItemViewModel,
+  FormOrderViewModel,
 } from "../../../../../view-models/orders";
 import { SelectProduct } from "../SelectProduct";
-import { CreateOrderItemTableView } from "./CreateOrderItemTableView";
+import { OrderItemTableFormView } from "./OrderItemTableFormView";
 
-export type CreateOrderItemTableLogicProps = {
+export type OrderItemTableFormLogicProps = {
   control: Control<any, any>;
-  formState: FormState<CreateOrderViewModel>;
+  formState: FormState<FormOrderViewModel>;
 };
 
-export const CreateOrderItemTableLogic = ({
+export const OrderItemTableFormLogic = ({
   control,
   formState,
-}: CreateOrderItemTableLogicProps) => {
+}: OrderItemTableFormLogicProps) => {
   const { fields, append, remove } = useFieldArray({ name: "items", control });
 
   const columns: ColumnProps[] = [
@@ -31,12 +31,12 @@ export const CreateOrderItemTableLogic = ({
             control={control}
             name={`items[${idx}].product`}
             error={
-              !!formState?.errors?.items &&
-              !!formState?.errors?.items[0]?.product
+              formState?.errors?.items &&
+              !!formState?.errors?.items[idx]?.product
             }
             helperText={
               formState?.errors?.items &&
-              formState?.errors?.items[0]?.product?.message
+              formState?.errors?.items[idx]?.product?.message
             }
             defaultValue=""
           ></SelectProduct>
@@ -54,11 +54,12 @@ export const CreateOrderItemTableLogic = ({
             label="Quantité"
             fullWidth
             error={
-              formState?.errors?.items && !!formState?.errors?.items[0]?.amount
+              formState?.errors?.items &&
+              !!formState?.errors?.items[idx]?.amount
             }
             helperText={
               formState?.errors?.items &&
-              formState?.errors?.items[0]?.amount?.message
+              formState?.errors?.items[idx]?.amount?.message
             }
           />
         );
@@ -76,11 +77,11 @@ export const CreateOrderItemTableLogic = ({
             fullWidth
             error={
               formState?.errors?.items &&
-              !!formState?.errors?.items[0]?.unitPrice
+              !!formState?.errors?.items[idx]?.unitPrice
             }
             helperText={
               formState?.errors?.items &&
-              formState?.errors?.items[0]?.unitPrice?.message
+              formState?.errors?.items[idx]?.unitPrice?.message
             }
           />
         );
@@ -105,13 +106,13 @@ export const CreateOrderItemTableLogic = ({
       amount: 0,
       unitPrice: 0,
       product: "",
-    } as CreateOrderItemViewModel);
+    } as FormOrderItemViewModel);
 
   return (
-    <CreateOrderItemTableView
+    <OrderItemTableFormView
       columns={columns}
       data={fields}
       onAppend={handleAppend}
-    ></CreateOrderItemTableView>
+    ></OrderItemTableFormView>
   );
 };

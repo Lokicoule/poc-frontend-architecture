@@ -5,5 +5,5 @@ export interface ColumnProps {
   sortable?: boolean;
   numeric?: boolean;
   disablePadding?: boolean;
-  content?: (item: any, idx?: number) => void;
+  content?: (item: any, idx: number) => void;
 }

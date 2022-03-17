@@ -2,13 +2,13 @@ import { MenuItem } from "@mui/material";
 import { Control } from "react-hook-form";
 import { FormInputSelect } from "../../../../../components/Form/FormInputs/FormInputSelect";
 import { CustomerViewModel } from "../../../../../view-models/customers";
-import { CreateOrderViewModel } from "../../../../../view-models/orders";
+import { FormOrderViewModel } from "../../../../../view-models/orders";
 
 export type SelectCustomerViewProps = {
   error: boolean;
   helperText: string | undefined;
   customers: CustomerViewModel[];
-  control: Control<CreateOrderViewModel, any>;
+  control: Control<FormOrderViewModel, any>;
   defaultValue: string;
 };
 

@@ -1,14 +1,14 @@
 import { MenuItem } from "@mui/material";
 import { Control } from "react-hook-form";
 import { FormInputSelect } from "../../../../../components/Form/FormInputs/FormInputSelect";
-import { CreateOrderViewModel } from "../../../../../view-models/orders";
+import { FormOrderViewModel } from "../../../../../view-models/orders";
 import { ProductViewModel } from "../../../../../view-models/products";
 
 export type SelectProductViewProps = {
-  error: boolean;
+  error: boolean | undefined;
   helperText: string | undefined;
   products: ProductViewModel[];
-  control: Control<CreateOrderViewModel, any>;
+  control: Control<FormOrderViewModel, any>;
   defaultValue: string;
   name: string;
 };

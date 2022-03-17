@@ -7,8 +7,8 @@ import {
 } from "../../../api/types/types.generated";
 import { addDays } from "../../../utils/DateUtils";
 import {
-  CreateOrderItemViewModel,
-  CreateOrderViewModel,
+  FormOrderItemViewModel,
+  FormOrderViewModel,
 } from "../../../view-models/orders";
 import { CreateOrderLogic } from "./CreateOrderLogic";
 
@@ -24,7 +24,7 @@ const defaultValues = {
       product: "",
     },
   ],
-} as Readonly<CreateOrderViewModel>;
+} as Readonly<FormOrderViewModel>;
 
 export const CreateOrderController = () => {
   const navigate = useNavigate();
@@ -51,7 +51,7 @@ export const CreateOrderController = () => {
   });
 
   const mapItemsViewModelToDto = (
-    items: CreateOrderItemViewModel[]
+    items: FormOrderItemViewModel[]
   ): OrderItemInput[] =>
     items.map(
       (item) =>
@@ -62,7 +62,7 @@ export const CreateOrderController = () => {
         } as OrderItemInput)
     );
 
-  const mapViewModelToDto = (data: CreateOrderViewModel): CreateOrderInput => ({
+  const mapViewModelToDto = (data: FormOrderViewModel): CreateOrderInput => ({
     code: data?.code,
     customer: data.customer,
     billingDate: data?.billingDate,
@@ -70,7 +70,7 @@ export const CreateOrderController = () => {
     items: mapItemsViewModelToDto(data?.items),
   });
 
-  const handleSubmit = (data: CreateOrderViewModel) => {
+  const handleSubmit = (data: FormOrderViewModel) => {
     return createOrder({
       variables: {
         createOrderInput: mapViewModelToDto(data),

@@ -1,4 +1,4 @@
 export * from "./OrderViewModel";
-export * from "./CreateOrderViewModel";
+export * from "./FormOrderViewModel";
 export * from "./UpdateOrderViewModel";
 export * from "./OrderItemViewModel";

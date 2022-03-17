@@ -1,18 +1,18 @@
 import { Button, Grid } from "@mui/material";
 import { ColumnProps, Table } from "../../../../../components/Tables";
-import { CreateOrderItemViewModel } from "../../../../../view-models/orders";
+import { FormOrderItemViewModel } from "../../../../../view-models/orders";
 
-export type CreateOrderItemTableViewProps = {
+export type OrderItemTableFormViewProps = {
   columns: ColumnProps[];
-  data: Partial<CreateOrderItemViewModel>[];
+  data: Partial<FormOrderItemViewModel>[];
   onAppend: () => void;
 };
 
-export const CreateOrderItemTableView = ({
+export const OrderItemTableFormView = ({
   columns,
   data,
   onAppend,
-}: CreateOrderItemTableViewProps) => {
+}: OrderItemTableFormViewProps) => {
   return (
     <>
       <Grid

@@ -1,26 +1,30 @@
 import { FetchResult } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { isEqual } from "lodash";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { UpdateOrderMutation } from "../../../api/hooks/orders.generated";
-import { UpdateOrderViewModel } from "../../../view-models/orders";
+import { FormOrderViewModel } from "../../../view-models/orders";
 import { UpdateOrderView, UpdateOrderViewProps } from "./UpdateOrderView";
 
 type UpdateOrderLogicProps = Pick<UpdateOrderViewProps, "errors"> & {
-  defaultValues: UpdateOrderViewModel;
+  defaultValues: FormOrderViewModel;
   onSubmit: (
-    data: UpdateOrderViewModel
+    data: FormOrderViewModel
   ) => Promise<
     FetchResult<UpdateOrderMutation, Record<string, any>, Record<string, any>>
   >;
 };
 
 const schema = yup.object().shape({
-  code: yup
-    .string()
-    .required("Le code commande est requis.")
-    .min(5, "Le code commande doit contenir au moins 5 caractères."),
+  code: yup.string().required("Le code de la commande est obligatoire."),
+  customer: yup.string().required("Veuillez sélectionner un client."),
+  items: yup.array().of(
+    yup.object().shape({
+      product: yup.string().required("Un produit doit être sélectionné."),
+      amount: yup.number().required("Le nombre de colis est requis."),
+      unitPrice: yup.number().required("Le prix par colis est requis."),
+    })
+  ),
 });
 
 export const UpdateOrderLogic = ({
@@ -28,22 +32,19 @@ export const UpdateOrderLogic = ({
   onSubmit,
   errors,
 }: UpdateOrderLogicProps) => {
-  const form = useForm<UpdateOrderViewModel>({
+  const form = useForm<FormOrderViewModel>({
     defaultValues: defaultValues,
     resolver: yupResolver(schema),
   });
 
-  const handleSubmit = async (data: UpdateOrderViewModel) => {
-    if (!isEqual(defaultValues, data)) await onSubmit(data);
+  const handleSubmit = async (data: FormOrderViewModel) => {
+    await onSubmit(data);
   };
-
-  const handleReset = () => form.reset();
 
   return (
     <UpdateOrderView
       form={form}
       onSubmit={handleSubmit}
-      onReset={handleReset}
       errors={errors}
     ></UpdateOrderView>
   );

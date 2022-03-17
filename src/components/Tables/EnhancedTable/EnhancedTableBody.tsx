@@ -28,8 +28,8 @@ export const EnhancedTableBody = ({
 }: EnhancedTableBodyProps) => {
   const isSelected = (id: string) => selected.indexOf(id) !== -1;
 
-  const renderCell = (item: DataProps, column: ColumnProps) => {
-    if (column.content) return column.content(item);
+  const renderCell = (item: DataProps, column: ColumnProps, idx: number) => {
+    if (column.content) return column.content(item, idx);
     if (column.path) return _.get(item, column.path);
     throw Error("Content or path should be defined.");
   };
@@ -63,9 +63,9 @@ export const EnhancedTableBody = ({
                 }}
               />
             </TableCell>
-            {columns?.map((column) => (
+            {columns?.map((column, idx) => (
               <TableCell align="left" key={createKey(row, column)}>
-                {renderCell(row, column)}
+                {renderCell(row, column, idx)}
               </TableCell>
             ))}
           </TableRow>
