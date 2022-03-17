@@ -24,7 +24,6 @@ export const OrdersTableLogic = ({
     {
       label: "Code client",
       content: (order: Order) => {
-        console.log(order.customer);
         return (
           <Link to={`/backoffice/orders/customer/${order.customer.id}`}>
             {order.customer.code}

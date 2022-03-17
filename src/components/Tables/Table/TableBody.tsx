@@ -1,10 +1,5 @@
+import { TableBody as MuiTableBody, TableCell, TableRow } from "@mui/material";
 import _ from "lodash";
-import {
-  TableBody as MuiTableBody,
-  TableCell,
-  TableRow,
-  useTheme,
-} from "@mui/material";
 import { ColumnProps } from "../column.props";
 import { DataProps } from "../data.props";
 
@@ -14,8 +9,6 @@ export type TableBodyProps = {
 };
 
 export const TableBody = ({ data, columns }: TableBodyProps) => {
-  const theme = useTheme();
-
   const createKey = (
     item: Partial<DataProps>,
     column: ColumnProps,

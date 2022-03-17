@@ -17,7 +17,6 @@ export const ManageOrdersController = () => {
       populateItems: true,
     },
   });
-  console.log(data);
   const [removeOrders] = useRemoveOrdersMutation({
     refetchQueries: ["GetOrders"],
   });
