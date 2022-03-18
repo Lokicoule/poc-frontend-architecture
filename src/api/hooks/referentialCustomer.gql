@@ -1,0 +1,35 @@
+query GetReferentialCustomer(
+  $getReferentialCustomerId: String!
+  $populate: Boolean!
+) {
+  getReferentialCustomer(id: $getReferentialCustomerId) {
+    useCase
+    parameters(populate: $populate) {
+      key
+      value
+    }
+    id
+  }
+}
+
+query GetReferentialCustomers($populate: Boolean!) {
+  getReferentialCustomers {
+    id
+    parameters(populate: $populate) {
+      value
+      key
+    }
+    useCase
+  }
+}
+
+mutation UpdateReferentialCustomer(
+  $updateReferentialCustomerInput: UpdateReferentialCustomerInput!
+) {
+  updateReferentialCustomer(
+    updateReferentialCustomerInput: $updateReferentialCustomerInput
+  ) {
+    id
+    useCase
+  }
+}

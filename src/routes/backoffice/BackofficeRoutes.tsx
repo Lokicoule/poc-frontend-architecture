@@ -5,12 +5,17 @@ import { BackofficePage } from "../../pages/backoffice/BackofficePage";
 import { CustomersCrumbs, CustomersRoutes } from "./customers/CustomersRoutes";
 import { OrdersCrumbs, OrdersRoutes } from "./orders/OrdersRoutes";
 import { ProductsCrumbs, ProductsRoutes } from "./products/ProductsRoutes";
+import {
+  ReferentialCrumbs,
+  ReferentialRoutes,
+} from "./referential/ReferentialRoutes";
 
 const BackofficeCrumbs: Readonly<CrumbProps> = {
   "/backoffice": { alias: "Backoffice" },
   ...CustomersCrumbs,
   ...OrdersCrumbs,
   ...ProductsCrumbs,
+  ...ReferentialCrumbs,
 };
 
 export const BackofficeRoutes: RouteObject = {
@@ -24,5 +29,6 @@ export const BackofficeRoutes: RouteObject = {
     ...CustomersRoutes,
     ...ProductsRoutes,
     ...OrdersRoutes,
+    ...ReferentialRoutes,
   ],
 };
