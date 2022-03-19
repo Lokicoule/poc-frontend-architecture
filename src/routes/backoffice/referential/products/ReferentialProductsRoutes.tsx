@@ -19,9 +19,9 @@ const UpdateReferentialProductPage = Loadable(
 );
 
 export const ReferentialProductsCrumbs: Readonly<CrumbProps> = {
-  "/backoffice/referential/products": { alias: "Référentiel Clients" },
+  "/backoffice/referential/products": { alias: "Référentiel Produits" },
   "/backoffice/referential/products/update": {
-    alias: "Mise à jour référentiel client",
+    alias: "Mise à jour référentiel produit",
     last: true,
   },
 };
