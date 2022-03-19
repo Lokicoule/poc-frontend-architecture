@@ -1,0 +1,39 @@
+query GetReferentialProduct(
+  $getReferentialProductId: String!
+  $populate: Boolean!
+) {
+  getReferentialProduct(id: $getReferentialProductId) {
+    id
+    parameters(populate: $populate) {
+      value
+      key
+      id
+    }
+    useCase
+  }
+}
+
+query GetReferentialProducts($populate: Boolean!) {
+  getReferentialProducts {
+    id
+    parameters(populate: $populate) {
+      id
+      key
+      value
+    }
+    useCase
+  }
+}
+
+mutation UpdateReferentialProduct(
+  $updateReferentialProductId: String!
+  $updateReferentialProductInput: UpdateReferentialProductInput!
+) {
+  updateReferentialProduct(
+    id: $updateReferentialProductId
+    updateReferentialProductInput: $updateReferentialProductInput
+  ) {
+    id
+    useCase
+  }
+}

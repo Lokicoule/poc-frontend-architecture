@@ -5,10 +5,15 @@ import {
   ReferentialCustomersCrumbs,
   ReferentialCustomersRoutes,
 } from "./customers/ReferentialCustomersRoutes";
+import {
+  ReferentialProductsCrumbs,
+  ReferentialProductsRoutes,
+} from "./products/ReferentialProductsRoutes";
 
 export const ReferentialCrumbs: Readonly<CrumbProps> = {
   "/referential": { alias: "Referential" },
   ...ReferentialCustomersCrumbs,
+  ...ReferentialProductsCrumbs,
 };
 
 export const ReferentialRoutes: RouteObject[] = [
@@ -20,6 +25,7 @@ export const ReferentialRoutes: RouteObject[] = [
         element: <BackofficePage />,
       },
       ...ReferentialCustomersRoutes,
+      ...ReferentialProductsRoutes,
     ],
   },
 ];
