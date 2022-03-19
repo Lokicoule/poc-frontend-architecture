@@ -3,8 +3,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { isEqual } from "lodash";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { UpdateCustomerMutation } from "../../../../api/hooks/customers.generated";
-import { UpdateCustomerViewModel } from "../../../../view-models/customers";
+import { UpdateReferentialCustomerMutation } from "../../../../api/hooks/referentialCustomer.generated";
+import { ParameterReferentialEnum } from "../../../../api/types/types.generated";
+import { ReferentialCustomerViewModel } from "../../../../view-models/referential/customers/ReferentialCustomerViewModel";
 import {
   UpdateReferentialCustomerView,
   UpdateReferentialCustomerViewProps,
@@ -14,32 +15,61 @@ type UpdateReferentialCustomerLogicProps = Pick<
   UpdateReferentialCustomerViewProps,
   "errors"
 > & {
-  defaultValues: UpdateCustomerViewModel;
+  defaultValues: ReferentialCustomerViewModel;
   onSubmit: (
-    data: UpdateCustomerViewModel
+    data: ReferentialCustomerViewModel
   ) => Promise<
     FetchResult<
-      UpdateCustomerMutation,
+      UpdateReferentialCustomerMutation,
       Record<string, any>,
       Record<string, any>
     >
   >;
 };
 
-const postalCodeRule = new RegExp(/^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$/);
-
 const schema = yup.object().shape({
-  code: yup
-    .string()
-    .required("Le code du client est requis.")
-    .min(5, "Le code client doit contenir au moins 5 caractères."),
-  naming: yup.string().required("Le nom du client est requis."),
-  zipCode: yup
-    .string()
-    .matches(postalCodeRule, "Code postal FR attendu.")
-    .required("Le code postal du client est requis."),
-  city: yup.string().required("La ville du client est requise."),
-  address: yup.string().required("L'adresse du client est requise."),
+  useCase: yup.string().required("Le cas d'usagex est requis."),
+  parameters: yup
+    .array()
+    .of(
+      yup.object().shape({
+        key: yup.string().required("Une clé doit être sélectionnée."),
+        value: yup
+          .string()
+          //.mixed()
+          .required("Une valeur doit être renseignée.")
+          .when("key", {
+            is: (keyValue: string) =>
+              keyValue === ParameterReferentialEnum.Counter,
+            then: yup
+              .string()
+              .matches(/^[0-9]+$/, "Doit contenir des chiffres"),
+          }),
+      })
+    )
+    .test("unique_key", "La clé doit être unique.", (parameters, ctx) => {
+      const { createError } = ctx;
+      const stack = new Set();
+      const errors: yup.ValidationError[] = [];
+      //TODO to improve with reduce
+      parameters?.forEach((param, idx) => {
+        if (stack.has(param["key"]))
+          errors.push(
+            new yup.ValidationError(
+              `La clé ${param["key"]} est déjà utilisée.`,
+              parameters[idx].key,
+              `parameters[${idx}].key`
+            )
+          );
+        else stack.add(param["key"]);
+      });
+      if (errors && errors.length > 0) {
+        return createError({
+          message: () => errors,
+        });
+      }
+      return true;
+    }),
 });
 
 export const UpdateReferentialCustomerLogic = ({
@@ -47,12 +77,12 @@ export const UpdateReferentialCustomerLogic = ({
   onSubmit,
   errors,
 }: UpdateReferentialCustomerLogicProps) => {
-  const form = useForm<UpdateCustomerViewModel>({
+  const form = useForm<ReferentialCustomerViewModel>({
     defaultValues: defaultValues,
     resolver: yupResolver(schema),
   });
 
-  const handleSubmit = async (data: UpdateCustomerViewModel) => {
+  const handleSubmit = async (data: ReferentialCustomerViewModel) => {
     if (!isEqual(defaultValues, data)) await onSubmit(data);
   };
 

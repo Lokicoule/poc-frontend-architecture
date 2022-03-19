@@ -1,73 +1,45 @@
-import * as Types from "../types/types.generated";
+import * as Types from '../types/types.generated';
 
-import { gql } from "@apollo/client";
-import * as Apollo from "@apollo/client";
+import { gql } from '@apollo/client';
+import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export type GetReferentialCustomerQueryVariables = Types.Exact<{
-  getReferentialCustomerId: Types.Scalars["String"];
-  populate: Types.Scalars["Boolean"];
+  getReferentialCustomerId: Types.Scalars['String'];
+  populate: Types.Scalars['Boolean'];
 }>;
 
-export type GetReferentialCustomerQuery = {
-  __typename?: "Query";
-  getReferentialCustomer?: {
-    __typename?: "ReferentialCustomer";
-    useCase: Types.UseCaseReferentialEnum;
-    id: string;
-    parameters?: Array<{
-      __typename?: "ParameterReferentialCustomer";
-      key: Types.ParameterReferentialEnum;
-      value: string;
-    }> | null;
-  } | null;
-};
+
+export type GetReferentialCustomerQuery = { __typename?: 'Query', getReferentialCustomer?: { __typename?: 'ReferentialCustomer', useCase: Types.UseCaseReferentialEnum, id: string, parameters?: Array<{ __typename?: 'ParameterReferentialCustomer', key: Types.ParameterReferentialEnum, value: string, id: string }> | null } | null };
 
 export type GetReferentialCustomersQueryVariables = Types.Exact<{
-  populate: Types.Scalars["Boolean"];
+  populate: Types.Scalars['Boolean'];
 }>;
 
-export type GetReferentialCustomersQuery = {
-  __typename?: "Query";
-  getReferentialCustomers?: Array<{
-    __typename?: "ReferentialCustomer";
-    id: string;
-    useCase: Types.UseCaseReferentialEnum;
-    parameters?: Array<{
-      __typename?: "ParameterReferentialCustomer";
-      value: string;
-      key: Types.ParameterReferentialEnum;
-    }> | null;
-  }> | null;
-};
+
+export type GetReferentialCustomersQuery = { __typename?: 'Query', getReferentialCustomers?: Array<{ __typename?: 'ReferentialCustomer', id: string, useCase: Types.UseCaseReferentialEnum, parameters?: Array<{ __typename?: 'ParameterReferentialCustomer', value: string, key: Types.ParameterReferentialEnum, id: string }> | null }> | null };
 
 export type UpdateReferentialCustomerMutationVariables = Types.Exact<{
+  updateReferentialCustomerId: Types.Scalars['String'];
   updateReferentialCustomerInput: Types.UpdateReferentialCustomerInput;
 }>;
 
-export type UpdateReferentialCustomerMutation = {
-  __typename?: "Mutation";
-  updateReferentialCustomer: {
-    __typename?: "ReferentialCustomer";
-    id: string;
-    useCase: Types.UseCaseReferentialEnum;
-  };
-};
+
+export type UpdateReferentialCustomerMutation = { __typename?: 'Mutation', updateReferentialCustomer: { __typename?: 'ReferentialCustomer', id: string, useCase: Types.UseCaseReferentialEnum } };
+
 
 export const GetReferentialCustomerDocument = gql`
-  query GetReferentialCustomer(
-    $getReferentialCustomerId: String!
-    $populate: Boolean!
-  ) {
-    getReferentialCustomer(id: $getReferentialCustomerId) {
-      useCase
-      parameters(populate: $populate) {
-        key
-        value
-      }
+    query GetReferentialCustomer($getReferentialCustomerId: String!, $populate: Boolean!) {
+  getReferentialCustomer(id: $getReferentialCustomerId) {
+    useCase
+    parameters(populate: $populate) {
+      key
+      value
       id
     }
+    id
   }
-`;
+}
+    `;
 
 /**
  * __useGetReferentialCustomerQuery__
@@ -86,52 +58,30 @@ export const GetReferentialCustomerDocument = gql`
  *   },
  * });
  */
-export function useGetReferentialCustomerQuery(
-  baseOptions: Apollo.QueryHookOptions<
-    GetReferentialCustomerQuery,
-    GetReferentialCustomerQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    GetReferentialCustomerQuery,
-    GetReferentialCustomerQueryVariables
-  >(GetReferentialCustomerDocument, options);
-}
-export function useGetReferentialCustomerLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    GetReferentialCustomerQuery,
-    GetReferentialCustomerQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    GetReferentialCustomerQuery,
-    GetReferentialCustomerQueryVariables
-  >(GetReferentialCustomerDocument, options);
-}
-export type GetReferentialCustomerQueryHookResult = ReturnType<
-  typeof useGetReferentialCustomerQuery
->;
-export type GetReferentialCustomerLazyQueryHookResult = ReturnType<
-  typeof useGetReferentialCustomerLazyQuery
->;
-export type GetReferentialCustomerQueryResult = Apollo.QueryResult<
-  GetReferentialCustomerQuery,
-  GetReferentialCustomerQueryVariables
->;
-export const GetReferentialCustomersDocument = gql`
-  query GetReferentialCustomers($populate: Boolean!) {
-    getReferentialCustomers {
-      id
-      parameters(populate: $populate) {
-        value
-        key
+export function useGetReferentialCustomerQuery(baseOptions: Apollo.QueryHookOptions<GetReferentialCustomerQuery, GetReferentialCustomerQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetReferentialCustomerQuery, GetReferentialCustomerQueryVariables>(GetReferentialCustomerDocument, options);
       }
-      useCase
+export function useGetReferentialCustomerLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetReferentialCustomerQuery, GetReferentialCustomerQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetReferentialCustomerQuery, GetReferentialCustomerQueryVariables>(GetReferentialCustomerDocument, options);
+        }
+export type GetReferentialCustomerQueryHookResult = ReturnType<typeof useGetReferentialCustomerQuery>;
+export type GetReferentialCustomerLazyQueryHookResult = ReturnType<typeof useGetReferentialCustomerLazyQuery>;
+export type GetReferentialCustomerQueryResult = Apollo.QueryResult<GetReferentialCustomerQuery, GetReferentialCustomerQueryVariables>;
+export const GetReferentialCustomersDocument = gql`
+    query GetReferentialCustomers($populate: Boolean!) {
+  getReferentialCustomers {
+    id
+    parameters(populate: $populate) {
+      value
+      key
+      id
     }
+    useCase
   }
-`;
+}
+    `;
 
 /**
  * __useGetReferentialCustomersQuery__
@@ -149,56 +99,29 @@ export const GetReferentialCustomersDocument = gql`
  *   },
  * });
  */
-export function useGetReferentialCustomersQuery(
-  baseOptions: Apollo.QueryHookOptions<
-    GetReferentialCustomersQuery,
-    GetReferentialCustomersQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    GetReferentialCustomersQuery,
-    GetReferentialCustomersQueryVariables
-  >(GetReferentialCustomersDocument, options);
-}
-export function useGetReferentialCustomersLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    GetReferentialCustomersQuery,
-    GetReferentialCustomersQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    GetReferentialCustomersQuery,
-    GetReferentialCustomersQueryVariables
-  >(GetReferentialCustomersDocument, options);
-}
-export type GetReferentialCustomersQueryHookResult = ReturnType<
-  typeof useGetReferentialCustomersQuery
->;
-export type GetReferentialCustomersLazyQueryHookResult = ReturnType<
-  typeof useGetReferentialCustomersLazyQuery
->;
-export type GetReferentialCustomersQueryResult = Apollo.QueryResult<
-  GetReferentialCustomersQuery,
-  GetReferentialCustomersQueryVariables
->;
+export function useGetReferentialCustomersQuery(baseOptions: Apollo.QueryHookOptions<GetReferentialCustomersQuery, GetReferentialCustomersQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetReferentialCustomersQuery, GetReferentialCustomersQueryVariables>(GetReferentialCustomersDocument, options);
+      }
+export function useGetReferentialCustomersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetReferentialCustomersQuery, GetReferentialCustomersQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetReferentialCustomersQuery, GetReferentialCustomersQueryVariables>(GetReferentialCustomersDocument, options);
+        }
+export type GetReferentialCustomersQueryHookResult = ReturnType<typeof useGetReferentialCustomersQuery>;
+export type GetReferentialCustomersLazyQueryHookResult = ReturnType<typeof useGetReferentialCustomersLazyQuery>;
+export type GetReferentialCustomersQueryResult = Apollo.QueryResult<GetReferentialCustomersQuery, GetReferentialCustomersQueryVariables>;
 export const UpdateReferentialCustomerDocument = gql`
-  mutation UpdateReferentialCustomer(
-    $updateReferentialCustomerInput: UpdateReferentialCustomerInput!
+    mutation UpdateReferentialCustomer($updateReferentialCustomerId: String!, $updateReferentialCustomerInput: UpdateReferentialCustomerInput!) {
+  updateReferentialCustomer(
+    id: $updateReferentialCustomerId
+    updateReferentialCustomerInput: $updateReferentialCustomerInput
   ) {
-    updateReferentialCustomer(
-      updateReferentialCustomerInput: $updateReferentialCustomerInput
-    ) {
-      id
-      useCase
-    }
+    id
+    useCase
   }
-`;
-export type UpdateReferentialCustomerMutationFn = Apollo.MutationFunction<
-  UpdateReferentialCustomerMutation,
-  UpdateReferentialCustomerMutationVariables
->;
+}
+    `;
+export type UpdateReferentialCustomerMutationFn = Apollo.MutationFunction<UpdateReferentialCustomerMutation, UpdateReferentialCustomerMutationVariables>;
 
 /**
  * __useUpdateReferentialCustomerMutation__
@@ -213,29 +136,15 @@ export type UpdateReferentialCustomerMutationFn = Apollo.MutationFunction<
  * @example
  * const [updateReferentialCustomerMutation, { data, loading, error }] = useUpdateReferentialCustomerMutation({
  *   variables: {
+ *      updateReferentialCustomerId: // value for 'updateReferentialCustomerId'
  *      updateReferentialCustomerInput: // value for 'updateReferentialCustomerInput'
  *   },
  * });
  */
-export function useUpdateReferentialCustomerMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    UpdateReferentialCustomerMutation,
-    UpdateReferentialCustomerMutationVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    UpdateReferentialCustomerMutation,
-    UpdateReferentialCustomerMutationVariables
-  >(UpdateReferentialCustomerDocument, options);
-}
-export type UpdateReferentialCustomerMutationHookResult = ReturnType<
-  typeof useUpdateReferentialCustomerMutation
->;
-export type UpdateReferentialCustomerMutationResult =
-  Apollo.MutationResult<UpdateReferentialCustomerMutation>;
-export type UpdateReferentialCustomerMutationOptions =
-  Apollo.BaseMutationOptions<
-    UpdateReferentialCustomerMutation,
-    UpdateReferentialCustomerMutationVariables
-  >;
+export function useUpdateReferentialCustomerMutation(baseOptions?: Apollo.MutationHookOptions<UpdateReferentialCustomerMutation, UpdateReferentialCustomerMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateReferentialCustomerMutation, UpdateReferentialCustomerMutationVariables>(UpdateReferentialCustomerDocument, options);
+      }
+export type UpdateReferentialCustomerMutationHookResult = ReturnType<typeof useUpdateReferentialCustomerMutation>;
+export type UpdateReferentialCustomerMutationResult = Apollo.MutationResult<UpdateReferentialCustomerMutation>;
+export type UpdateReferentialCustomerMutationOptions = Apollo.BaseMutationOptions<UpdateReferentialCustomerMutation, UpdateReferentialCustomerMutationVariables>;

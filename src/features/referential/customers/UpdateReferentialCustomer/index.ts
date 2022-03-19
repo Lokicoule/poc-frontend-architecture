@@ -1,1 +1,1 @@
-export { UpdateReferentialCustomerController as UpdateReferentialCustomer } from "./UpdateCustomerController";
+export { UpdateReferentialCustomerController as UpdateReferentialCustomer } from "./UpdateReferentialCustomerController";

@@ -200,16 +200,19 @@ export type MutationUpdateProductArgs = {
 
 
 export type MutationUpdateReferentialCustomerArgs = {
+  id: Scalars['String'];
   updateReferentialCustomerInput: UpdateReferentialCustomerInput;
 };
 
 
 export type MutationUpdateReferentialOrderArgs = {
+  id: Scalars['String'];
   updateReferentialOrderInput: UpdateReferentialOrderInput;
 };
 
 
 export type MutationUpdateReferentialProductArgs = {
+  id: Scalars['String'];
   updateReferentialProductInput: UpdateReferentialProductInput;
 };
 
@@ -253,7 +256,10 @@ export type OrderItemInput = {
 
 export type ParameterReferentialCustomer = {
   __typename?: 'ParameterReferentialCustomer';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id: Scalars['String'];
   key: ParameterReferentialEnum;
+  updatedAt?: Maybe<Scalars['DateTime']>;
   value: Scalars['String'];
 };
 
@@ -270,7 +276,10 @@ export enum ParameterReferentialEnum {
 
 export type ParameterReferentialOrder = {
   __typename?: 'ParameterReferentialOrder';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id: Scalars['String'];
   key: ParameterReferentialEnum;
+  updatedAt?: Maybe<Scalars['DateTime']>;
   value: Scalars['String'];
 };
 
@@ -281,7 +290,10 @@ export type ParameterReferentialOrderInput = {
 
 export type ParameterReferentialProduct = {
   __typename?: 'ParameterReferentialProduct';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id: Scalars['String'];
   key: ParameterReferentialEnum;
+  updatedAt?: Maybe<Scalars['DateTime']>;
   value: Scalars['String'];
 };
 
@@ -409,19 +421,16 @@ export type UpdateProductInput = {
 };
 
 export type UpdateReferentialCustomerInput = {
-  id: Scalars['String'];
   parameters?: InputMaybe<Array<ParameterReferentialCustomerInput>>;
   useCase?: InputMaybe<UseCaseReferentialEnum>;
 };
 
 export type UpdateReferentialOrderInput = {
-  id: Scalars['String'];
   parameters?: InputMaybe<Array<ParameterReferentialOrderInput>>;
   useCase?: InputMaybe<UseCaseReferentialEnum>;
 };
 
 export type UpdateReferentialProductInput = {
-  id: Scalars['String'];
   parameters?: InputMaybe<Array<ParameterReferentialProductInput>>;
   useCase?: InputMaybe<UseCaseReferentialEnum>;
 };

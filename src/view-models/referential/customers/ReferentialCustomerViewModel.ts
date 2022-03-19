@@ -2,9 +2,9 @@ import {
   ParameterReferentialEnum,
   UseCaseReferentialEnum,
 } from "../../../api/types/types.generated";
-import { DataProps } from "../../../components/Tables/data.props";
 
-export interface ReferentialCustomersParamsViewModel extends DataProps {
+export interface ReferentialCustomersParamsViewModel {
+  id: string;
   key: ParameterReferentialEnum;
   value: string;
 }

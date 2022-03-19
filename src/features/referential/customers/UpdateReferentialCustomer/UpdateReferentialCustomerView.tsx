@@ -4,12 +4,13 @@ import { UseFormReturn } from "react-hook-form";
 import { Form } from "../../../../components/Form";
 import { FormInputText } from "../../../../components/Form/FormInputs";
 import { FeatureLayout } from "../../../../layouts";
-import { UpdateCustomerViewModel } from "../../../../view-models/customers";
+import { ReferentialCustomerViewModel } from "../../../../view-models/referential/customers/ReferentialCustomerViewModel";
+import { ReferentialParamsTableForm } from "./components/ReferentialParamsTableForm";
 
 export type UpdateReferentialCustomerViewProps = {
-  form: UseFormReturn<UpdateCustomerViewModel>;
+  form: UseFormReturn<ReferentialCustomerViewModel>;
   errors: GraphQLErrors | undefined;
-  onSubmit: (data: UpdateCustomerViewModel) => Promise<void>;
+  onSubmit: (data: ReferentialCustomerViewModel) => Promise<void>;
   onReset: () => void;
 };
 
@@ -21,63 +22,26 @@ export const UpdateReferentialCustomerView = ({
 }: UpdateReferentialCustomerViewProps) => {
   const { formState, handleSubmit, control } = form;
   return (
-    <FeatureLayout title="Formulaire client">
+    <FeatureLayout title="Formulaire référentiel client">
       <Form errors={errors} onSubmit={handleSubmit(onSubmit)} onReset={onReset}>
         <Grid container spacing={2}>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={6} justifyContent="center">
             <FormInputText
-              name="code"
+              name="useCase"
               control={control}
-              label="Code client"
+              label="Cas d'usage"
               fullWidth
               required
-              error={!!formState?.errors?.code}
-              helperText={formState?.errors?.code?.message}
+              disabled
+              error={!!formState?.errors?.useCase}
+              helperText={formState?.errors?.useCase?.message}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <FormInputText
-              name="naming"
+          <Grid item xs={12}>
+            <ReferentialParamsTableForm
               control={control}
-              label="Nom client"
-              fullWidth
-              required
-              error={!!formState?.errors?.naming}
-              helperText={formState?.errors?.naming?.message}
-            />
-          </Grid>
-          <Grid item xs={12} sm={3}>
-            <FormInputText
-              name="zipCode"
-              control={control}
-              label="Code postal"
-              fullWidth
-              required
-              error={!!formState?.errors?.zipCode}
-              helperText={formState?.errors?.zipCode?.message}
-            />
-          </Grid>
-          <Grid item xs={12} sm={3}>
-            <FormInputText
-              name="city"
-              control={control}
-              label="Ville"
-              fullWidth
-              required
-              error={!!formState?.errors?.city}
-              helperText={formState?.errors?.city?.message}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <FormInputText
-              name="address"
-              control={control}
-              label="Adresse"
-              fullWidth
-              required
-              error={!!formState?.errors?.address}
-              helperText={formState?.errors?.address?.message}
-            />
+              formState={formState}
+            ></ReferentialParamsTableForm>
           </Grid>
         </Grid>
       </Form>

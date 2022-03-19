@@ -8,7 +8,7 @@ export const UpdateReferentialCustomerPage = () => {
   return (
     <Page title="UpdateCustomer">
       <UpdateReferentialCustomer
-        customerId={referentialCustomerId || ""}
+        referentialCustomerId={referentialCustomerId || ""}
       ></UpdateReferentialCustomer>
     </Page>
   );
