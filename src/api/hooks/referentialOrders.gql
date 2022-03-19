@@ -1,0 +1,39 @@
+query GetReferentialOrder(
+  $getReferentialOrderId: String!
+  $populate: Boolean!
+) {
+  getReferentialOrder(id: $getReferentialOrderId) {
+    id
+    parameters(populate: $populate) {
+      value
+      key
+      id
+    }
+    useCase
+  }
+}
+
+query GetReferentialOrders($populate: Boolean!) {
+  getReferentialOrders {
+    id
+    parameters(populate: $populate) {
+      id
+      key
+      value
+    }
+    useCase
+  }
+}
+
+mutation UpdateReferentialOrder(
+  $updateReferentialOrderId: String!
+  $updateReferentialOrderInput: UpdateReferentialOrderInput!
+) {
+  updateReferentialOrder(
+    id: $updateReferentialOrderId
+    updateReferentialOrderInput: $updateReferentialOrderInput
+  ) {
+    id
+    useCase
+  }
+}

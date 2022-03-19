@@ -1,7 +1,7 @@
 import {
   GetReferentialCustomersQuery,
   useGetReferentialCustomersQuery,
-} from "../../../../api/hooks/referentialCustomer.generated";
+} from "../../../../api/hooks/referentialCustomers.generated";
 import { Loader } from "../../../../components";
 import { ReferentialCustomerViewModel } from "../../../../view-models/referential/customers/ReferentialCustomerViewModel";
 import { ManageReferentialCustomersLogic } from "./ManageReferentialCustomersLogic";

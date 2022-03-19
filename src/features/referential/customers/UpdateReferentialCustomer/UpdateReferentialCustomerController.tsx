@@ -4,7 +4,7 @@ import {
   GetReferentialCustomerQuery,
   useGetReferentialCustomerQuery,
   useUpdateReferentialCustomerMutation,
-} from "../../../../api/hooks/referentialCustomer.generated";
+} from "../../../../api/hooks/referentialCustomers.generated";
 import { UpdateReferentialCustomerInput } from "../../../../api/types/types.generated";
 import { Loader } from "../../../../components";
 import { ReferentialCustomerViewModel } from "../../../../view-models/referential/customers/ReferentialCustomerViewModel";

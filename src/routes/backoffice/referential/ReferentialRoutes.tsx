@@ -6,6 +6,10 @@ import {
   ReferentialCustomersRoutes,
 } from "./customers/ReferentialCustomersRoutes";
 import {
+  ReferentialOrdersCrumbs,
+  ReferentialOrdersRoutes,
+} from "./orders/ReferentialOrdersRoutes";
+import {
   ReferentialProductsCrumbs,
   ReferentialProductsRoutes,
 } from "./products/ReferentialProductsRoutes";
@@ -14,6 +18,7 @@ export const ReferentialCrumbs: Readonly<CrumbProps> = {
   "/referential": { alias: "Referential" },
   ...ReferentialCustomersCrumbs,
   ...ReferentialProductsCrumbs,
+  ...ReferentialOrdersCrumbs,
 };
 
 export const ReferentialRoutes: RouteObject[] = [
@@ -26,6 +31,7 @@ export const ReferentialRoutes: RouteObject[] = [
       },
       ...ReferentialCustomersRoutes,
       ...ReferentialProductsRoutes,
+      ...ReferentialOrdersRoutes,
     ],
   },
 ];
