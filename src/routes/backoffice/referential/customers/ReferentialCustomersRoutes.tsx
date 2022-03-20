@@ -19,31 +19,29 @@ const UpdateReferentialCustomerPage = Loadable(
 );
 
 export const ReferentialCustomersCrumbs: Readonly<CrumbProps> = {
-  "/backoffice/referential/customers": { alias: "Référentiel Clients" },
+  "/backoffice/referential/customers": { alias: "Clients" },
   "/backoffice/referential/customers/update": {
-    alias: "Mise à jour référentiel client",
+    alias: "Mise à jour",
     last: true,
   },
 };
 
-export const ReferentialCustomersRoutes: RouteObject[] = [
-  {
-    path: "customers",
-    children: [
-      {
-        path: "",
-        element: <ReferentialCustomersPage />,
-      },
+export const ReferentialCustomersRoutes: RouteObject = {
+  path: "customers",
+  children: [
+    {
+      path: "",
+      element: <ReferentialCustomersPage />,
+    },
 
-      {
-        path: "update",
-        children: [
-          {
-            path: ":referentialCustomerId",
-            element: <UpdateReferentialCustomerPage />,
-          },
-        ],
-      },
-    ],
-  },
-];
+    {
+      path: "update",
+      children: [
+        {
+          path: ":referentialCustomerId",
+          element: <UpdateReferentialCustomerPage />,
+        },
+      ],
+    },
+  ],
+};

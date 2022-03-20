@@ -19,31 +19,29 @@ const UpdateReferentialOrderPage = Loadable(
 );
 
 export const ReferentialOrdersCrumbs: Readonly<CrumbProps> = {
-  "/backoffice/referential/orders": { alias: "Référentiel Commande" },
+  "/backoffice/referential/orders": { alias: "Commandes" },
   "/backoffice/referential/orders/update": {
-    alias: "Mise à jour référentiel commande",
+    alias: "Mise à jour",
     last: true,
   },
 };
 
-export const ReferentialOrdersRoutes: RouteObject[] = [
-  {
-    path: "orders",
-    children: [
-      {
-        path: "",
-        element: <ReferentialOrdersPage />,
-      },
+export const ReferentialOrdersRoutes: RouteObject = {
+  path: "orders",
+  children: [
+    {
+      path: "",
+      element: <ReferentialOrdersPage />,
+    },
 
-      {
-        path: "update",
-        children: [
-          {
-            path: ":referentialOrderId",
-            element: <UpdateReferentialOrderPage />,
-          },
-        ],
-      },
-    ],
-  },
-];
+    {
+      path: "update",
+      children: [
+        {
+          path: ":referentialOrderId",
+          element: <UpdateReferentialOrderPage />,
+        },
+      ],
+    },
+  ],
+};

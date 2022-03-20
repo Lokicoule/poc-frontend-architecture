@@ -56,45 +56,43 @@ export const OrdersCrumbs: Readonly<CrumbProps> = {
   "/backoffice/orders/customer": { alias: "Information client", last: true },
 };
 
-export const OrdersRoutes: RouteObject[] = [
-  {
-    path: "orders",
-    children: [
-      {
-        path: "",
-        element: <OrdersPage />,
-      },
-      {
-        path: "view",
-        children: [
-          {
-            path: ":orderId",
-            element: <OrderPage />,
-          },
-        ],
-      },
-      {
-        path: "create",
-        element: <CreateOrderPage />,
-      },
-      {
-        path: "update",
-        children: [
-          {
-            path: ":orderId",
-            element: <UpdateOrderPage />,
-          },
-        ],
-      },
-      {
-        path: "customer",
-        children: [
-          {
-            path: ":customerId",
-            element: <CustomerPage />,
-          },
-        ],
-      },
-    ],
-  },
-];
+export const OrdersRoutes: RouteObject = {
+  path: "orders",
+  children: [
+    {
+      path: "",
+      element: <OrdersPage />,
+    },
+    {
+      path: "view",
+      children: [
+        {
+          path: ":orderId",
+          element: <OrderPage />,
+        },
+      ],
+    },
+    {
+      path: "create",
+      element: <CreateOrderPage />,
+    },
+    {
+      path: "update",
+      children: [
+        {
+          path: ":orderId",
+          element: <UpdateOrderPage />,
+        },
+      ],
+    },
+    {
+      path: "customer",
+      children: [
+        {
+          path: ":customerId",
+          element: <CustomerPage />,
+        },
+      ],
+    },
+  ],
+};

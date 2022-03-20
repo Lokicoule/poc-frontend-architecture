@@ -19,31 +19,29 @@ const UpdateReferentialProductPage = Loadable(
 );
 
 export const ReferentialProductsCrumbs: Readonly<CrumbProps> = {
-  "/backoffice/referential/products": { alias: "Référentiel Produits" },
+  "/backoffice/referential/products": { alias: "Produits" },
   "/backoffice/referential/products/update": {
-    alias: "Mise à jour référentiel produit",
+    alias: "Mise à jour",
     last: true,
   },
 };
 
-export const ReferentialProductsRoutes: RouteObject[] = [
-  {
-    path: "products",
-    children: [
-      {
-        path: "",
-        element: <ReferentialProductsPage />,
-      },
+export const ReferentialProductsRoutes: RouteObject = {
+  path: "products",
+  children: [
+    {
+      path: "",
+      element: <ReferentialProductsPage />,
+    },
 
-      {
-        path: "update",
-        children: [
-          {
-            path: ":referentialProductId",
-            element: <UpdateReferentialProductPage />,
-          },
-        ],
-      },
-    ],
-  },
-];
+    {
+      path: "update",
+      children: [
+        {
+          path: ":referentialProductId",
+          element: <UpdateReferentialProductPage />,
+        },
+      ],
+    },
+  ],
+};

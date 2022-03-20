@@ -47,36 +47,34 @@ export const CustomersCrumbs: Readonly<CrumbProps> = {
   },
 };
 
-export const CustomersRoutes: RouteObject[] = [
-  {
-    path: "customers",
-    children: [
-      {
-        path: "",
-        element: <CustomersPage />,
-      },
-      {
-        path: "view",
-        children: [
-          {
-            path: ":customerId",
-            element: <CustomerPage />,
-          },
-        ],
-      },
-      {
-        path: "create",
-        element: <CreateCustomerPage />,
-      },
-      {
-        path: "update",
-        children: [
-          {
-            path: ":customerId",
-            element: <UpdateCustomerPage />,
-          },
-        ],
-      },
-    ],
-  },
-];
+export const CustomersRoutes: RouteObject = {
+  path: "customers",
+  children: [
+    {
+      path: "",
+      element: <CustomersPage />,
+    },
+    {
+      path: "view",
+      children: [
+        {
+          path: ":customerId",
+          element: <CustomerPage />,
+        },
+      ],
+    },
+    {
+      path: "create",
+      element: <CreateCustomerPage />,
+    },
+    {
+      path: "update",
+      children: [
+        {
+          path: ":customerId",
+          element: <UpdateCustomerPage />,
+        },
+      ],
+    },
+  ],
+};

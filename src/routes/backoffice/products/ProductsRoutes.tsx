@@ -47,36 +47,34 @@ export const ProductsCrumbs: Readonly<CrumbProps> = {
   },
 };
 
-export const ProductsRoutes: RouteObject[] = [
-  {
-    path: "products",
-    children: [
-      {
-        path: "",
-        element: <ProductsPage />,
-      },
-      {
-        path: "view",
-        children: [
-          {
-            path: ":productId",
-            element: <ProductPage />,
-          },
-        ],
-      },
-      {
-        path: "create",
-        element: <CreateProductPage />,
-      },
-      {
-        path: "update",
-        children: [
-          {
-            path: ":productId",
-            element: <UpdateProductPage />,
-          },
-        ],
-      },
-    ],
-  },
-];
+export const ProductsRoutes: RouteObject = {
+  path: "products",
+  children: [
+    {
+      path: "",
+      element: <ProductsPage />,
+    },
+    {
+      path: "view",
+      children: [
+        {
+          path: ":productId",
+          element: <ProductPage />,
+        },
+      ],
+    },
+    {
+      path: "create",
+      element: <CreateProductPage />,
+    },
+    {
+      path: "update",
+      children: [
+        {
+          path: ":productId",
+          element: <UpdateProductPage />,
+        },
+      ],
+    },
+  ],
+};

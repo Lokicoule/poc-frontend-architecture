@@ -1,24 +1,22 @@
-import MailIcon from "@mui/icons-material/Mail";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import {
-  Box,
-  Drawer,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import { Box, Drawer, useMediaQuery, useTheme } from "@mui/material";
 import { FC, MouseEventHandler } from "react";
+import {
+  MenuList,
+  MenuListProps,
+} from "../../../../components/MenuList/MenuList";
 import { uiConfiguration } from "../../../../constants/uiConfiguration";
 
-interface SideBarProps {
+export type SideBarProps = MenuListProps & {
   isOpen: boolean;
   onClose: MouseEventHandler<HTMLDivElement>;
-}
+};
 
-export const SideBar: FC<SideBarProps> = ({ onClose, isOpen, children }) => {
+export const SideBar: FC<SideBarProps> = ({
+  onClose,
+  isOpen,
+  items,
+  children,
+}) => {
   const theme = useTheme();
   const matchUpMd = useMediaQuery(theme.breakpoints.up("md"));
 
@@ -31,17 +29,7 @@ export const SideBar: FC<SideBarProps> = ({ onClose, isOpen, children }) => {
       >
         {children}
       </Box>
-
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
+      <MenuList items={items}></MenuList>
     </>
   );
 

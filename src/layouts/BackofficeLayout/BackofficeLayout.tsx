@@ -8,8 +8,11 @@ import { uiConfiguration } from "../../constants/uiConfiguration";
 import { Header } from "./components/Header";
 import { LogoSection } from "./components/Header/LogoSection/LogoSection";
 import { SideBar } from "./components/SideBar";
+import { SideBarProps } from "./components/SideBar/SideBar";
 
-export const BackofficeLayout = ({ crumbs }: BreadcrumbsProps) => {
+type BackofficeLayoutProps = BreadcrumbsProps & Pick<SideBarProps, "items">;
+
+export const BackofficeLayout = ({ crumbs, items }: BackofficeLayoutProps) => {
   const theme = useTheme();
   const matchUpMd = useMediaQuery(theme.breakpoints.up("md"));
   const [open, setOpen] = React.useState(false);
@@ -39,7 +42,7 @@ export const BackofficeLayout = ({ crumbs }: BreadcrumbsProps) => {
           <Header onClick={() => setOpen(true)}></Header>
         </Toolbar>
       </AppBar>
-      <SideBar isOpen={open} onClose={() => setOpen(false)}>
+      <SideBar items={items} isOpen={open} onClose={() => setOpen(false)}>
         <LogoSection></LogoSection>
       </SideBar>
       <Container
