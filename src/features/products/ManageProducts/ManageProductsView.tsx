@@ -1,7 +1,5 @@
-import SearchIcon from "@mui/icons-material/Search";
-import { Button, InputAdornment, Stack, TextField } from "@mui/material";
 import { SetStateAction } from "react";
-import { Link } from "react-router-dom";
+import { AddAndSearchStack } from "../../components/AddAndSearchStack";
 import { ProductsTable, ProductsTableProps } from "./components/ProductsTable";
 
 export type ManageProductsViewProps = Pick<
@@ -18,34 +16,11 @@ export const ManageProductsView = ({
 }: ManageProductsViewProps) => {
   return (
     <>
-      <Stack
-        direction="row"
-        alignItems="center"
-        justifyContent="space-between"
-        mb={5}
-        mt={3}
-      >
-        <TextField
-          label="Rechercher"
-          onChange={onSearch}
-          variant="standard"
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="start">
-                <SearchIcon />
-              </InputAdornment>
-            ),
-          }}
-        ></TextField>
-        <Button
-          component={Link}
-          variant="contained"
-          style={{ textTransform: "none" }}
-          to="/backoffice/products/create"
-        >
-          Ajouter un nouveau produit
-        </Button>
-      </Stack>
+      <AddAndSearchStack
+        onSearch={onSearch}
+        label="Ajouter un nouveau produit"
+        to="/backoffice/products/create"
+      ></AddAndSearchStack>
 
       <ProductsTable data={data} onRemove={onRemove}></ProductsTable>
     </>

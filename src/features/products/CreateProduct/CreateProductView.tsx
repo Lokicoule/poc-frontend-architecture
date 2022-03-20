@@ -25,7 +25,7 @@ export const CreateProductView = ({
     <FeatureLayout title="Formulaire produit">
       <Form errors={errors} onSubmit={handleSubmit(onSubmit)} onReset={onReset}>
         <Grid container spacing={2}>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12}>
             <FormInputText
               name="code"
               control={control}
@@ -35,7 +35,7 @@ export const CreateProductView = ({
               helperText={formState?.errors?.code?.message}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12}>
             <FormInputText
               name="label"
               control={control}
