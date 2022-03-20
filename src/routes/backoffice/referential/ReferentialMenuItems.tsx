@@ -6,24 +6,24 @@ import { MenuItemType } from "../../../components/MenuList/MenuItem";
 export const ReferentialMenuItems: Readonly<MenuItemType> = {
   id: "referential",
   title: "Référentiel",
-  collapsed: true,
+  to: "referential",
   children: [
     {
       id: "referential-customers",
       title: "Clients",
-      to: "/backoffice/referential/customers",
+      to: "referential/customers",
       icon: <GroupIcon></GroupIcon>,
     },
     {
       id: "referential-orders",
       title: "Commandes",
-      to: "/backoffice/referential/orders",
+      to: "referential/orders",
       icon: <ReceiptIcon></ReceiptIcon>,
     },
     {
       id: "referential-products",
       title: "Produits",
-      to: "/backoffice/referential/products",
+      to: "referential/products",
       icon: <InventoryIcon></InventoryIcon>,
     },
   ],

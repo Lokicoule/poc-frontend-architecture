@@ -16,7 +16,7 @@ export type MenuItemType = {
   id: string;
   title: string;
   to?: string;
-  collapsed?: boolean;
+  collapse?: boolean;
   icon?: JSX.Element;
   children?: Readonly<MenuItemType[]>;
 };
@@ -26,13 +26,13 @@ export interface MenuItemProps {
 }
 
 export const MenuItem = ({ item }: MenuItemProps) => {
-  const [open, setOpen] = React.useState(item.collapsed);
+  const [open, setOpen] = React.useState(true);
   const handleClick = () => {
     setOpen(!open);
   };
 
   return (
-    (item.children && (
+    (item.children && item.collapse && (
       <List
         component="nav"
         subheader={
@@ -58,7 +58,9 @@ export const MenuItem = ({ item }: MenuItemProps) => {
             />
           </ListSubheader>
         }
-      ></List>
+      >
+        {item.children && <MenuList items={item.children}></MenuList>}
+      </List>
     )
   );
 };
