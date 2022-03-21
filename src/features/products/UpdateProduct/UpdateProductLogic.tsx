@@ -16,8 +16,6 @@ type UpdateProductLogicProps = Pick<UpdateProductViewProps, "errors"> & {
   >;
 };
 
-const postalCodeRule = new RegExp(/^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$/);
-
 const schema = yup.object().shape({
   code: yup
     .string()

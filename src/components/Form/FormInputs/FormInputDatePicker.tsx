@@ -1,7 +1,7 @@
-import TextField, { TextFieldProps } from "@mui/material/TextField";
+import { DatePicker, LocalizationProvider } from "@mui/lab";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import { LocalizationProvider, DatePicker, DatePickerProps } from "@mui/lab";
-import { fr, enUS } from "date-fns/locale";
+import TextField, { TextFieldProps } from "@mui/material/TextField";
+import { enUS, fr } from "date-fns/locale";
 import { Control, Controller } from "react-hook-form";
 
 const localeMap = {
