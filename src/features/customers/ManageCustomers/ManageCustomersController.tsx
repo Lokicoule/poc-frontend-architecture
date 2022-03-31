@@ -3,9 +3,9 @@ import {
   GetCustomersQuery,
   useGetCustomersQuery,
   useRemoveCustomersMutation,
-} from "../../../api/hooks/customers.generated";
+} from "../../../api/fdo/customers.generated";
 import { Loader } from "../../../components";
-import { CustomerViewModel } from "../../../view-models/customers";
+import { CustomerViewModel } from "../../../types/customers";
 import { ManageCustomersLogic } from "./ManageCustomersLogic";
 
 export const ManageCustomersController = () => {

@@ -4,9 +4,9 @@ import {
   GetProductQuery,
   useGetProductQuery,
   useRemoveProductMutation,
-} from "../../../api/hooks/products.generated";
+} from "../../../api/fdo/products.generated";
 import { Loader } from "../../../components";
-import { ProductViewModel } from "../../../view-models/products";
+import { ProductViewModel } from "../../../types/products";
 import { ManageProductLogic } from "./ManageProductLogic";
 
 type ManageProductControllerProps = {

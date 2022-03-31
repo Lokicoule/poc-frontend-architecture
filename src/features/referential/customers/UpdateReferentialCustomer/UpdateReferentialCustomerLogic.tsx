@@ -1,7 +1,7 @@
 import { FetchResult } from "@apollo/client";
 import { isEqual } from "lodash";
-import { UpdateReferentialCustomerMutation } from "../../../../api/hooks/referentialCustomers.generated";
-import { ReferentialCustomerViewModel } from "../../../../view-models/referential/customers/ReferentialCustomerViewModel";
+import { UpdateReferentialCustomerMutation } from "../../../../api/fdo/referentialCustomers.generated";
+import { ReferentialCustomerViewModel } from "../../../../types/referential/customers/ReferentialCustomerViewModel";
 import {
   UpdateReferentialCustomerView,
   UpdateReferentialCustomerViewProps,

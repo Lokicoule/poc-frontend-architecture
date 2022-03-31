@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useCreateCustomerMutation } from "../../../api/hooks/customers.generated";
-import { CreateCustomerViewModel } from "../../../view-models/customers";
+import { useCreateCustomerMutation } from "../../../api/fdo/customers.generated";
+import { CreateCustomerViewModel } from "../../../types/customers";
 import { CreateCustomerLogic } from "./CreateCustomerLogic";
 
 const defaultValues = {

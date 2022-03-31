@@ -1,10 +1,10 @@
 import DeleteIcon from "@mui/icons-material/Delete";
 import { IconButton } from "@mui/material";
 import { Control, FormState, useFieldArray } from "react-hook-form";
-import { ParameterReferentialEnum } from "../../../../../api/types/types.generated";
+import { ParameterReferentialEnum } from "../../../../../types/dto-types.generated";
 import { ColumnProps } from "../../../../../components";
 import { FormInputText } from "../../../../../components/Form/FormInputs";
-import { ReferentialViewModel } from "../../../../../view-models/referential";
+import { ReferentialViewModel } from "../../../../../types/referential";
 import { SelectParamKey } from "./SelectParamKey";
 import { ReferentialParamsTableFormView } from "./ReferentialParamsTableFormView";
 

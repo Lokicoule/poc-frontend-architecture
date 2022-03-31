@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { Product } from "../../../../../api/types/types.generated";
 import { ColumnProps } from "../../../../../components/Tables";
+import { ProductViewModel } from "../../../../../types/products";
 import { ProductsTableView, ProductsTableViewProps } from "./ProductsTableView";
 
 export type ProductsTableLogicProps = Pick<
@@ -17,7 +17,7 @@ export const ProductsTableLogic = ({
       label: "Code produit",
       key: "code",
       sortable: true,
-      content: (item: Product) => (
+      content: (item: ProductViewModel) => (
         <Link to={`/backoffice/products/view/${item.id}`}>{item.code}</Link>
       ),
     },

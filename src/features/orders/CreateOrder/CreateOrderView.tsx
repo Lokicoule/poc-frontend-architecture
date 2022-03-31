@@ -1,6 +1,6 @@
 import { GraphQLErrors } from "@apollo/client/errors";
 import { UseFormReturn } from "react-hook-form";
-import { FormOrderViewModel } from "../../../view-models/orders";
+import { FormOrderViewModel } from "../../../types/orders";
 import { OrderForm } from "../components/OrderForm";
 
 export type CreateOrderViewProps = {

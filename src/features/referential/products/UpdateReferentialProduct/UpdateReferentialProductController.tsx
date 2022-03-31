@@ -4,10 +4,10 @@ import {
   GetReferentialProductQuery,
   useGetReferentialProductQuery,
   useUpdateReferentialProductMutation,
-} from "../../../../api/hooks/referentialProducts.generated";
-import { UpdateReferentialProductInput } from "../../../../api/types/types.generated";
+} from "../../../../api/fdo/referentialProducts.generated";
 import { Loader } from "../../../../components";
-import { ReferentialProductViewModel } from "../../../../view-models/referential/products/ReferentialProductViewModel";
+import { UpdateReferentialProductInput } from "../../../../types/dto-types.generated";
+import { ReferentialProductViewModel } from "../../../../types/referential/products/ReferentialProductViewModel";
 import { UpdateReferentialProductLogic } from "./UpdateReferentialProductLogic";
 
 type UpdateReferentialProductControllerProps = {

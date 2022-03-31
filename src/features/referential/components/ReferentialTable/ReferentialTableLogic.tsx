@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ColumnProps } from "../../../../components/Tables";
-import { ReferentialViewModel } from "../../../../view-models/referential";
+import { ReferentialViewModel } from "../../../../types/referential";
 import { ReferentialParamsTable } from "./ReferentiaParametersTable";
 import {
   ReferentialTableView,

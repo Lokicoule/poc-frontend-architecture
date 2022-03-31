@@ -1,6 +1,6 @@
 import { Button, Grid } from "@mui/material";
 import { ColumnProps, Table } from "../../../../../components/Tables";
-import { FormOrderItemViewModel } from "../../../../../view-models/orders";
+import { FormOrderItemViewModel } from "../../../../../types/orders";
 
 export type OrderItemTableFormViewProps = {
   columns: ColumnProps[];

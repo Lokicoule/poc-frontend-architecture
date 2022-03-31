@@ -1,9 +1,9 @@
 import {
   GetReferentialProductsQuery,
   useGetReferentialProductsQuery,
-} from "../../../../api/hooks/referentialProducts.generated";
+} from "../../../../api/fdo/referentialProducts.generated";
 import { Loader } from "../../../../components";
-import { ReferentialProductViewModel } from "../../../../view-models/referential/products/ReferentialProductViewModel";
+import { ReferentialProductViewModel } from "../../../../types/referential/products/ReferentialProductViewModel";
 import { ManageReferentialProductsLogic } from "./ManageReferentialProductsLogic";
 
 export const ManageReferentialProductsController = () => {

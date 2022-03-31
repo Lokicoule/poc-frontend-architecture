@@ -1,6 +1,6 @@
 import { FetchResult } from "@apollo/client";
 import { SetStateAction, useState } from "react";
-import { RemoveProductsMutation } from "../../../api/hooks/products.generated";
+import { RemoveProductsMutation } from "../../../api/fdo/products.generated";
 import {
   ManageProductsView,
   ManageProductsViewProps,

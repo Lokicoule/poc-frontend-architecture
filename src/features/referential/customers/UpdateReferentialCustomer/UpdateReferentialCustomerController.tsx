@@ -4,10 +4,10 @@ import {
   GetReferentialCustomerQuery,
   useGetReferentialCustomerQuery,
   useUpdateReferentialCustomerMutation,
-} from "../../../../api/hooks/referentialCustomers.generated";
-import { UpdateReferentialCustomerInput } from "../../../../api/types/types.generated";
+} from "../../../../api/fdo/referentialCustomers.generated";
+import { UpdateReferentialCustomerInput } from "../../../../types/dto-types.generated";
 import { Loader } from "../../../../components";
-import { ReferentialCustomerViewModel } from "../../../../view-models/referential/customers/ReferentialCustomerViewModel";
+import { ReferentialCustomerViewModel } from "../../../../types/referential/customers/ReferentialCustomerViewModel";
 import { UpdateReferentialCustomerLogic } from "./UpdateReferentialCustomerLogic";
 
 type UpdateReferentialCustomerControllerProps = {

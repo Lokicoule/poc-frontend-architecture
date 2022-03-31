@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { Customer } from "../../../../../api/types/types.generated";
 import { ColumnProps } from "../../../../../components/Tables";
+import { CustomerViewModel } from "../../../../../types/customers";
 import {
   CustomersTableView,
   CustomersTableViewProps,
@@ -20,7 +20,7 @@ export const CustomersTableLogic = ({
       label: "Code client",
       key: "code",
       sortable: true,
-      content: (item: Customer) => (
+      content: (item: CustomerViewModel) => (
         <Link to={`/backoffice/customers/view/${item.id}`}>{item.code}</Link>
       ),
     },

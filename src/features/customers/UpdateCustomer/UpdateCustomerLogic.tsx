@@ -3,8 +3,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { isEqual } from "lodash";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { UpdateCustomerMutation } from "../../../api/hooks/customers.generated";
-import { UpdateCustomerViewModel } from "../../../view-models/customers";
+import { UpdateCustomerMutation } from "../../../api/fdo/customers.generated";
+import { UpdateCustomerViewModel } from "../../../types/customers";
 import {
   UpdateCustomerView,
   UpdateCustomerViewProps,

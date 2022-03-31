@@ -3,9 +3,9 @@ import {
   GetProductsQuery,
   useGetProductsQuery,
   useRemoveProductsMutation,
-} from "../../../api/hooks/products.generated";
+} from "../../../api/fdo/products.generated";
 import { Loader } from "../../../components";
-import { ProductViewModel } from "../../../view-models/products";
+import { ProductViewModel } from "../../../types/products";
 import { ManageProductsLogic } from "./ManageProductsLogic";
 
 export const ManageProductsController = () => {

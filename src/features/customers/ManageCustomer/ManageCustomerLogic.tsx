@@ -1,5 +1,5 @@
 import { FetchResult } from "@apollo/client";
-import { RemoveCustomerMutation } from "../../../api/hooks/customers.generated";
+import { RemoveCustomerMutation } from "../../../api/fdo/customers.generated";
 import {
   ManageCustomerView,
   ManageCustomerViewProps,

@@ -1,7 +1,7 @@
 import {
   ParameterReferentialEnum,
   UseCaseReferentialEnum,
-} from "../../../api/types/types.generated";
+} from "../../dto-types.generated";
 
 export interface ReferentialCustomersParamsViewModel {
   id: string;

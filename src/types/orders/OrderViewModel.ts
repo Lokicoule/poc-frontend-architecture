@@ -4,8 +4,8 @@ import { CustomerViewModel } from "../customers/CustomerViewModel";
 export interface OrderViewModel {
   code: string;
   id: string;
-  billingDate?: Date | null;
-  dueDate?: Date | null;
+  billingDate: Date;
+  dueDate: Date;
   items: OrderItemViewModel[];
   customer: Partial<CustomerViewModel>;
 }

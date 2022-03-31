@@ -1,15 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useCreateOrderMutation } from "../../../api/hooks/orders.generated";
+import { useCreateOrderMutation } from "../../../api/fdo/orders.generated";
 import {
   CreateOrderInput,
   OrderItemInput,
-} from "../../../api/types/types.generated";
+} from "../../../types/dto-types.generated";
 import { addDays } from "../../../utils/DateUtils";
 import {
   FormOrderItemViewModel,
   FormOrderViewModel,
-} from "../../../view-models/orders";
+} from "../../../types/orders";
 import { CreateOrderLogic } from "./CreateOrderLogic";
 
 const defaultValues = {

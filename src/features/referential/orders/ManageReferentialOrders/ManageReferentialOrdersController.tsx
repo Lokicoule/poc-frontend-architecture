@@ -1,9 +1,9 @@
 import {
   GetReferentialOrdersQuery,
   useGetReferentialOrdersQuery,
-} from "../../../../api/hooks/referentialOrders.generated";
+} from "../../../../api/fdo/referentialOrders.generated";
 import { Loader } from "../../../../components";
-import { ReferentialOrderViewModel } from "../../../../view-models/referential/orders/ReferentialOrderViewModel";
+import { ReferentialOrderViewModel } from "../../../../types/referential/orders/ReferentialOrderViewModel";
 import { ManageReferentialOrdersLogic } from "./ManageReferentialOrdersLogic";
 
 export const ManageReferentialOrdersController = () => {

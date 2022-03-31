@@ -3,8 +3,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { isEqual } from "lodash";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { UpdateProductMutation } from "../../../api/hooks/products.generated";
-import { UpdateProductViewModel } from "../../../view-models/products";
+import { UpdateProductMutation } from "../../../api/fdo/products.generated";
+import { UpdateProductViewModel } from "../../../types/products";
 import { UpdateProductView, UpdateProductViewProps } from "./UpdateProductView";
 
 type UpdateProductLogicProps = Pick<UpdateProductViewProps, "errors"> & {

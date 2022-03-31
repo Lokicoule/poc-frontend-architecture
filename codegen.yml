@@ -2,13 +2,13 @@ overwrite: true
 schema: "http://localhost:3004/graphql"
 documents: "./src/**/*.gql"
 generates:
-  src/api/types/types.generated.ts:
+  src/types/dto-types.generated.ts:
     plugins:
       - typescript
   src/:
     preset: near-operation-file
     presetConfig:
-      baseTypesPath: api/types/types.generated.ts
+      baseTypesPath: types/dto-types.generated.ts
     plugins:
       - typescript-operations
       - typescript-react-apollo

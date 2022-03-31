@@ -3,9 +3,9 @@ import {
   GetOrdersQuery,
   useGetOrdersQuery,
   useRemoveOrdersMutation,
-} from "../../../api/hooks/orders.generated";
+} from "../../../api/fdo/orders.generated";
 import { Loader } from "../../../components";
-import { OrderViewModel } from "../../../view-models/orders";
+import { OrderViewModel } from "../../../types/orders";
 import { ManageOrdersLogic } from "./ManageOrdersLogic";
 
 export const ManageOrdersController = () => {

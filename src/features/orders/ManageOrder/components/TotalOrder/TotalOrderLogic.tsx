@@ -1,4 +1,4 @@
-import { OrderItemViewModel } from "../../../../../view-models/orders";
+import { OrderItemViewModel } from "../../../../../types/orders";
 import { TotalOrderView } from "./TotalOrderView";
 
 export type TotalOrderLogicProps = {

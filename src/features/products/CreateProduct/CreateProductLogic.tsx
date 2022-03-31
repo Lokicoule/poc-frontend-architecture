@@ -2,8 +2,8 @@ import { FetchResult } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { CreateProductMutation } from "../../../api/hooks/products.generated";
-import { CreateProductViewModel } from "../../../view-models/products";
+import { CreateProductMutation } from "../../../api/fdo/products.generated";
+import { CreateProductViewModel } from "../../../types/products";
 import { CreateProductView, CreateProductViewProps } from "./CreateProductView";
 
 type CreateProductLogicProps = Pick<CreateProductViewProps, "errors"> & {

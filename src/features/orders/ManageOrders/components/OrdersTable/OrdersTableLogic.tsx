@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { Order } from "../../../../../api/types/types.generated";
 import { ColumnProps } from "../../../../../components/Tables";
+import { OrderViewModel } from "../../../../../types/orders";
 import { currency } from "../../../../../utils/CurrencyUtils";
 import { OrdersTableView, OrdersTableViewProps } from "./OrdersTableView";
 
@@ -18,13 +18,13 @@ export const OrdersTableLogic = ({
       label: "Code commande",
       key: "code",
       sortable: true,
-      content: (item: Order) => (
+      content: (item: OrderViewModel) => (
         <Link to={`/backoffice/orders/view/${item.id}`}>{item.code}</Link>
       ),
     },
     {
       label: "Code client",
-      content: (order: Order) => {
+      content: (order: OrderViewModel) => {
         return (
           <Link to={`/backoffice/orders/customer/${order.customer.id}`}>
             {order.customer.code}
@@ -38,7 +38,7 @@ export const OrdersTableLogic = ({
       label: "Montant commande",
       key: "totalOrder",
       sortable: true,
-      content: (order: Order) =>
+      content: (order: OrderViewModel) =>
         currency.format(
           order.items?.reduce(
             (acc, item) => acc + item.unitPrice * item.amount,
@@ -50,14 +50,15 @@ export const OrdersTableLogic = ({
       label: "Date commande",
       key: "billingDate",
       sortable: true,
-      content: (order: Order) =>
-        new Date(order?.billingDate).toLocaleDateString(),
+      content: (order: OrderViewModel) =>
+        new Date(order.billingDate).toLocaleDateString(),
     },
     {
       label: "Date échéance",
       key: "dueDate",
       sortable: true,
-      content: (order: Order) => new Date(order?.dueDate).toLocaleDateString(),
+      content: (order: OrderViewModel) =>
+        new Date(order.dueDate).toLocaleDateString(),
     },
   ];
   return (

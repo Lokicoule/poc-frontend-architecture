@@ -1,6 +1,6 @@
 import { FetchResult } from "@apollo/client";
 import { SetStateAction, useState } from "react";
-import { RemoveOrdersMutation } from "../../../api/hooks/orders.generated";
+import { RemoveOrdersMutation } from "../../../api/fdo/orders.generated";
 import { ManageOrdersView, ManageOrdersViewProps } from "./ManageOrdersView";
 
 type ManageOrdersLogicProps = Pick<ManageOrdersViewProps, "data"> & {

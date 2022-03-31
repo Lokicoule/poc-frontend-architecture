@@ -1,5 +1,5 @@
 import { FetchResult } from "@apollo/client";
-import { RemoveProductMutation } from "../../../api/hooks/products.generated";
+import { RemoveProductMutation } from "../../../api/fdo/products.generated";
 import { ManageProductView, ManageProductViewProps } from "./ManageProductView";
 
 type ManageProductLogicProps = Pick<ManageProductViewProps, "defaultValues"> & {

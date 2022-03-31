@@ -2,7 +2,7 @@ import { Grid } from "@mui/material";
 import { UseFormReturn } from "react-hook-form";
 import { Form, FormProps } from "../../../../components/Form";
 import { FormInputText } from "../../../../components/Form/FormInputs";
-import { ReferentialProductViewModel } from "../../../../view-models/referential/products/ReferentialProductViewModel";
+import { ReferentialProductViewModel } from "../../../../types/referential/products/ReferentialProductViewModel";
 import { ReferentialParamsTableForm } from "./ReferentialParamsTableForm";
 
 export type ReferentialFormViewProps = Required<FormProps> & {

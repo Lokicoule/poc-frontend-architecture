@@ -1,5 +1,5 @@
 import { UseFormReturn } from "react-hook-form";
-import { FormOrderViewModel } from "../../../../view-models/orders";
+import { FormOrderViewModel } from "../../../../types/orders";
 import { OrderFormView, OrderFormViewProps } from "./OrderFormView";
 
 export type OrderFormLogicProps = Pick<OrderFormViewProps, "errors"> & {
