@@ -5,7 +5,7 @@ import { Form } from "../../../../components/Form";
 import { FormInputText } from "../../../../components/Form/FormInputs";
 import { FormInputDatePicker } from "../../../../components/Form/FormInputs/FormInputDatePicker";
 import { FeatureLayout } from "../../../../layouts";
-import { FormOrderViewModel } from "../../../../types/orders";
+import { FormOrderViewModel } from "../../../../viewModels/orders";
 import { OrderItemTableForm } from "./OrderItemTableForm";
 import { SelectCustomer } from "./SelectCustomer";
 

@@ -1,5 +1,5 @@
 import { ColumnProps, Table } from "../../../../../components";
-import { OrderItemViewModel } from "../../../../../types/orders";
+import { OrderItemViewModel } from "../../../../../viewModels/orders";
 
 export type OrderItemTableViewProps = {
   columns: ColumnProps[];

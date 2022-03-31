@@ -4,10 +4,10 @@ import {
   GetReferentialOrderQuery,
   useGetReferentialOrderQuery,
   useUpdateReferentialOrderMutation,
-} from "../../../../api/fdo/referentialOrders.generated";
-import { UpdateReferentialOrderInput } from "../../../../types/dto-types.generated";
+} from "../../../../api/fdo/operations/referentialOrders.generated";
+import { UpdateReferentialOrderInput } from "../../../../api/fdo/types/dto-types.generated";
 import { Loader } from "../../../../components";
-import { ReferentialOrderViewModel } from "../../../../types/referential/orders/ReferentialOrderViewModel";
+import { ReferentialOrderViewModel } from "../../../../viewModels/referential/orders/ReferentialOrderViewModel";
 import { UpdateReferentialOrderLogic } from "./UpdateReferentialOrderLogic";
 
 type UpdateReferentialOrderControllerProps = {

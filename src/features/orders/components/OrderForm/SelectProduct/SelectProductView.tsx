@@ -1,8 +1,8 @@
 import { MenuItem } from "@mui/material";
 import { Control } from "react-hook-form";
 import { FormInputSelect } from "../../../../../components/Form/FormInputs/FormInputSelect";
-import { FormOrderViewModel } from "../../../../../types/orders";
-import { ProductViewModel } from "../../../../../types/products";
+import { FormOrderViewModel } from "../../../../../viewModels/orders";
+import { ProductViewModel } from "../../../../../viewModels/products";
 
 export type SelectProductViewProps = {
   error: boolean | undefined;

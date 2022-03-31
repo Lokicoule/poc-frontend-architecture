@@ -2,8 +2,8 @@ import { FetchResult } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { UpdateOrderMutation } from "../../../api/fdo/orders.generated";
-import { FormOrderViewModel } from "../../../types/orders";
+import { UpdateOrderMutation } from "../../../api/fdo/operations/orders.generated";
+import { FormOrderViewModel } from "../../../viewModels/orders";
 import { UpdateOrderView, UpdateOrderViewProps } from "./UpdateOrderView";
 
 type UpdateOrderLogicProps = Pick<UpdateOrderViewProps, "errors"> & {

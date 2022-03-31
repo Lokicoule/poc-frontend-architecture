@@ -4,16 +4,16 @@ import {
   GetOrderQuery,
   useGetOrderQuery,
   useUpdateOrderMutation,
-} from "../../../api/fdo/orders.generated";
+} from "../../../api/fdo/operations/orders.generated";
 import {
   CreateOrderInput,
   OrderItemInput,
-} from "../../../types/dto-types.generated";
+} from "../../../api/fdo/types/dto-types.generated";
 import { Loader } from "../../../components";
 import {
   FormOrderItemViewModel,
   FormOrderViewModel,
-} from "../../../types/orders";
+} from "../../../viewModels/orders";
 import { UpdateOrderLogic } from "./UpdateOrderLogic";
 
 type UpdateOrderControllerProps = {

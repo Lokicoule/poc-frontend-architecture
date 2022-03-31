@@ -4,9 +4,9 @@ import {
   GetCustomerQuery,
   useGetCustomerQuery,
   useUpdateCustomerMutation,
-} from "../../../api/fdo/customers.generated";
+} from "../../../api/fdo/operations/customers.generated";
 import { Loader } from "../../../components";
-import { UpdateCustomerViewModel } from "../../../types/customers";
+import { UpdateCustomerViewModel } from "../../../viewModels/customers";
 import { UpdateCustomerLogic } from "./UpdateCustomerLogic";
 
 type UpdateCustomerControllerProps = {

@@ -1,9 +1,9 @@
 import {
   GetCustomersQuery,
   useGetCustomersQuery,
-} from "../../../../../api/fdo/customers.generated";
+} from "../../../../../api/fdo/operations/customers.generated";
 import { Loader } from "../../../../../components";
-import { CustomerViewModel } from "../../../../../types/customers";
+import { CustomerViewModel } from "../../../../../viewModels/customers";
 import {
   SelectCustomerLogic,
   SelectCustomerLogicProps,

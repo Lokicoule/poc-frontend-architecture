@@ -1,5 +1,5 @@
 import { ColumnProps, EnhancedTable } from "../../../../../components/Tables";
-import { OrderViewModel } from "../../../../../types/orders";
+import { OrderViewModel } from "../../../../../viewModels/orders";
 
 export type OrdersTableViewProps = {
   columns: ColumnProps[];

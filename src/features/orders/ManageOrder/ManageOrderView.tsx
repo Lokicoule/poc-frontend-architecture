@@ -3,7 +3,7 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import { Button, Grid, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
 import { FeatureLayout } from "../../../layouts";
-import { OrderViewModel } from "../../../types/orders";
+import { OrderViewModel } from "../../../viewModels/orders";
 import { OrderItemTable } from "./components/OrderItemTable";
 import { TotalOrder } from "./components/TotalOrder";
 

@@ -1,9 +1,9 @@
 import {
   GetProductsQuery,
   useGetProductsQuery,
-} from "../../../../../api/fdo/products.generated";
+} from "../../../../../api/fdo/operations/products.generated";
 import { Loader } from "../../../../../components";
-import { ProductViewModel } from "../../../../../types/products";
+import { ProductViewModel } from "../../../../../viewModels/products";
 import {
   SelectProductLogic,
   SelectProductLogicProps,

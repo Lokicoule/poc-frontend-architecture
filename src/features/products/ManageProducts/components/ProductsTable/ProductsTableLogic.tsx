@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ColumnProps } from "../../../../../components/Tables";
-import { ProductViewModel } from "../../../../../types/products";
+import { ProductViewModel } from "../../../../../viewModels/products";
 import { ProductsTableView, ProductsTableViewProps } from "./ProductsTableView";
 
 export type ProductsTableLogicProps = Pick<

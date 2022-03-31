@@ -4,9 +4,9 @@ import {
   GetProductQuery,
   useGetProductQuery,
   useUpdateProductMutation,
-} from "../../../api/fdo/products.generated";
+} from "../../../api/fdo/operations/products.generated";
 import { Loader } from "../../../components";
-import { UpdateProductViewModel } from "../../../types/products";
+import { UpdateProductViewModel } from "../../../viewModels/products";
 import { UpdateProductLogic } from "./UpdateProductLogic";
 
 type UpdateProductControllerProps = {

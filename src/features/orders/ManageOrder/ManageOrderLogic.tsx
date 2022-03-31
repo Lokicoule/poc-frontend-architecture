@@ -1,5 +1,5 @@
 import { FetchResult } from "@apollo/client";
-import { RemoveOrderMutation } from "../../../api/fdo/orders.generated";
+import { RemoveOrderMutation } from "../../../api/fdo/operations/orders.generated";
 import { ManageOrderView, ManageOrderViewProps } from "./ManageOrderView";
 
 type ManageOrderLogicProps = Pick<ManageOrderViewProps, "defaultValues"> & {

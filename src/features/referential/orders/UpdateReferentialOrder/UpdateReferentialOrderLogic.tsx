@@ -1,7 +1,7 @@
 import { FetchResult } from "@apollo/client";
 import { isEqual } from "lodash";
-import { UpdateReferentialOrderMutation } from "../../../../api/fdo/referentialOrders.generated";
-import { ReferentialOrderViewModel } from "../../../../types/referential/orders/ReferentialOrderViewModel";
+import { UpdateReferentialOrderMutation } from "../../../../api/fdo/operations/referentialOrders.generated";
+import { ReferentialOrderViewModel } from "../../../../viewModels/referential/orders/ReferentialOrderViewModel";
 import {
   UpdateReferentialOrderView,
   UpdateReferentialOrderViewProps,

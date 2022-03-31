@@ -2,8 +2,8 @@ import { FetchResult } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { CreateCustomerMutation } from "../../../api/fdo/customers.generated";
-import { CreateCustomerViewModel } from "../../../types/customers";
+import { CreateCustomerMutation } from "../../../api/fdo/operations/customers.generated";
+import { CreateCustomerViewModel } from "../../../viewModels/customers";
 import {
   CreateCustomerView,
   CreateCustomerViewProps,

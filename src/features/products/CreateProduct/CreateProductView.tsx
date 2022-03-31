@@ -4,7 +4,7 @@ import { FeatureLayout } from "../../../layouts";
 import { UseFormReturn } from "react-hook-form";
 import { Form } from "../../../components/Form";
 import { FormInputText } from "../../../components/Form/FormInputs";
-import { CreateProductViewModel } from "../../../types/products";
+import { CreateProductViewModel } from "../../../viewModels/products";
 
 export type CreateProductViewProps = {
   form: UseFormReturn<CreateProductViewModel>;
@@ -30,7 +30,8 @@ export const CreateProductView = ({
               name="code"
               control={control}
               label="Code produit"
-              fullWidth
+              
+              
               error={!!formState?.errors?.code}
               helperText={formState?.errors?.code?.message}
             />

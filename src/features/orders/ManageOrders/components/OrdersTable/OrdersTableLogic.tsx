@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ColumnProps } from "../../../../../components/Tables";
-import { OrderViewModel } from "../../../../../types/orders";
+import { OrderViewModel } from "../../../../../viewModels/orders";
 import { currency } from "../../../../../utils/CurrencyUtils";
 import { OrdersTableView, OrdersTableViewProps } from "./OrdersTableView";
 

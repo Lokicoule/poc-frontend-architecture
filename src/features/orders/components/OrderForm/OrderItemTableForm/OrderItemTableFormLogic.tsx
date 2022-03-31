@@ -6,7 +6,7 @@ import { FormInputText } from "../../../../../components/Form/FormInputs";
 import {
   FormOrderItemViewModel,
   FormOrderViewModel,
-} from "../../../../../types/orders";
+} from "../../../../../viewModels/orders";
 import { SelectProduct } from "../SelectProduct";
 import { OrderItemTableFormView } from "./OrderItemTableFormView";
 

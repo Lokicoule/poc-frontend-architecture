@@ -4,16 +4,16 @@ import {
   GetOrderQuery,
   useGetOrderQuery,
   useRemoveOrderMutation,
-} from "../../../api/fdo/orders.generated";
+} from "../../../api/fdo/operations/orders.generated";
 import {
   Customer,
   OrderItem,
   Product,
-} from "../../../types/dto-types.generated";
+} from "../../../api/fdo/types/dto-types.generated";
 import { Loader } from "../../../components";
-import { CustomerViewModel } from "../../../types/customers";
-import { OrderItemViewModel, OrderViewModel } from "../../../types/orders";
-import { ProductViewModel } from "../../../types/products";
+import { CustomerViewModel } from "../../../viewModels/customers";
+import { OrderItemViewModel, OrderViewModel } from "../../../viewModels/orders";
+import { ProductViewModel } from "../../../viewModels/products";
 import { ManageOrderLogic } from "./ManageOrderLogic";
 
 type ManageOrderControllerProps = {

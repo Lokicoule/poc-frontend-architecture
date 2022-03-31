@@ -1,6 +1,6 @@
 import { FetchResult } from "@apollo/client";
 import { SetStateAction, useState } from "react";
-import { RemoveCustomersMutation } from "../../../api/fdo/customers.generated";
+import { RemoveCustomersMutation } from "../../../api/fdo/operations/customers.generated";
 import {
   ManageCustomersView,
   ManageCustomersViewProps,

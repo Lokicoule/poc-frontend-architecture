@@ -1,9 +1,9 @@
 import {
   GetReferentialCustomersQuery,
   useGetReferentialCustomersQuery,
-} from "../../../../api/fdo/referentialCustomers.generated";
+} from "../../../../api/fdo/operations/referentialCustomers.generated";
 import { Loader } from "../../../../components";
-import { ReferentialCustomerViewModel } from "../../../../types/referential/customers/ReferentialCustomerViewModel";
+import { ReferentialCustomerViewModel } from "../../../../viewModels/referential/customers/ReferentialCustomerViewModel";
 import { ManageReferentialCustomersLogic } from "./ManageReferentialCustomersLogic";
 
 export const ManageReferentialCustomersController = () => {

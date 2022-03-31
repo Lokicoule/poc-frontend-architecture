@@ -1,5 +1,5 @@
 import { ColumnProps, Table } from "../../../../components/Tables";
-import { ReferentialViewModel } from "../../../../types/referential";
+import { ReferentialViewModel } from "../../../../viewModels/referential";
 
 export type ReferentialTableViewProps = {
   columns: ColumnProps[];

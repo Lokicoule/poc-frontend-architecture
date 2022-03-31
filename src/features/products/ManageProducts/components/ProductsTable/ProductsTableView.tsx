@@ -1,5 +1,5 @@
 import { ColumnProps, EnhancedTable } from "../../../../../components/Tables";
-import { ProductViewModel } from "../../../../../types/products";
+import { ProductViewModel } from "../../../../../viewModels/products";
 
 export type ProductsTableViewProps = {
   columns: ColumnProps[];

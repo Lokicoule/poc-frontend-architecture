@@ -1,8 +1,8 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { ParameterReferentialEnum } from "../../../../types/dto-types.generated";
-import { ReferentialProductViewModel } from "../../../../types/referential/products/ReferentialProductViewModel";
+import { ParameterReferentialEnum } from "../../../../api/fdo/types/dto-types.generated";
+import { ReferentialProductViewModel } from "../../../../viewModels/referential/products/ReferentialProductViewModel";
 import {
   ReferentialFormView,
   ReferentialFormViewProps,

@@ -1,6 +1,6 @@
 import { ColumnProps } from "../../../../../components";
 import { currency } from "../../../../../utils/CurrencyUtils";
-import { OrderItemViewModel } from "../../../../../types/orders";
+import { OrderItemViewModel } from "../../../../../viewModels/orders";
 import {
   OrderItemTableView,
   OrderItemTableViewProps,
