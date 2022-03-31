@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Order } from "../../../../../api/types/types.generated";
 import { ColumnProps } from "../../../../../components/Tables";
+import { currency } from "../../../../../utils/CurrencyUtils";
 import { OrdersTableView, OrdersTableViewProps } from "./OrdersTableView";
 
 export type OrdersTableLogicProps = Pick<
@@ -38,9 +39,11 @@ export const OrdersTableLogic = ({
       key: "totalOrder",
       sortable: true,
       content: (order: Order) =>
-        order.items?.reduce(
-          (acc, item) => acc + item.unitPrice * item.amount,
-          0
+        currency.format(
+          order.items?.reduce(
+            (acc, item) => acc + item.unitPrice * item.amount,
+            0
+          ) || 0
         ),
     },
     {

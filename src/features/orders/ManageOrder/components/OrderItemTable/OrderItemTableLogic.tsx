@@ -1,4 +1,6 @@
 import { ColumnProps } from "../../../../../components";
+import { currency } from "../../../../../utils/CurrencyUtils";
+import { OrderItemViewModel } from "../../../../../view-models/orders";
 import {
   OrderItemTableView,
   OrderItemTableViewProps,
@@ -28,9 +30,10 @@ export const OrderItemTableLogic = ({ data }: ManageOrderViewProps) => {
     },
     {
       label: "Prix unitaire",
-      path: "unitPrice",
       key: "unitPrice",
       sortable: true,
+      content: (item: OrderItemViewModel, idx: number) =>
+        currency.format(item.unitPrice),
     },
   ];
 
