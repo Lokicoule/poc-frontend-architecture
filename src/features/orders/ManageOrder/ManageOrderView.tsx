@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { FeatureLayout } from "../../../layouts";
 import { OrderViewModel } from "../../../view-models/orders";
 import { OrderItemTable } from "./components/OrderItemTable";
+import { TotalOrder } from "./components/TotalOrder";
 
 export type ManageOrderViewProps = {
   defaultValues: OrderViewModel;
@@ -52,6 +53,7 @@ export const ManageOrderView = ({
         </Grid>
         <Grid item xs={12}>
           <OrderItemTable data={defaultValues.items}></OrderItemTable>
+          <TotalOrder data={defaultValues.items}></TotalOrder>
         </Grid>
       </Grid>
 

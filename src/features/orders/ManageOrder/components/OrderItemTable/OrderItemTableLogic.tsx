@@ -35,6 +35,13 @@ export const OrderItemTableLogic = ({ data }: ManageOrderViewProps) => {
       content: (item: OrderItemViewModel, idx: number) =>
         currency.format(item.unitPrice),
     },
+    {
+      label: "Somme",
+      key: "sum",
+      sortable: true,
+      content: (item: OrderItemViewModel, idx: number) =>
+        currency.format(item.unitPrice * item.amount),
+    },
   ];
 
   return (
