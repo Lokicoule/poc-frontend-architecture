@@ -1,3 +1,3 @@
-export interface DataProps {
+export type DataProps = {
   id: string;
-}
+};

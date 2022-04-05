@@ -13,10 +13,10 @@ import { usePagination } from "./hooks/usePagination";
 import { useTableSelect } from "./hooks/useTableSelect";
 import { useTableSort } from "./hooks/useTableSort";
 
-interface TableProps extends Pick<EnhancedTableBodyProps, "columns" | "data"> {
+type TableProps = Pick<EnhancedTableBodyProps, "columns" | "data"> & {
   title: string;
   onRemove: (ids: string[]) => void;
-}
+};
 
 const ROWS_PER_PAGE = [5, 10, 25, 50, 100];
 

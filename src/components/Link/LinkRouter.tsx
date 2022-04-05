@@ -1,10 +1,10 @@
 import Link, { LinkProps } from "@mui/material/Link";
-import { Link as RouterLink } from "react-router-dom";
+import {
+  Link as RouterLink,
+  LinkProps as RouterLinkProps,
+} from "react-router-dom";
 
-interface LinkRouterProps extends LinkProps {
-  to: string;
-  replace?: boolean;
-}
+type LinkRouterProps = LinkProps & RouterLinkProps;
 
 export const LinkRouter = (props: LinkRouterProps) => (
   <Link {...props} component={RouterLink as any} />

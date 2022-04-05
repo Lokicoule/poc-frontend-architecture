@@ -30,8 +30,6 @@ export const CreateProductView = ({
               name="code"
               control={control}
               label="Code produit"
-              
-              
               error={!!formState?.errors?.code}
               helperText={formState?.errors?.code?.message}
             />

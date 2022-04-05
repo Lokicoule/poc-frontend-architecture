@@ -4,19 +4,16 @@ import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import _ from "lodash";
 import { ColumnProps } from "..";
+import { DataProps } from "../data.props";
 
-export interface DataProps {
-  id: string;
-}
-
-export interface EnhancedTableBodyProps {
+export type EnhancedTableBodyProps = {
   columns: ColumnProps[];
   data: DataProps[];
   emptyRows: number;
   dense: boolean;
   selected: readonly string[];
   onSelect: (name: string) => void;
-}
+};
 
 export const EnhancedTableBody = ({
   columns,

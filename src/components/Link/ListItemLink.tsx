@@ -5,11 +5,11 @@ import {
   LinkProps as RouterLinkProps,
 } from "react-router-dom";
 
-interface ListItemLinkProps {
+type ListItemLinkProps = {
   icon?: React.ReactElement;
   primary: string;
   to: string;
-}
+};
 
 export const ListItemLink = (props: ListItemLinkProps) => {
   const { icon, primary, to } = props;

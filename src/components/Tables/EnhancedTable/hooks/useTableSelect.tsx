@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { DataProps } from "../EnhancedTableBody";
+import { DataProps } from "../../data.props";
 
 export const useTableSelect = (init: string[] = []) => {
   const [selected, setSelected] = useState<readonly string[]>(init);

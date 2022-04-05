@@ -1,13 +1,11 @@
 import { Box, useTheme } from "@mui/material";
-import { MouseEventHandler } from "react";
 import { LogoSection } from "./LogoSection";
 import { MenuSection } from "./MenuSection";
+import { MenuSectionProps } from "./MenuSection/MenuSection";
 
-interface MenuSectionProps {
-  onClick: MouseEventHandler<HTMLDivElement>;
-}
+type HeaderProps = MenuSectionProps;
 
-export const Header = ({ onClick }: MenuSectionProps) => {
+export const Header = ({ onClick }: HeaderProps) => {
   const theme = useTheme();
   return (
     <Box

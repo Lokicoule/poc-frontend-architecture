@@ -2,9 +2,9 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Avatar, ButtonBase, useTheme } from "@mui/material";
 import { MouseEventHandler } from "react";
 
-interface MenuSectionProps {
+export type MenuSectionProps = {
   onClick: MouseEventHandler<HTMLDivElement>;
-}
+};
 
 export const MenuSection = ({ onClick }: MenuSectionProps) => {
   const theme = useTheme();

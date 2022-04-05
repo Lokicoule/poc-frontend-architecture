@@ -21,9 +21,9 @@ export type MenuItemType = {
   children?: Readonly<MenuItemType[]>;
 };
 
-export interface MenuItemProps {
+export type MenuItemProps = {
   item: Readonly<MenuItemType>;
-}
+};
 
 export const MenuItem = ({ item }: MenuItemProps) => {
   const [open, setOpen] = React.useState(true);

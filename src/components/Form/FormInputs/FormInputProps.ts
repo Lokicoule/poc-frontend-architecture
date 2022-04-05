@@ -1,12 +1,12 @@
 import { SxProps, Theme } from "@mui/material";
 import { Control } from "react-hook-form";
 
-interface Option {
+type Option = {
   key: string;
   value: string;
-}
+};
 
-export interface FormInputProps {
+export type FormInputProps = {
   name: string;
   label: string;
   control: Control<any, any>;
@@ -16,4 +16,4 @@ export interface FormInputProps {
   error?: boolean;
   helperText?: string | undefined;
   defaultValue?: string;
-}
+};

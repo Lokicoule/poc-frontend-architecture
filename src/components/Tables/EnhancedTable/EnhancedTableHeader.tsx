@@ -14,7 +14,7 @@ enum Direction {
   DESCENDANT = "desc",
 }
 
-interface EnhancedTableProps {
+type EnhancedTableProps = {
   numSelected: number;
   onSort: (property: string) => void;
   onSelectAll: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -22,7 +22,7 @@ interface EnhancedTableProps {
   orderBy: string;
   rowCount: number;
   columns: ColumnProps[];
-}
+};
 
 const TitleTypography: FC = ({ children }) => (
   <Typography fontSize={17} fontWeight={"bold"}>

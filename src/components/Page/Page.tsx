@@ -2,11 +2,11 @@ import { Container } from "@mui/material";
 import { FC } from "react";
 import { Helmet } from "react-helmet-async";
 
-interface PageProps {
+type PageProps = {
   title: string;
-}
+};
 
-export const Page: FC<PageProps> = ({ children, title = "" }) => {
+export const Page: FC<PageProps> = ({ children, title }) => {
   return (
     <>
       <Helmet>

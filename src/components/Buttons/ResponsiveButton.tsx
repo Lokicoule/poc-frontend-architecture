@@ -5,10 +5,9 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, LinkProps } from "react-router-dom";
 
-export type ResponsiveLinkButtonProps = {
-  to: string;
+export type ResponsiveLinkButtonProps = Pick<LinkProps, "to"> & {
   label: string;
   iconComponent: JSX.Element;
 };
