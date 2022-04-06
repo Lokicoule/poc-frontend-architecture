@@ -20,7 +20,7 @@ const schema = yup.object().shape({
   code: yup
     .string()
     .required("Le code produit est requis.")
-    .min(5, "Le code produit doit contenir au moins 5 caractères."),
+    .min(3, "Le code produit doit contenir au moins 3 caractères."),
   label: yup.string().required("Le label produit est requis."),
 });
 

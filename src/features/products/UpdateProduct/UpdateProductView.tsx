@@ -21,7 +21,7 @@ export const UpdateProductView = ({
 }: UpdateProductViewProps) => {
   const { formState, handleSubmit, control } = form;
   return (
-    <FeatureLayout title="Formulaire client">
+    <FeatureLayout title="Formulaire produit">
       <Form errors={errors} onSubmit={handleSubmit(onSubmit)} onReset={onReset}>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
