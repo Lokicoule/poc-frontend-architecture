@@ -106,6 +106,7 @@ export const UpdateOrderController = ({
   });
 
   const handleSubmit = (dataVM: FormOrderViewModel) => {
+    console.log(dataVM);
     return updateOrder({
       variables: {
         updateOrderId: orderId,
