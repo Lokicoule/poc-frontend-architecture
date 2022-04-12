@@ -1,50 +1,54 @@
-query GetOrder(
-  $getOrderId: String!
-  $populateCustomer: Boolean!
-  $populateItems: Boolean!
-) {
+query GetOrder($getOrderId: String!) {
   getOrder(id: $getOrderId) {
     billingDate
     code
-    customer(populate: $populateCustomer) {
-      id
+    customer {
+      address
+      city
       code
-    }
-    items(populate: $populateItems) {
       id
+      naming
+      zipCode
+    }
+    dueDate
+    id
+    items {
+      unitPrice
       product {
         id
         code
         label
       }
+      id
       amount
-      unitPrice
     }
-    dueDate
-    id
   }
 }
 
-query GetOrders($populateItems: Boolean!, $populateCustomer: Boolean!) {
+query GetOrders {
   getOrders {
-    billingDate
     code
+    customer {
+      id
+      naming
+      zipCode
+      code
+      city
+      address
+    }
     dueDate
     id
-    items(populate: $populateItems) {
-      amount
-      id
+    items {
+      unitPrice
       product {
         id
-        code
         label
+        code
       }
-      unitPrice
-    }
-    customer(populate: $populateCustomer) {
       id
-      code
+      amount
     }
+    billingDate
   }
 }
 

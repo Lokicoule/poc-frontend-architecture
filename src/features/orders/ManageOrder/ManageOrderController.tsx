@@ -8,6 +8,7 @@ import {
 import {
   Customer,
   OrderItem,
+  OrderProduct,
   Product,
 } from "../../../api/fdo/types/dto-types.generated";
 import { Loader } from "../../../components";
@@ -41,13 +42,11 @@ export const ManageOrderController = ({
   const { data, loading } = useGetOrderQuery({
     variables: {
       getOrderId: orderId,
-      populateCustomer: true,
-      populateItems: true,
     },
     onError: () => navigate("/backoffice/orders"),
   });
 
-  const mapProductDtoToViewModel = (product: Product | null | undefined) =>
+  const mapProductDtoToViewModel = (product: OrderProduct | null | undefined) =>
     ({
       id: product?.id,
       code: product?.code,

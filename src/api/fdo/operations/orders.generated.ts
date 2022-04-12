@@ -5,20 +5,15 @@ import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export type GetOrderQueryVariables = Types.Exact<{
   getOrderId: Types.Scalars['String'];
-  populateCustomer: Types.Scalars['Boolean'];
-  populateItems: Types.Scalars['Boolean'];
 }>;
 
 
-export type GetOrderQuery = { __typename?: 'Query', getOrder?: { __typename?: 'Order', billingDate?: any | null, code: string, dueDate?: any | null, id: string, customer: { __typename?: 'Customer', id: string, code: string }, items?: Array<{ __typename?: 'OrderItem', id: string, amount: number, unitPrice: number, product?: { __typename?: 'Product', id: string, code: string, label: string } | null }> | null } | null };
+export type GetOrderQuery = { __typename?: 'Query', getOrder?: { __typename?: 'Order', billingDate?: any | null, code: string, dueDate?: any | null, id: string, customer: { __typename?: 'OrderCustomer', address: string, city: string, code: string, id: string, naming: string, zipCode: string }, items?: Array<{ __typename?: 'OrderItem', unitPrice: number, id: string, amount: number, product?: { __typename?: 'OrderProduct', id: string, code: string, label: string } | null }> | null } | null };
 
-export type GetOrdersQueryVariables = Types.Exact<{
-  populateItems: Types.Scalars['Boolean'];
-  populateCustomer: Types.Scalars['Boolean'];
-}>;
+export type GetOrdersQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type GetOrdersQuery = { __typename?: 'Query', getOrders?: Array<{ __typename?: 'Order', billingDate?: any | null, code: string, dueDate?: any | null, id: string, items?: Array<{ __typename?: 'OrderItem', amount: number, id: string, unitPrice: number, product?: { __typename?: 'Product', id: string, code: string, label: string } | null }> | null, customer: { __typename?: 'Customer', id: string, code: string } }> | null };
+export type GetOrdersQuery = { __typename?: 'Query', getOrders?: Array<{ __typename?: 'Order', code: string, dueDate?: any | null, id: string, billingDate?: any | null, customer: { __typename?: 'OrderCustomer', id: string, naming: string, zipCode: string, code: string, city: string, address: string }, items?: Array<{ __typename?: 'OrderItem', unitPrice: number, id: string, amount: number, product?: { __typename?: 'OrderProduct', id: string, label: string, code: string } | null }> | null }> | null };
 
 export type CreateOrderMutationVariables = Types.Exact<{
   createOrderInput: Types.CreateOrderInput;
@@ -51,26 +46,30 @@ export type RemoveOrdersMutation = { __typename?: 'Mutation', removeOrders: bool
 
 
 export const GetOrderDocument = gql`
-    query GetOrder($getOrderId: String!, $populateCustomer: Boolean!, $populateItems: Boolean!) {
+    query GetOrder($getOrderId: String!) {
   getOrder(id: $getOrderId) {
     billingDate
     code
-    customer(populate: $populateCustomer) {
-      id
+    customer {
+      address
+      city
       code
-    }
-    items(populate: $populateItems) {
       id
+      naming
+      zipCode
+    }
+    dueDate
+    id
+    items {
+      unitPrice
       product {
         id
         code
         label
       }
+      id
       amount
-      unitPrice
     }
-    dueDate
-    id
   }
 }
     `;
@@ -88,8 +87,6 @@ export const GetOrderDocument = gql`
  * const { data, loading, error } = useGetOrderQuery({
  *   variables: {
  *      getOrderId: // value for 'getOrderId'
- *      populateCustomer: // value for 'populateCustomer'
- *      populateItems: // value for 'populateItems'
  *   },
  * });
  */
@@ -105,26 +102,30 @@ export type GetOrderQueryHookResult = ReturnType<typeof useGetOrderQuery>;
 export type GetOrderLazyQueryHookResult = ReturnType<typeof useGetOrderLazyQuery>;
 export type GetOrderQueryResult = Apollo.QueryResult<GetOrderQuery, GetOrderQueryVariables>;
 export const GetOrdersDocument = gql`
-    query GetOrders($populateItems: Boolean!, $populateCustomer: Boolean!) {
+    query GetOrders {
   getOrders {
-    billingDate
     code
+    customer {
+      id
+      naming
+      zipCode
+      code
+      city
+      address
+    }
     dueDate
     id
-    items(populate: $populateItems) {
-      amount
-      id
+    items {
+      unitPrice
       product {
         id
-        code
         label
+        code
       }
-      unitPrice
-    }
-    customer(populate: $populateCustomer) {
       id
-      code
+      amount
     }
+    billingDate
   }
 }
     `;
@@ -141,12 +142,10 @@ export const GetOrdersDocument = gql`
  * @example
  * const { data, loading, error } = useGetOrdersQuery({
  *   variables: {
- *      populateItems: // value for 'populateItems'
- *      populateCustomer: // value for 'populateCustomer'
  *   },
  * });
  */
-export function useGetOrdersQuery(baseOptions: Apollo.QueryHookOptions<GetOrdersQuery, GetOrdersQueryVariables>) {
+export function useGetOrdersQuery(baseOptions?: Apollo.QueryHookOptions<GetOrdersQuery, GetOrdersQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<GetOrdersQuery, GetOrdersQueryVariables>(GetOrdersDocument, options);
       }

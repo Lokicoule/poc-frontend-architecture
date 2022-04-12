@@ -25,7 +25,7 @@ export type CreateCustomerInput = {
 export type CreateOrderInput = {
   billingDate?: InputMaybe<Scalars['DateTime']>;
   code?: InputMaybe<Scalars['String']>;
-  customer: Scalars['String'];
+  customer: OrderCustomerInput;
   dueDate?: InputMaybe<Scalars['DateTime']>;
   items?: InputMaybe<Array<OrderItemInput>>;
 };
@@ -52,11 +52,12 @@ export type CreateReferentialProductInput = {
 
 export type Customer = {
   __typename?: 'Customer';
+  _id: Scalars['ID'];
   address: Scalars['String'];
   city: Scalars['String'];
   code: Scalars['String'];
   createdAt?: Maybe<Scalars['DateTime']>;
-  id: Scalars['String'];
+  id: Scalars['ID'];
   naming: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
   zipCode: Scalars['String'];
@@ -221,43 +222,65 @@ export type Order = {
   billingDate?: Maybe<Scalars['DateTime']>;
   code: Scalars['String'];
   createdAt?: Maybe<Scalars['DateTime']>;
-  customer: Customer;
+  customer: OrderCustomer;
   dueDate?: Maybe<Scalars['DateTime']>;
-  id: Scalars['String'];
+  id: Scalars['ID'];
   items?: Maybe<Array<OrderItem>>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
-
-export type OrderCustomerArgs = {
-  populate: Scalars['Boolean'];
+export type OrderCustomer = {
+  __typename?: 'OrderCustomer';
+  address: Scalars['String'];
+  city: Scalars['String'];
+  code: Scalars['String'];
+  id: Scalars['ID'];
+  naming: Scalars['String'];
+  zipCode: Scalars['String'];
 };
 
-
-export type OrderItemsArgs = {
-  populate: Scalars['Boolean'];
+export type OrderCustomerInput = {
+  address: Scalars['String'];
+  city: Scalars['String'];
+  code: Scalars['String'];
+  id: Scalars['String'];
+  naming: Scalars['String'];
+  zipCode: Scalars['String'];
 };
 
 export type OrderItem = {
   __typename?: 'OrderItem';
   amount: Scalars['Float'];
   createdAt?: Maybe<Scalars['DateTime']>;
-  id: Scalars['String'];
-  product?: Maybe<Product>;
+  id: Scalars['ID'];
+  product?: Maybe<OrderProduct>;
   unitPrice: Scalars['Float'];
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
 export type OrderItemInput = {
   amount: Scalars['Float'];
-  product: Scalars['String'];
+  product: OrderProductInput;
   unitPrice: Scalars['Float'];
+};
+
+export type OrderProduct = {
+  __typename?: 'OrderProduct';
+  code: Scalars['String'];
+  id: Scalars['ID'];
+  label: Scalars['String'];
+};
+
+export type OrderProductInput = {
+  code: Scalars['String'];
+  id: Scalars['String'];
+  label: Scalars['String'];
 };
 
 export type ParameterReferentialCustomer = {
   __typename?: 'ParameterReferentialCustomer';
   createdAt?: Maybe<Scalars['DateTime']>;
-  id: Scalars['String'];
+  id: Scalars['ID'];
   key: ParameterReferentialEnum;
   updatedAt?: Maybe<Scalars['DateTime']>;
   value: Scalars['String'];
@@ -277,7 +300,7 @@ export enum ParameterReferentialEnum {
 export type ParameterReferentialOrder = {
   __typename?: 'ParameterReferentialOrder';
   createdAt?: Maybe<Scalars['DateTime']>;
-  id: Scalars['String'];
+  id: Scalars['ID'];
   key: ParameterReferentialEnum;
   updatedAt?: Maybe<Scalars['DateTime']>;
   value: Scalars['String'];
@@ -291,7 +314,7 @@ export type ParameterReferentialOrderInput = {
 export type ParameterReferentialProduct = {
   __typename?: 'ParameterReferentialProduct';
   createdAt?: Maybe<Scalars['DateTime']>;
-  id: Scalars['String'];
+  id: Scalars['ID'];
   key: ParameterReferentialEnum;
   updatedAt?: Maybe<Scalars['DateTime']>;
   value: Scalars['String'];
@@ -306,7 +329,7 @@ export type Product = {
   __typename?: 'Product';
   code: Scalars['String'];
   createdAt?: Maybe<Scalars['DateTime']>;
-  id: Scalars['String'];
+  id: Scalars['ID'];
   label: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
@@ -360,7 +383,7 @@ export type QueryGetReferentialProductArgs = {
 export type ReferentialCustomer = {
   __typename?: 'ReferentialCustomer';
   createdAt?: Maybe<Scalars['DateTime']>;
-  id: Scalars['String'];
+  id: Scalars['ID'];
   parameters?: Maybe<Array<ParameterReferentialCustomer>>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   useCase: UseCaseReferentialEnum;
@@ -374,7 +397,7 @@ export type ReferentialCustomerParametersArgs = {
 export type ReferentialOrder = {
   __typename?: 'ReferentialOrder';
   createdAt?: Maybe<Scalars['DateTime']>;
-  id: Scalars['String'];
+  id: Scalars['ID'];
   parameters?: Maybe<Array<ParameterReferentialOrder>>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   useCase: UseCaseReferentialEnum;
@@ -388,7 +411,7 @@ export type ReferentialOrderParametersArgs = {
 export type ReferentialProduct = {
   __typename?: 'ReferentialProduct';
   createdAt?: Maybe<Scalars['DateTime']>;
-  id: Scalars['String'];
+  id: Scalars['ID'];
   parameters?: Maybe<Array<ParameterReferentialProduct>>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   useCase: UseCaseReferentialEnum;
@@ -410,7 +433,7 @@ export type UpdateCustomerInput = {
 export type UpdateOrderInput = {
   billingDate?: InputMaybe<Scalars['DateTime']>;
   code?: InputMaybe<Scalars['String']>;
-  customer?: InputMaybe<Scalars['String']>;
+  customer?: InputMaybe<OrderCustomerInput>;
   dueDate?: InputMaybe<Scalars['DateTime']>;
   items?: InputMaybe<Array<OrderItemInput>>;
 };

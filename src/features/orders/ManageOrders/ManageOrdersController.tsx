@@ -12,10 +12,6 @@ export const ManageOrdersController = () => {
   const { data, loading } = useGetOrdersQuery({
     fetchPolicy: "cache-first", //default
     pollInterval: 300000,
-    variables: {
-      populateCustomer: true,
-      populateItems: true,
-    },
   });
   const [removeOrders] = useRemoveOrdersMutation({
     refetchQueries: ["GetOrders"],
