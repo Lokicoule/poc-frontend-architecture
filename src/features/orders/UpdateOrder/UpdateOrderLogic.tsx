@@ -6,7 +6,10 @@ import { UpdateOrderMutation } from "../../../api/fdo/operations/orders.generate
 import { FormOrderViewModel } from "../../../viewModels/orders";
 import { UpdateOrderView, UpdateOrderViewProps } from "./UpdateOrderView";
 
-type UpdateOrderLogicProps = Pick<UpdateOrderViewProps, "errors"> & {
+type UpdateOrderLogicProps = Pick<
+  UpdateOrderViewProps,
+  "errors" | "defaultCustomer"
+> & {
   defaultValues: FormOrderViewModel;
   onSubmit: (
     data: FormOrderViewModel
@@ -31,6 +34,7 @@ export const UpdateOrderLogic = ({
   defaultValues,
   onSubmit,
   errors,
+  defaultCustomer,
 }: UpdateOrderLogicProps) => {
   const form = useForm<FormOrderViewModel>({
     defaultValues: defaultValues,
@@ -46,6 +50,7 @@ export const UpdateOrderLogic = ({
       form={form}
       onSubmit={handleSubmit}
       errors={errors}
+      defaultCustomer={defaultCustomer}
     ></UpdateOrderView>
   );
 };

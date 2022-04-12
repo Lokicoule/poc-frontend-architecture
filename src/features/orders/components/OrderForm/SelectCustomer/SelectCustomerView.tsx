@@ -9,7 +9,7 @@ export type SelectCustomerViewProps = {
   helperText: string | undefined;
   customers: CustomerViewModel[];
   control: Control<FormOrderViewModel, any>;
-  defaultValue: string;
+  defaultValue?: CustomerViewModel;
   name: string;
 };
 
@@ -19,13 +19,13 @@ export const SelectCustomerView = ({
   customers,
   control,
   name,
-  defaultValue = "",
+  defaultValue,
 }: SelectCustomerViewProps) => {
   const createKey = (id: string) => `create_order_select_customer_${id}`;
 
   return (
     <FormInputSelect
-      defaultValue={defaultValue}
+      defaultValue={defaultValue?.id}
       label="Client"
       name={name}
       control={control}

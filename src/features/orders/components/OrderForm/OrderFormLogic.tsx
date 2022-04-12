@@ -1,16 +1,13 @@
-import { UseFormReturn } from "react-hook-form";
 import { FormOrderViewModel } from "../../../../viewModels/orders";
 import { OrderFormView, OrderFormViewProps } from "./OrderFormView";
 
-export type OrderFormLogicProps = Pick<OrderFormViewProps, "errors"> & {
-  form: UseFormReturn<FormOrderViewModel>;
-  onSubmit: (data: FormOrderViewModel) => Promise<void>;
-};
+export type OrderFormLogicProps = Omit<OrderFormViewProps, "onReset">;
 
 export const OrderFormLogic = ({
   form,
   onSubmit,
   errors,
+  defaultCustomer,
 }: OrderFormLogicProps) => {
   const handleReset = () => form.reset();
 
@@ -24,6 +21,7 @@ export const OrderFormLogic = ({
       onSubmit={handleSubmit}
       onReset={handleReset}
       errors={errors}
+      defaultCustomer={defaultCustomer}
     ></OrderFormView>
   );
 };

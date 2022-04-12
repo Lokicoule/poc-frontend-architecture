@@ -19,7 +19,7 @@ export const SelectCustomerController = ({
   error,
   helperText,
   name,
-  defaultValue = "",
+  defaultValue,
 }: SelectCustomerControllerProps) => {
   const { data: customers, loading: loadingCustomers } = useGetCustomersQuery({
     fetchPolicy: "cache-first", //default

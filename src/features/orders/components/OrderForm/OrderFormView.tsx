@@ -6,6 +6,7 @@ import { FormInputText } from "../../../../components/Form/FormInputs";
 import { FormInputDatePicker } from "../../../../components/Form/FormInputs/FormInputDatePicker";
 import { FeatureLayout } from "../../../../layouts";
 import { FormOrderViewModel } from "../../../../viewModels/orders";
+import { OrderCustomerViewModel } from "../../../../viewModels/orders/OrderCustomerViewModel";
 import { OrderItemTableForm } from "./OrderItemTableForm";
 import { SelectCustomer } from "./SelectCustomer";
 
@@ -14,6 +15,7 @@ export type OrderFormViewProps = {
   errors: GraphQLErrors | undefined;
   onSubmit: (data: FormOrderViewModel) => Promise<void>;
   onReset: () => void;
+  defaultCustomer?: OrderCustomerViewModel;
 };
 
 export const OrderFormView = ({
@@ -21,6 +23,7 @@ export const OrderFormView = ({
   onSubmit,
   onReset,
   errors,
+  defaultCustomer,
 }: OrderFormViewProps) => {
   const { formState, handleSubmit, control } = form;
 
@@ -43,7 +46,7 @@ export const OrderFormView = ({
               control={control}
               error={!!formState?.errors?.customerId}
               helperText={formState?.errors?.customerId?.message}
-              defaultValue=""
+              defaultValue={defaultCustomer}
               name="customerId"
             ></SelectCustomer>
           </Grid>

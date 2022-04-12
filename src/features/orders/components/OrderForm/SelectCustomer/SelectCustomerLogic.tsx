@@ -1,3 +1,5 @@
+import { ERROR_INDEX } from "../../../../../constants/globals";
+import { OrderCustomerViewModel } from "../../../../../viewModels/orders/OrderCustomerViewModel";
 import {
   SelectCustomerView,
   SelectCustomerViewProps,
@@ -11,11 +13,20 @@ export const SelectCustomerLogic = ({
   customers,
   control,
   name,
-  defaultValue = "",
+  defaultValue,
 }: SelectCustomerLogicProps) => {
+  const merge = (
+    defaultCustomer: OrderCustomerViewModel | undefined,
+    customers: OrderCustomerViewModel[]
+  ) =>
+    defaultCustomer &&
+    customers.findIndex((customer) => customer.id === defaultCustomer.id) ===
+      ERROR_INDEX
+      ? [defaultCustomer, ...customers]
+      : customers;
   return (
     <SelectCustomerView
-      customers={customers}
+      customers={merge(defaultValue, customers)}
       control={control}
       defaultValue={defaultValue}
       error={error}

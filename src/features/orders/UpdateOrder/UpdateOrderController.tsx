@@ -19,6 +19,7 @@ import {
   FormOrderViewModel,
 } from "../../../viewModels/orders";
 import { UpdateOrderLogic } from "./UpdateOrderLogic";
+import { OrderCustomerViewModel } from "../../../viewModels/orders/OrderCustomerViewModel";
 
 type UpdateOrderControllerProps = {
   orderId: string;
@@ -34,7 +35,7 @@ export const UpdateOrderController = ({
     },
   });
   const [updateOrder, { error }] = useUpdateOrderMutation({
-    refetchQueries: ["GetOrder"],
+    refetchQueries: ["GetOrder", "GetOrders"],
   });
   const { data: customers } = useGetCustomersQuery({
     fetchPolicy: "cache-only",
@@ -55,16 +56,16 @@ export const UpdateOrderController = ({
   };
 
   const customerViewModelToDto = (customerId: string): OrderCustomerInput => {
-    const customer = customers?.getCustomers?.find(
-      (customer) => customer.id === customerId
-    );
+    const customer =
+      customers?.getCustomers?.find((customer) => customer.id === customerId) ||
+      mapCustomerDtoToViewModel(data);
     return {
-      id: customer?.id || "",
-      address: customer?.address || "",
-      city: customer?.city || "",
-      code: customer?.code || "",
-      naming: customer?.naming || "",
-      zipCode: customer?.zipCode || "",
+      id: customer.id,
+      address: customer.address,
+      city: customer.city,
+      code: customer.code,
+      naming: customer.naming,
+      zipCode: customer.zipCode,
     };
   };
 
@@ -83,6 +84,20 @@ export const UpdateOrderController = ({
         productId: item.product?.id,
       })),
     } as FormOrderViewModel;
+  };
+
+  const mapCustomerDtoToViewModel = (
+    dataDto: GetOrderQuery | undefined
+  ): OrderCustomerViewModel => {
+    const customer = dataDto?.getOrder?.customer;
+    return {
+      id: customer?.id || "",
+      code: customer?.code || "",
+      address: customer?.address || "",
+      city: customer?.city || "",
+      naming: customer?.naming || "",
+      zipCode: customer?.zipCode || "",
+    };
   };
 
   const mapItemsViewModelToDto = (
@@ -129,6 +144,7 @@ export const UpdateOrderController = ({
       defaultValues={mapDtoToViewModel(data)}
       onSubmit={handleSubmit}
       errors={error?.graphQLErrors}
+      defaultCustomer={mapCustomerDtoToViewModel(data)}
     ></UpdateOrderLogic>
   );
 };
