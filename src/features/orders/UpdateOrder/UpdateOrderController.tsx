@@ -33,7 +33,7 @@ export const UpdateOrderController = ({
     refetchQueries: ["GetOrder"],
   });
 
-  const mapDtoToViewModel = (
+  /* const mapDtoToViewModel = (
     dataDto: GetOrderQuery | undefined
   ): FormOrderViewModel => {
     const order = dataDto?.getOrder;
@@ -85,14 +85,15 @@ export const UpdateOrderController = ({
           `La modification du produit ${data?.getOrder?.code} a échouée.`
         ),
     });
-  };
+  }; */
 
   if (loading) return <Loader></Loader>;
   return (
-    <UpdateOrderLogic
+    <></>
+    /* <UpdateOrderLogic
       defaultValues={mapDtoToViewModel(data)}
       onSubmit={handleSubmit}
       errors={error?.graphQLErrors}
-    ></UpdateOrderLogic>
+    ></UpdateOrderLogic> */
   );
 };

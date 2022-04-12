@@ -29,14 +29,14 @@ export const OrderItemTableFormLogic = ({
         return (
           <SelectProduct
             control={control}
-            name={`items[${idx}].product`}
+            name={`items[${idx}].productId`}
             error={
               formState?.errors?.items &&
-              !!formState?.errors?.items[idx]?.product
+              !!formState?.errors?.items[idx]?.productId
             }
             helperText={
               formState?.errors?.items &&
-              formState?.errors?.items[idx]?.product?.message
+              formState?.errors?.items[idx]?.productId?.message
             }
             defaultValue=""
           ></SelectProduct>
@@ -105,7 +105,7 @@ export const OrderItemTableFormLogic = ({
     append({
       amount: 0,
       unitPrice: 0,
-      product: "",
+      productId: "",
     } as FormOrderItemViewModel);
 
   return (

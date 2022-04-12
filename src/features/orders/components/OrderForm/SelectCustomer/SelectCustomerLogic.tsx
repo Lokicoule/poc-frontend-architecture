@@ -10,6 +10,7 @@ export const SelectCustomerLogic = ({
   helperText,
   customers,
   control,
+  name,
   defaultValue = "",
 }: SelectCustomerLogicProps) => {
   return (
@@ -19,6 +20,7 @@ export const SelectCustomerLogic = ({
       defaultValue={defaultValue}
       error={error}
       helperText={helperText}
+      name={name}
     ></SelectCustomerView>
   );
 };

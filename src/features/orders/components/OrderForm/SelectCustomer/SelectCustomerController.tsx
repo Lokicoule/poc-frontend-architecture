@@ -18,6 +18,7 @@ export const SelectCustomerController = ({
   control,
   error,
   helperText,
+  name,
   defaultValue = "",
 }: SelectCustomerControllerProps) => {
   const { data: customers, loading: loadingCustomers } = useGetCustomersQuery({
@@ -46,6 +47,7 @@ export const SelectCustomerController = ({
       error={error}
       helperText={helperText}
       defaultValue={defaultValue}
+      name={name}
     ></SelectCustomerLogic>
   );
 };

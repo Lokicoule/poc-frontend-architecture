@@ -2,11 +2,11 @@ export interface FormOrderItemViewModel {
   id: string;
   unitPrice: number;
   amount: number;
-  product: string;
+  productId: string;
 }
 export interface FormOrderViewModel {
   code?: string;
-  customer: string;
+  customerId: string;
   billingDate: Date;
   dueDate: Date;
   items: FormOrderItemViewModel[];

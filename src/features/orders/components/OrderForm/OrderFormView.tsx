@@ -41,9 +41,10 @@ export const OrderFormView = ({
           <Grid item xs={12} sm={6}>
             <SelectCustomer
               control={control}
-              error={!!formState?.errors?.customer}
-              helperText={formState?.errors?.customer?.message}
+              error={!!formState?.errors?.customerId}
+              helperText={formState?.errors?.customerId?.message}
               defaultValue=""
+              name="customerId"
             ></SelectCustomer>
           </Grid>
           <Grid item xs={12} sm={6}>
