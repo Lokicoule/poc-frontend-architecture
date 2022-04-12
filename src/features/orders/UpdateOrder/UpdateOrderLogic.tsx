@@ -8,7 +8,7 @@ import { UpdateOrderView, UpdateOrderViewProps } from "./UpdateOrderView";
 
 type UpdateOrderLogicProps = Pick<
   UpdateOrderViewProps,
-  "errors" | "defaultCustomer"
+  "errors" | "defaultCustomer" | "defaultProducts"
 > & {
   defaultValues: FormOrderViewModel;
   onSubmit: (
@@ -35,6 +35,7 @@ export const UpdateOrderLogic = ({
   onSubmit,
   errors,
   defaultCustomer,
+  defaultProducts,
 }: UpdateOrderLogicProps) => {
   const form = useForm<FormOrderViewModel>({
     defaultValues: defaultValues,
@@ -51,6 +52,7 @@ export const UpdateOrderLogic = ({
       onSubmit={handleSubmit}
       errors={errors}
       defaultCustomer={defaultCustomer}
+      defaultProducts={defaultProducts}
     ></UpdateOrderView>
   );
 };

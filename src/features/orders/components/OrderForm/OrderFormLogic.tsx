@@ -8,6 +8,7 @@ export const OrderFormLogic = ({
   onSubmit,
   errors,
   defaultCustomer,
+  defaultProducts,
 }: OrderFormLogicProps) => {
   const handleReset = () => form.reset();
 
@@ -22,6 +23,7 @@ export const OrderFormLogic = ({
       onReset={handleReset}
       errors={errors}
       defaultCustomer={defaultCustomer}
+      defaultProducts={defaultProducts}
     ></OrderFormView>
   );
 };

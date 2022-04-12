@@ -18,8 +18,9 @@ import {
   FormOrderItemViewModel,
   FormOrderViewModel,
 } from "../../../viewModels/orders";
-import { UpdateOrderLogic } from "./UpdateOrderLogic";
 import { OrderCustomerViewModel } from "../../../viewModels/orders/OrderCustomerViewModel";
+import { OrderProductViewModel } from "../../../viewModels/orders/OrderProductViewModel";
+import { UpdateOrderLogic } from "./UpdateOrderLogic";
 
 type UpdateOrderControllerProps = {
   orderId: string;
@@ -100,6 +101,22 @@ export const UpdateOrderController = ({
     };
   };
 
+  const mapProductsDtoToViewModel = (
+    dataDto: GetOrderQuery | undefined
+  ): OrderProductViewModel[] => {
+    const items = dataDto?.getOrder?.items;
+    return (
+      items?.map(
+        (item) =>
+          ({
+            id: item.product?.id,
+            code: item.product?.code,
+            label: item.product?.label,
+          } as OrderProductViewModel)
+      ) || []
+    );
+  };
+
   const mapItemsViewModelToDto = (
     items: FormOrderItemViewModel[]
   ): OrderItemInput[] =>
@@ -121,7 +138,6 @@ export const UpdateOrderController = ({
   });
 
   const handleSubmit = (dataVM: FormOrderViewModel) => {
-    console.log(dataVM);
     return updateOrder({
       variables: {
         updateOrderId: orderId,
@@ -145,6 +161,7 @@ export const UpdateOrderController = ({
       onSubmit={handleSubmit}
       errors={error?.graphQLErrors}
       defaultCustomer={mapCustomerDtoToViewModel(data)}
+      defaultProducts={mapProductsDtoToViewModel(data)}
     ></UpdateOrderLogic>
   );
 };

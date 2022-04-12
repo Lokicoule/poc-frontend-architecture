@@ -2,6 +2,7 @@ import { MenuItem } from "@mui/material";
 import { Control } from "react-hook-form";
 import { FormInputSelect } from "../../../../../components/Form/FormInputs/FormInputSelect";
 import { FormOrderViewModel } from "../../../../../viewModels/orders";
+import { OrderProductViewModel } from "../../../../../viewModels/orders/OrderProductViewModel";
 import { ProductViewModel } from "../../../../../viewModels/products";
 
 export type SelectProductViewProps = {
@@ -9,7 +10,7 @@ export type SelectProductViewProps = {
   helperText: string | undefined;
   products: ProductViewModel[];
   control: Control<FormOrderViewModel, any>;
-  defaultValue: string;
+  defaultValue?: OrderProductViewModel;
   name: string;
 };
 
@@ -19,13 +20,12 @@ export const SelectProductView = ({
   products,
   name,
   control,
-  defaultValue = "",
+  defaultValue,
 }: SelectProductViewProps) => {
   const createKey = (id: string) => `create_order_select_product_${id}`;
-
   return (
     <FormInputSelect
-      defaultValue={defaultValue}
+      defaultValue={defaultValue?.id}
       label="Produit"
       name={name}
       control={control}

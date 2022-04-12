@@ -7,6 +7,7 @@ import { FormInputDatePicker } from "../../../../components/Form/FormInputs/Form
 import { FeatureLayout } from "../../../../layouts";
 import { FormOrderViewModel } from "../../../../viewModels/orders";
 import { OrderCustomerViewModel } from "../../../../viewModels/orders/OrderCustomerViewModel";
+import { OrderProductViewModel } from "../../../../viewModels/orders/OrderProductViewModel";
 import { OrderItemTableForm } from "./OrderItemTableForm";
 import { SelectCustomer } from "./SelectCustomer";
 
@@ -16,6 +17,7 @@ export type OrderFormViewProps = {
   onSubmit: (data: FormOrderViewModel) => Promise<void>;
   onReset: () => void;
   defaultCustomer?: OrderCustomerViewModel;
+  defaultProducts?: OrderProductViewModel[];
 };
 
 export const OrderFormView = ({
@@ -24,6 +26,7 @@ export const OrderFormView = ({
   onReset,
   errors,
   defaultCustomer,
+  defaultProducts,
 }: OrderFormViewProps) => {
   const { formState, handleSubmit, control } = form;
 
@@ -75,6 +78,7 @@ export const OrderFormView = ({
             <OrderItemTableForm
               formState={formState}
               control={control}
+              defaultProducts={defaultProducts}
             ></OrderItemTableForm>
           </Grid>
         </Grid>

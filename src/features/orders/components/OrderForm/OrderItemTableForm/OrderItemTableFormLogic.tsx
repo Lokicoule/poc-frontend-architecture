@@ -7,17 +7,20 @@ import {
   FormOrderItemViewModel,
   FormOrderViewModel,
 } from "../../../../../viewModels/orders";
+import { OrderProductViewModel } from "../../../../../viewModels/orders/OrderProductViewModel";
 import { SelectProduct } from "../SelectProduct";
 import { OrderItemTableFormView } from "./OrderItemTableFormView";
 
 export type OrderItemTableFormLogicProps = {
   control: Control<any, any>;
   formState: FormState<FormOrderViewModel>;
+  defaultProducts?: OrderProductViewModel[];
 };
 
 export const OrderItemTableFormLogic = ({
   control,
   formState,
+  defaultProducts,
 }: OrderItemTableFormLogicProps) => {
   const { fields, append, remove } = useFieldArray({ name: "items", control });
 
@@ -25,7 +28,10 @@ export const OrderItemTableFormLogic = ({
     {
       key: "product",
       label: "Code produit",
-      content: (item, idx) => {
+      content: (item: FormOrderItemViewModel, idx) => {
+        const defaultProduct = defaultProducts?.find(
+          (product) => product.id === item.productId
+        );
         return (
           <SelectProduct
             control={control}
@@ -38,11 +44,12 @@ export const OrderItemTableFormLogic = ({
               formState?.errors?.items &&
               formState?.errors?.items[idx]?.productId?.message
             }
-            defaultValue=""
+            defaultValue={defaultProduct}
           ></SelectProduct>
         );
       },
     },
+
     {
       key: "amount",
       label: "Quantité",

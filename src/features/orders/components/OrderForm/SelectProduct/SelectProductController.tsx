@@ -16,7 +16,7 @@ export const SelectProductController = ({
   error,
   helperText,
   name,
-  defaultValue = "",
+  defaultValue,
 }: SelectProductControllerProps) => {
   const { data: products, loading: loadingProducts } = useGetProductsQuery({
     fetchPolicy: "cache-first", //default
