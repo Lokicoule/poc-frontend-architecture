@@ -9,7 +9,6 @@ import {
   Customer,
   OrderItem,
   OrderProduct,
-  Product,
 } from "../../../api/fdo/types/dto-types.generated";
 import { Loader } from "../../../components";
 import { CustomerViewModel } from "../../../viewModels/customers";
