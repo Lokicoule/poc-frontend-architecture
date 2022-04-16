@@ -6,6 +6,8 @@ import { FeatureLayout } from "../../../layouts";
 import { OrderViewModel } from "../../../viewModels/orders";
 import { OrderItemTable } from "./components/OrderItemTable";
 import { TotalOrder } from "./components/TotalOrder";
+import { PDFViewer } from "@react-pdf/renderer";
+import { InvoicePage } from "../../pdf/InvoicePage";
 
 export type ManageOrderViewProps = {
   defaultValues: OrderViewModel;
@@ -81,6 +83,15 @@ export const ManageOrderView = ({
             Supprimer
           </Button>
         </Grid>
+        <PDFViewer
+          style={{
+            width: "75%",
+            height: "100%",
+            minHeight: "100vh",
+          }}
+        >
+          <InvoicePage order={defaultValues}></InvoicePage>
+        </PDFViewer>
       </Grid>
     </FeatureLayout>
   );

@@ -4,11 +4,11 @@ import { InvoicerCompany } from "./InvoicerCompany/InvoicerCompany";
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 15,
+    marginTop: 20,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    flexGrow: 1,
+    flexGrow: 0.05,
   },
 });
 

@@ -1,7 +1,6 @@
-import { PDFDownloadLink } from "@react-pdf/renderer";
-import { PDFFile } from "../../features/pdf/PDFFile";
+/* import { PDFDownloadLink } from "@react-pdf/renderer";
 import { PDFViewer } from "@react-pdf/renderer";
-
+ */
 export const BackofficePage = () => {
   return (
     <>
@@ -9,15 +8,15 @@ export const BackofficePage = () => {
       {/* <PDFDownloadLink document={<PDFFile />} fileName="test">
         download
       </PDFDownloadLink> */}
-      <PDFViewer
+      {/* <PDFViewer
         style={{
           width: "75%",
           height: "100%",
-          minHeight: "75vh",
+          minHeight: "100vh",
         }}
       >
         <PDFFile></PDFFile>
-      </PDFViewer>
+      </PDFViewer> */}
     </>
   );
 };

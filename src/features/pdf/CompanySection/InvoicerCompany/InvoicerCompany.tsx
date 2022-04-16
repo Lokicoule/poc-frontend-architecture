@@ -11,19 +11,25 @@ const styles = StyleSheet.create({
     fontFamily: "Lato",
     fontSize: 14,
   },
+  title: {
+    fontFamily: "Lato Bold",
+    fontSize: 14,
+    marginBottom: 8,
+    color: "#43aa8b",
+  },
   name: {
     fontFamily: "Lato Bold",
-    fontSize: 20,
+    fontSize: 12,
     marginBottom: 4,
     color: "#343a40",
   },
   detail: {
-    fontSize: 14,
+    fontSize: 12,
     fontFamily: "Lato",
   },
 
   identification: {
-    fontSize: 14,
+    fontSize: 12,
     fontFamily: "Lato",
   },
 });
@@ -31,6 +37,7 @@ const styles = StyleSheet.create({
 export const InvoicerCompany = () => (
   <View>
     <View style={styles.detailColumn}>
+      <Text style={styles.title}>Facturé par</Text>
       <Text style={styles.name}>Fruits d'orient</Text>
       <Text style={styles.detail}>10 Rue de la république</Text>
       <Text style={styles.detail}>13001 MARSEILLE</Text>

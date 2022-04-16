@@ -1,12 +1,14 @@
-import { Document, Font, Page, StyleSheet } from "@react-pdf/renderer";
+/* import { Document, Font, Page, StyleSheet } from "@react-pdf/renderer";
 import React from "react";
 import { CompanySection } from "./CompanySection/CompanySection";
 import { ContactSection } from "./ContactSection/ContactSection";
 import { Header } from "./Header/Header";
+import { ProductsSection } from "./ProductsSection/ProductsSection";
+import { StateSection } from "./StateSection/StateSection";
 
 const styles = StyleSheet.create({
   page: {
-    padding: "20px 35px",
+    padding: "40px 35px",
   },
 });
 
@@ -26,11 +28,14 @@ Font.register({
 });
 
 export const PDFFile = () => (
-  <Document>
+  <Document title="facture" author="fdo-webapp">
     <Page size="A4" style={styles.page}>
       <Header></Header>
       <CompanySection></CompanySection>
+      <StateSection></StateSection>
+      <ProductsSection></ProductsSection>
       <ContactSection></ContactSection>
     </Page>
   </Document>
 );
+ */

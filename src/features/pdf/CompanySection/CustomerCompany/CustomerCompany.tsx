@@ -11,35 +11,35 @@ const styles = StyleSheet.create({
     fontFamily: "Lato",
     fontSize: 14,
   },
+  title: {
+    fontFamily: "Lato Bold",
+    fontSize: 14,
+    marginBottom: 4,
+    color: "#43aa8b",
+  },
   name: {
     fontFamily: "Lato Bold",
-    fontSize: 20,
+    fontSize: 12,
     marginBottom: 4,
     color: "#343a40",
   },
   detail: {
-    fontSize: 14,
+    fontSize: 12,
     fontFamily: "Lato",
   },
 
   identification: {
-    fontSize: 14,
+    fontSize: 12,
     fontFamily: "Lato",
   },
 });
 
 export const CustomerCompany = () => (
-  <View>
-    <View style={styles.detailColumn}>
-      <Text style={styles.name}>Fruits d'orient</Text>
-      <Text style={styles.detail}>10 Rue de la république</Text>
-      <Text style={styles.detail}>13001 MARSEILLE</Text>
-      <Text style={styles.detail}>France</Text>
-    </View>
-
-    <View style={styles.identificationColumn}>
-      <Text style={styles.identification}>RCS MARSEILLE 805 216 439</Text>
-      <Text style={styles.identification}>TVA FR32805216439</Text>
-    </View>
+  <View style={styles.detailColumn}>
+    <Text style={styles.title}>Facturé à</Text>
+    <Text style={styles.name}>Mondial trading</Text>
+    <Text style={styles.detail}>12 rue du test</Text>
+    <Text style={styles.detail}>13001 MARSEILLE</Text>
+    <Text style={styles.detail}>France</Text>
   </View>
 );
