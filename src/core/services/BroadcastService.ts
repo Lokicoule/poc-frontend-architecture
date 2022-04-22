@@ -1,4 +1,4 @@
-import { Observable, Subject } from "rxjs";
+import { filter, Observable, Subject } from "rxjs";
 
 export class BroadcastService<T> {
   private broadcastChannel: BroadcastChannel;
@@ -14,7 +14,7 @@ export class BroadcastService<T> {
     this.broadcastChannel.postMessage(message);
   }
 
-  listen(): Observable<T> {
-    return this.onMessage;
+  messagesOfType(type: string): Observable<T> {
+    return this.onMessage.pipe(filter((message) => message.type === type));
   }
 }

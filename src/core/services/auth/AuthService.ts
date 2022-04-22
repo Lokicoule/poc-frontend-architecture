@@ -79,12 +79,8 @@ class AuthService {
     return cognitoClient.getMe();
   }
 
-  listen() {
-    return this.channel.listen();
-  }
-
-  authenticated(): boolean {
-    return !!this.getMe();
+  messagesOfType(type: string) {
+    return this.channel.messagesOfType(type);
   }
 }
 

@@ -3,21 +3,15 @@ import { authService, BroadcastMessage } from "../authService";
 import { AUTH_BROADCAST_TYPE } from "../constants/authGlobals";
 
 export const useAuthentication = () => {
-  let [isAuthenticated, setIsAuthenticated] = useState(
-    authService.authenticated()
-  );
+  let [isAuthenticated, setIsAuthenticated] = useState(!!authService.getMe());
 
   useEffect(() => {
     const subscription = authService
-      .listen()
+      .messagesOfType(AUTH_BROADCAST_TYPE)
       .subscribe((data: BroadcastMessage) => {
-        switch (data.type) {
-          case AUTH_BROADCAST_TYPE:
-            setIsAuthenticated(data.payload);
-            break;
-          default:
-            console.log("we received a message");
-        }
+        console.log(data);
+
+        setIsAuthenticated(data.payload);
       });
     return () => subscription?.unsubscribe();
   }, []);
