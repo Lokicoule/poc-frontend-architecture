@@ -17,3 +17,18 @@
 > 4. Le paiement est effectué
 >
 > - on met à jour la commande avec le statut « PAID »
+
+## Upload tampon vers cloudinary
+
+Skeleton :
+Header :
+company name invoice number
+
+Body :
+Invoicer information Customer information  
+ProductsTable
+Tampon TotalTable
+
+Footer
+cgu
+company contact

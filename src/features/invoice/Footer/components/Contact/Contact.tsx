@@ -21,13 +21,22 @@ const styles = StyleSheet.create({
   },
 });
 
-export const ContactSection = () => (
-  <View style={styles.footer}>
-    <Link src="mailto:fruitsdorient@gmail.com" style={styles.link}>
-      fruitsdorient@gmail.com
-    </Link>
-    <Link src="tel:0033670747850" style={styles.link}>
-      +33 6 70 74 78 50
-    </Link>
-  </View>
-);
+type ContactProps = {
+  email: string;
+  phone: string;
+};
+
+export const Contact = ({ email, phone }: ContactProps) => {
+  const mailTo = `mailto:${email}`;
+  const callAt = `tel:${phone}`;
+  return (
+    <View style={styles.footer}>
+      <Link src={mailTo} style={styles.link}>
+        {email}
+      </Link>
+      <Link src={callAt} style={styles.link}>
+        {phone}
+      </Link>
+    </View>
+  );
+};

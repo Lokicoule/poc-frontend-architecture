@@ -1,13 +1,13 @@
 import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import { Button, Grid, TextField } from "@mui/material";
+import { PDFViewer } from "@react-pdf/renderer";
 import { Link } from "react-router-dom";
 import { FeatureLayout } from "../../../layouts";
 import { OrderViewModel } from "../../../viewModels/orders";
+import { Invoice } from "../../invoice/Invoice";
 import { OrderItemTable } from "./components/OrderItemTable";
 import { TotalOrder } from "./components/TotalOrder";
-import { PDFViewer } from "@react-pdf/renderer";
-import { InvoicePage } from "../../pdf/InvoicePage";
 
 export type ManageOrderViewProps = {
   defaultValues: OrderViewModel;
@@ -83,6 +83,15 @@ export const ManageOrderView = ({
             Supprimer
           </Button>
         </Grid>
+        {/* <PDFViewer
+          style={{
+            width: "75%",
+            height: "100%",
+            minHeight: "100vh",
+          }}
+        >
+          <DeliveryNotePage order={defaultValues}></DeliveryNotePage>
+        </PDFViewer> */}
         <PDFViewer
           style={{
             width: "75%",
@@ -90,7 +99,7 @@ export const ManageOrderView = ({
             minHeight: "100vh",
           }}
         >
-          <InvoicePage order={defaultValues}></InvoicePage>
+          <Invoice order={defaultValues}></Invoice>
         </PDFViewer>
       </Grid>
     </FeatureLayout>

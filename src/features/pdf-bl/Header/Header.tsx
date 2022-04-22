@@ -3,9 +3,9 @@ import { StyleSheet, Text, View } from "@react-pdf/renderer";
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    /* borderBottomWidth: 0.5,
+    borderBottomWidth: 0.5,
     borderBottomColor: "#6c757d",
-    borderBottomStyle: "solid", */
+    borderBottomStyle: "solid",
     //alignItems: "stretch",
   },
   companyColumn: {
@@ -38,6 +38,9 @@ const styles = StyleSheet.create({
   invoiceNumber: {
     color: "#43aa8b",
   },
+  line: {
+    border: "0.3px solid #6c757d",
+  },
 });
 
 export const Header = () => (
@@ -47,7 +50,7 @@ export const Header = () => (
     </View>
     <View style={styles.invoiceColumn}>
       <Text style={styles.invoiceLabel}>
-        Facture N°<Text style={styles.invoiceNumber}>000001F</Text>
+        Bon de livraison N°<Text style={styles.invoiceNumber}>000001BL</Text>
       </Text>
     </View>
   </View>

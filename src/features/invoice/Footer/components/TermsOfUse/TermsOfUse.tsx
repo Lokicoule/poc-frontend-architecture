@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const TermsOfUseSection = () => (
+export const TermsOfUse = () => (
   <View style={styles.container}>
     <Text>
       {`(1) Condition de règlement : 30 jours après la date de livraison.
