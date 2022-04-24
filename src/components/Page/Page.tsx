@@ -2,7 +2,7 @@ import { Container } from "@mui/material";
 import { FC } from "react";
 import { Helmet } from "react-helmet-async";
 
-type PageProps = {
+export type PageProps = {
   title: string;
 };
 

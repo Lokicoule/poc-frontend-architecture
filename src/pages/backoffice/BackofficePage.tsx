@@ -1,14 +1,16 @@
-import { AuthService } from "../../core/services/auth/AuthService";
+import { useState } from "react";
+import { authService } from "../../core/services/auth/authService";
 
-export const BackofficePage = () => {
+export const BackofficePage = (props: any) => {
   const handleSignUp = async () =>
-    await AuthService.signUp("loikfekkai@gmail.com", "testests");
+    await authService.signUp("loikfekkai@gmail.com", "testests");
   const handleCode = async () =>
-    await AuthService.confirmSignUp("loikfekkai@gmail.com", "402855");
+    await authService.confirmSignUp("loikfekkai@gmail.com", "402855");
   const handleSignIn = async () =>
-    await AuthService.signIn("loikfekkai@gmail.com", "testests");
-  const handleSignOut = async () => await AuthService.signOut();
-  const handleMe = () => console.log(AuthService.getMe());
+    await authService.signIn("loikfekkai@gmail.com", "testests");
+  const handleSignOut = async () => await authService.signOut();
+  const handleMe = () => console.log(authService.getMe());
+
   return (
     <>
       <h1>Backoffice Page</h1>

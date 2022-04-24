@@ -6,12 +6,14 @@ import {
   ICognitoUserData,
   ICognitoUserPoolData,
 } from "amazon-cognito-identity-js";
-import { poolData } from "./config/congitoConfig";
+import { poolData } from "./config/cognitoConfig";
 import { CognitoError } from "./errors/CognitoError";
 import { NoUserPoolError } from "./errors/NoUserPoolError";
 import { CognitoErrorTypes } from "./types/CognitoTypes";
 
-interface ICognitoService {
+interface ICognitoClient {
+  getMe(): CognitoUser | null;
+  signOut(): Promise<any>;
   signUp(
     username: string,
     password: string,
@@ -19,21 +21,26 @@ interface ICognitoService {
     validationData: CognitoUserAttribute[]
   ): Promise<any>;
   confirmSignUp(username: string, code: string): Promise<any>;
+  resendSignUp(username: string): Promise<any>;
+  forgotPasswordSubmit(
+    username: string,
+    code: string,
+    password: string
+  ): Promise<string>;
+  forgotPassword(username: string): Promise<any>;
   signIn(username: string, password: string): Promise<CognitoUser | any>;
-  signOut(): Promise<any>;
 }
 
-class CognitoServiceClass implements ICognitoService {
-  private userPool!: CognitoUserPool;
-  private pendingSignIn: ReturnType<
-    CognitoServiceClass["signInWithPassword"]
-  > | null = null;
+class CognitoClient implements ICognitoClient {
+  private userPool: CognitoUserPool;
+  private pendingSignIn: ReturnType<CognitoClient["signInWithPassword"]> | null;
 
   constructor() {
-    this.configure();
+    this.userPool = new CognitoUserPool(poolData);
+    this.pendingSignIn = null;
   }
 
-  public getMe() {
+  public getMe(): CognitoUser | null {
     return this.userPool.getCurrentUser();
   }
 
@@ -96,6 +103,70 @@ class CognitoServiceClass implements ICognitoService {
     });
   }
 
+  public resendSignUp(username: string): Promise<any> {
+    if (!this.userPool) return this.rejectNoUserPool();
+
+    if (!username) return this.rejectAuthError(CognitoErrorTypes.EmptyUsername);
+
+    const user = this.createCognitoUser(username);
+    return new Promise((resolve, reject) => {
+      user.resendConfirmationCode((err, data) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(data);
+        }
+      });
+    });
+  }
+
+  public forgotPassword(username: string): Promise<any> {
+    if (!this.userPool) return this.rejectNoUserPool();
+
+    if (!username) return this.rejectAuthError(CognitoErrorTypes.EmptyUsername);
+
+    const user = this.createCognitoUser(username);
+    return new Promise((resolve, reject) => {
+      user.forgotPassword({
+        onSuccess: (data) => {
+          resolve(data);
+        },
+        onFailure: (err) => {
+          console.debug("forgot password failure", err);
+          reject(err);
+        },
+        inputVerificationCode: (data) => {
+          resolve(data);
+        },
+      });
+    });
+  }
+
+  public forgotPasswordSubmit(
+    username: string,
+    code: string,
+    password: string
+  ): Promise<string> {
+    if (!this.userPool) return this.rejectNoUserPool();
+
+    if (!username) return this.rejectAuthError(CognitoErrorTypes.EmptyUsername);
+    if (!code) return this.rejectAuthError(CognitoErrorTypes.EmptyCode);
+    if (!password) return this.rejectAuthError(CognitoErrorTypes.EmptyPassword);
+
+    const user = this.createCognitoUser(username);
+
+    return new Promise((resolve, reject) => {
+      user.confirmPassword(code, password, {
+        onSuccess: (success) => {
+          resolve(success);
+        },
+        onFailure: (err) => {
+          reject(err);
+        },
+      });
+    });
+  }
+
   public signIn(
     username: string,
     password: string
@@ -146,10 +217,6 @@ class CognitoServiceClass implements ICognitoService {
     return new CognitoUser(userData);
   };
 
-  private configure() {
-    this.userPool = new CognitoUserPool(poolData);
-  }
-
   private noUserPoolErrorHandler(
     userPoolData: ICognitoUserPoolData
   ): CognitoErrorTypes {
@@ -168,4 +235,4 @@ class CognitoServiceClass implements ICognitoService {
   }
 }
 
-export const CognitoService = new CognitoServiceClass();
+export const cognitoClient = new CognitoClient();

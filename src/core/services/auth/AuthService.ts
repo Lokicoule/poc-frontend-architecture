@@ -1,43 +1,18 @@
-import { CognitoUser, CognitoUserAttribute } from "amazon-cognito-identity-js";
-import { CognitoService } from "../aws/cognito/CognitoService";
+import { cognitoClient } from "../../cognito/cognitoClient";
+import { BroadcastService } from "../BroadcastService";
+import { AUTH_BROADCAST_TYPE } from "./constants/AuthGlobals";
+import { userAttributesBuilder } from "./helpers/userAttributesBuilder";
+import { userAttributesValidationBuilder } from "./helpers/userAttributesValidationBuilder";
 
-interface IAuthService {
-  /*   signUp(email: string, password: string):
-   */
-}
-
-type User = {
-  email: string;
-  password: string;
-};
-
-type UserAttributes = Pick<User, "email">;
-
-const userAttributesBuilder = ({ email }: UserAttributes) => {
-  const attributes: CognitoUserAttribute[] = [];
-  if (email)
-    attributes.push(new CognitoUserAttribute({ Name: "email", Value: email }));
-
-  return attributes;
-};
-
-const userAttributesValidationBuilder = (): CognitoUserAttribute[] => {
-  const validationData: CognitoUserAttribute[] = [];
-  return validationData;
-};
-
-class AuthServiceClass implements IAuthService {
-  private me: CognitoUser | null;
+export class AuthService /* implements IAuthService */ {
+  private channel: BroadcastService;
 
   constructor() {
-    this.me = this.getMe();
+    this.channel = new BroadcastService(AUTH_BROADCAST_TYPE);
   }
 
   async signUp(email: string, password: string) {
-    if (this.me) {
-      throw new Error("You are already logged in.");
-    }
-    await CognitoService.signUp(
+    await cognitoClient.signUp(
       email,
       password,
       userAttributesBuilder({ email }),
@@ -46,32 +21,66 @@ class AuthServiceClass implements IAuthService {
   }
 
   async confirmSignUp(email: string, code: string) {
-    if (this.me) {
-      throw new Error("You are already logged in.");
+    await cognitoClient.confirmSignUp(email, code);
+  }
+
+  async resendConfirmationCode(email: string) {
+    try {
+      await cognitoClient.resendSignUp(email);
+    } catch (err) {
+      console.log("error resending code: ", err);
     }
-    await CognitoService.confirmSignUp(email, code);
+  }
+
+  async forgotPassword(email: string) {
+    try {
+      const t = await cognitoClient.forgotPassword(email);
+      console.log(t);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async forgotPasswordSubmit(email: string, code: string, password: string) {
+    try {
+      await cognitoClient.forgotPasswordSubmit(email, code, password);
+    } catch (error) {
+      console.log("error submit forgot password code: ", error);
+    }
   }
 
   async signIn(email: string, password: string) {
-    if (this.me) {
+    if (this.getMe()) {
       throw new Error("You are already logged in.");
     }
-    await CognitoService.signIn(email, password);
-    this.me = this.getMe();
+    await cognitoClient.signIn(email, password);
+    console.log("next");
+    this.channel.dispatch({ type: AUTH_BROADCAST_TYPE, payload: true });
   }
 
   async signOut() {
-    if (!this.me) {
+    if (!this.getMe()) {
       throw new Error("You are already logged out.");
     }
     console.log("signOut");
-    await CognitoService.signOut();
-    this.me = null;
+    await cognitoClient.signOut();
+    this.channel.dispatch({
+      type: AUTH_BROADCAST_TYPE,
+      payload: false,
+    });
   }
 
   getMe() {
-    return CognitoService.getMe();
+    return cognitoClient.getMe();
+  }
+
+  listen() {
+    return this.channel.listen();
+  }
+
+  authenticated(): boolean {
+    return !!this.getMe();
   }
 }
 
-export const AuthService = new AuthServiceClass();
+export const authService = new AuthService();
