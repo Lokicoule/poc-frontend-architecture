@@ -1,11 +1,6 @@
 import { Observable, Subject } from "rxjs";
 
-export interface BroadcastMessage {
-  type: string;
-  payload: any;
-}
-
-export class BroadcastService {
+export class BroadcastService<T> {
   private broadcastChannel: BroadcastChannel;
   private onMessage = new Subject<any>();
 
@@ -15,11 +10,11 @@ export class BroadcastService {
       this.onMessage.next(message.data);
   }
 
-  dispatch(message: BroadcastMessage): void {
+  dispatch(message: T): void {
     this.broadcastChannel.postMessage(message);
   }
 
-  listen(): Observable<BroadcastMessage> {
+  listen(): Observable<T> {
     return this.onMessage;
   }
 }

@@ -1,11 +1,16 @@
 import { cognitoClient } from "../../cognito/cognitoClient";
 import { BroadcastService } from "../BroadcastService";
-import { AUTH_BROADCAST_TYPE } from "./constants/AuthGlobals";
+import { AUTH_BROADCAST_TYPE } from "./constants/authGlobals";
 import { userAttributesBuilder } from "./helpers/userAttributesBuilder";
 import { userAttributesValidationBuilder } from "./helpers/userAttributesValidationBuilder";
 
-export class AuthService /* implements IAuthService */ {
-  private channel: BroadcastService;
+export interface BroadcastMessage {
+  type: string;
+  payload: boolean;
+}
+
+class AuthService {
+  private channel: BroadcastService<BroadcastMessage>;
 
   constructor() {
     this.channel = new BroadcastService(AUTH_BROADCAST_TYPE);
