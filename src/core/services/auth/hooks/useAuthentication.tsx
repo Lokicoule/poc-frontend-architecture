@@ -9,8 +9,6 @@ export const useAuthentication = () => {
     const subscription = authService
       .messagesOfType(AUTH_BROADCAST_TYPE)
       .subscribe((data: BroadcastMessage) => {
-        console.log(data);
-
         setIsAuthenticated(data.payload);
       });
     return () => subscription?.unsubscribe();
