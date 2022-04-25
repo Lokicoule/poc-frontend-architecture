@@ -1,5 +1,5 @@
 import { Stack } from "@mui/material";
-import { currency } from "../../../../../utils/CurrencyUtils";
+import { currency } from "../../../../../core/utils/CurrencyUtils";
 
 type TotalOrderViewProps = {
   value: number;

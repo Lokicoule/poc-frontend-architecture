@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { ColumnProps } from "../../../../../components/Tables";
 import { OrderViewModel } from "../../../../../viewModels/orders";
-import { currency } from "../../../../../utils/CurrencyUtils";
+import { currency } from "../../../../../core/utils/CurrencyUtils";
 import { OrdersTableView, OrdersTableViewProps } from "./OrdersTableView";
 
 export type OrdersTableLogicProps = Pick<

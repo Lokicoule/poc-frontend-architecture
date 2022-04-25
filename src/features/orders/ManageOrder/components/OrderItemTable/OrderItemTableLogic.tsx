@@ -1,5 +1,5 @@
 import { ColumnProps } from "../../../../../components";
-import { currency } from "../../../../../utils/CurrencyUtils";
+import { currency } from "../../../../../core/utils/CurrencyUtils";
 import { OrderItemViewModel } from "../../../../../viewModels/orders";
 import {
   OrderItemTableView,

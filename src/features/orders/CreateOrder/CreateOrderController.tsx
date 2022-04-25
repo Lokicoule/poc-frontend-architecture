@@ -9,7 +9,7 @@ import {
   OrderItemInput,
   OrderProductInput,
 } from "../../../api/fdo/types/dto-types.generated";
-import { addDays } from "../../../utils/DateUtils";
+import { addDays } from "../../../core/utils/DateUtils";
 import {
   FormOrderItemViewModel,
   FormOrderViewModel,

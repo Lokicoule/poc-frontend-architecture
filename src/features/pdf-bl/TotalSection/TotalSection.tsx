@@ -1,6 +1,6 @@
 import { StyleSheet, Image, Text, View } from "@react-pdf/renderer";
 import React from "react";
-import { currency } from "../../../utils/CurrencyUtils";
+import { currency } from "../../../core/utils/CurrencyUtils";
 import { OrderViewModel } from "../../../viewModels/orders";
 
 const styles = StyleSheet.create({
