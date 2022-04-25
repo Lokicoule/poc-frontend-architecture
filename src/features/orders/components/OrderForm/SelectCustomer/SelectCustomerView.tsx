@@ -1,6 +1,6 @@
 import { MenuItem } from "@mui/material";
 import { Control } from "react-hook-form";
-import { FormInputSelect } from "../../../../../components/Form/FormInputs";
+import { FormInputSelect } from "../../../../../components/Form/FormInput";
 import { CustomerViewModel } from "../../../../../viewModels/customers";
 import { FormOrderViewModel } from "../../../../../viewModels/orders";
 

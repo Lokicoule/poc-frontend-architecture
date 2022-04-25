@@ -2,7 +2,7 @@ import {
   GetReferentialOrdersQuery,
   useGetReferentialOrdersQuery,
 } from "../../../../api/fdo/operations/referentialOrders.generated";
-import { Loader } from "../../../../components/Loaders/Loader";
+import { Loader } from "../../../../components/Loader/Loader";
 import { ReferentialOrderViewModel } from "../../../../viewModels/referential/orders/ReferentialOrderViewModel";
 import { ManageReferentialOrdersLogic } from "./ManageReferentialOrdersLogic";
 

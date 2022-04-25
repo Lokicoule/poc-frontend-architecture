@@ -4,7 +4,7 @@ import {
   useGetOrdersQuery,
   useRemoveOrdersMutation,
 } from "../../../api/fdo/operations/orders.generated";
-import { Loader } from "../../../components/Loaders/Loader";
+import { Loader } from "../../../components/Loader/Loader";
 import { OrderViewModel } from "../../../viewModels/orders";
 import { ManageOrdersLogic } from "./ManageOrdersLogic";
 

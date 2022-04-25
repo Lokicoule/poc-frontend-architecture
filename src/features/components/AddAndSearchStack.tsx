@@ -2,7 +2,7 @@ import { Stack, TextField, InputAdornment } from "@mui/material";
 import {
   ResponsiveLinkButton,
   ResponsiveLinkButtonProps,
-} from "../../components/Buttons";
+} from "../../components/ResponsiveButton";
 import AddIcon from "@mui/icons-material/Add";
 import SearchIcon from "@mui/icons-material/Search";
 import { SetStateAction } from "react";

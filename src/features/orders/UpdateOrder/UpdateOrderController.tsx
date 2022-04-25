@@ -13,7 +13,7 @@ import {
   OrderItemInput,
   OrderProductInput,
 } from "../../../api/fdo/types/dto-types.generated";
-import { Loader } from "../../../components/Loaders/Loader";
+import { Loader } from "../../../components/Loader/Loader";
 import {
   FormOrderItemViewModel,
   FormOrderViewModel,

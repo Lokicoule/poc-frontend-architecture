@@ -5,7 +5,7 @@ import {
   useGetReferentialProductQuery,
   useUpdateReferentialProductMutation,
 } from "../../../../api/fdo/operations/referentialProducts.generated";
-import { Loader } from "../../../../components/Loaders/Loader";
+import { Loader } from "../../../../components/Loader/Loader";
 import { UpdateReferentialProductInput } from "../../../../api/fdo/types/dto-types.generated";
 import { ReferentialProductViewModel } from "../../../../viewModels/referential/products/ReferentialProductViewModel";
 import { UpdateReferentialProductLogic } from "./UpdateReferentialProductLogic";

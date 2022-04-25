@@ -1,6 +1,6 @@
 import { default as BreadcrumbsMui } from "@mui/material/Breadcrumbs";
 import { useLocation } from "react-router-dom";
-import { LinkRouter } from "../Links";
+import { LinkRouter } from "../LinkRouter";
 import { Crumb } from "./Crumb";
 
 export type CrumbProps = { [key: string]: { alias: string; last?: boolean } };

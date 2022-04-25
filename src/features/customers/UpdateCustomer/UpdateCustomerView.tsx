@@ -3,7 +3,7 @@ import { Grid } from "@mui/material";
 import { FeatureLayout } from "../../../layouts";
 import { UseFormReturn } from "react-hook-form";
 import { Form } from "../../../components/Form";
-import { FormInputText } from "../../../components/Form/FormInputs";
+import { FormInputText } from "../../../components/Form/FormInput";
 import { UpdateCustomerViewModel } from "../../../viewModels/customers";
 
 export type UpdateCustomerViewProps = {

@@ -2,7 +2,7 @@ import {
   GetReferentialProductsQuery,
   useGetReferentialProductsQuery,
 } from "../../../../api/fdo/operations/referentialProducts.generated";
-import { Loader } from "../../../../components/Loaders/Loader";
+import { Loader } from "../../../../components/Loader/Loader";
 import { ReferentialProductViewModel } from "../../../../viewModels/referential/products/ReferentialProductViewModel";
 import { ManageReferentialProductsLogic } from "./ManageReferentialProductsLogic";
 

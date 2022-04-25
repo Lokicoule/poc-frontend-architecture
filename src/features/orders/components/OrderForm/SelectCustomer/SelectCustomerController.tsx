@@ -2,7 +2,7 @@ import {
   GetCustomersQuery,
   useGetCustomersQuery,
 } from "../../../../../api/fdo/operations/customers.generated";
-import { Loader } from "../../../../../components/Loaders/Loader";
+import { Loader } from "../../../../../components/Loader/Loader";
 import { CustomerViewModel } from "../../../../../viewModels/customers";
 import {
   SelectCustomerLogic,

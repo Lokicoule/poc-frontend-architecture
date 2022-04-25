@@ -1,5 +1,5 @@
 import { LazyExoticComponent, Suspense } from "react";
-import { BundleLoader } from "../Loaders";
+import { BundleLoader } from "../BundleLoader";
 
 export const Loadable =
   (Component: LazyExoticComponent<() => JSX.Element>) => (props: any) =>

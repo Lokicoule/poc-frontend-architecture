@@ -9,7 +9,7 @@ import {
   ListSubheader,
 } from "@mui/material";
 import React from "react";
-import { ListItemLink } from "../../Links/ListItemLink";
+import { ListItemLink } from "./ListItemLink";
 import { MenuList } from "../MenuList";
 
 export type MenuItemType = {
