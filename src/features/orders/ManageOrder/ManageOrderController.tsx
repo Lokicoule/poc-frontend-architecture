@@ -10,7 +10,7 @@ import {
   OrderItem,
   OrderProduct,
 } from "../../../api/fdo/types/dto-types.generated";
-import { Loader } from "../../../components";
+import { Loader } from "../../../components/Loaders/Loader";
 import { CustomerViewModel } from "../../../viewModels/customers";
 import { OrderItemViewModel, OrderViewModel } from "../../../viewModels/orders";
 import { ProductViewModel } from "../../../viewModels/products";

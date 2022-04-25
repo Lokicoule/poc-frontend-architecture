@@ -1,6 +1,6 @@
 import { MenuItem } from "@mui/material";
 import { Control } from "react-hook-form";
-import { FormInputSelect } from "../../../../../../components/Form/FormInputs/FormInputSelect";
+import { FormInputSelect } from "../../../../../../components/Form/FormInputs";
 
 export type SelectParamKeyProps = {
   error: boolean | undefined;

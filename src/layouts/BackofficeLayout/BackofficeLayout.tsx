@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import * as React from "react";
 import { Outlet } from "react-router-dom";
-import { Breadcrumbs, BreadcrumbsProps } from "../../components";
+import { Breadcrumbs, BreadcrumbsProps } from "../../components/Breadcrumbs";
 import { uiConfiguration } from "../../constants/uiConfiguration";
 import { Header } from "./components/Header";
 import { LogoSection } from "./components/Header/LogoSection/LogoSection";

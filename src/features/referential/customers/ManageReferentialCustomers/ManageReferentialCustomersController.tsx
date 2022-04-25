@@ -2,7 +2,7 @@ import {
   GetReferentialCustomersQuery,
   useGetReferentialCustomersQuery,
 } from "../../../../api/fdo/operations/referentialCustomers.generated";
-import { Loader } from "../../../../components";
+import { Loader } from "../../../../components/Loaders/Loader";
 import { ReferentialCustomerViewModel } from "../../../../viewModels/referential/customers/ReferentialCustomerViewModel";
 import { ManageReferentialCustomersLogic } from "./ManageReferentialCustomersLogic";
 

@@ -1,4 +1,4 @@
-import { ColumnProps } from "../../../../../components";
+import { ColumnProps } from "../../../../../components/Tables";
 import { currency } from "../../../../../core/utils/CurrencyUtils";
 import { OrderItemViewModel } from "../../../../../viewModels/orders";
 import {

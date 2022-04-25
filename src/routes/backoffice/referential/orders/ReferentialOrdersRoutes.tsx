@@ -1,6 +1,7 @@
 import { lazy } from "react";
 import { RouteObject } from "react-router-dom";
-import { CrumbProps, Loadable } from "../../../../components";
+import { CrumbProps } from "../../../../components/Breadcrumbs";
+import { Loadable } from "../../../../components/Loadable";
 
 const ReferentialOrdersPage = Loadable(
   lazy(() =>

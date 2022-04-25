@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import { LinkRouter } from "../../Link";
+import { LinkRouter } from "../../Links";
 
 export const Crumb = ({
   name,

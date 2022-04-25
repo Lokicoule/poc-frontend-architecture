@@ -5,7 +5,7 @@ import {
   useGetCustomerQuery,
   useRemoveCustomerMutation,
 } from "../../../api/fdo/operations/customers.generated";
-import { Loader } from "../../../components";
+import { Loader } from "../../../components/Loaders/Loader";
 import { CustomerViewModel } from "../../../viewModels/customers";
 import { ManageCustomerLogic } from "./ManageCustomerLogic";
 

@@ -3,7 +3,7 @@ import { Grid } from "@mui/material";
 import { UseFormReturn } from "react-hook-form";
 import { Form } from "../../../../components/Form";
 import { FormInputText } from "../../../../components/Form/FormInputs";
-import { FormInputDatePicker } from "../../../../components/Form/FormInputs/FormInputDatePicker";
+import { FormInputDatePicker } from "../../../../components/Form/FormInputs";
 import { FeatureLayout } from "../../../../layouts";
 import { FormOrderViewModel } from "../../../../viewModels/orders";
 import { OrderCustomerViewModel } from "../../../../viewModels/orders/OrderCustomerViewModel";

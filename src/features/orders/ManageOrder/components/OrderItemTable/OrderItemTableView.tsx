@@ -1,4 +1,4 @@
-import { ColumnProps, Table } from "../../../../../components";
+import { ColumnProps, Table } from "../../../../../components/Tables";
 import { OrderItemViewModel } from "../../../../../viewModels/orders";
 
 export type OrderItemTableViewProps = {

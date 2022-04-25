@@ -4,7 +4,7 @@ import {
   useGetProductsQuery,
   useRemoveProductsMutation,
 } from "../../../api/fdo/operations/products.generated";
-import { Loader } from "../../../components";
+import { Loader } from "../../../components/Loaders/Loader";
 import { ProductViewModel } from "../../../viewModels/products";
 import { ManageProductsLogic } from "./ManageProductsLogic";
 
