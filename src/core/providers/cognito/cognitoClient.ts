@@ -6,7 +6,7 @@ import {
   ICognitoUserData,
   ICognitoUserPoolData,
 } from "amazon-cognito-identity-js";
-import { poolData } from "./config/cognitoConfig";
+import { cognitoConfig } from "./config/cognitoConfig";
 import { CognitoError } from "./errors/CognitoError";
 import { NoUserPoolError } from "./errors/NoUserPoolError";
 import { CognitoErrorTypes } from "./types/CognitoTypes";
@@ -36,7 +36,7 @@ class CognitoClient implements ICognitoClient {
   private pendingSignIn: ReturnType<CognitoClient["signInWithPassword"]> | null;
 
   constructor() {
-    this.userPool = new CognitoUserPool(poolData);
+    this.userPool = new CognitoUserPool(cognitoConfig.poolData);
     this.pendingSignIn = null;
   }
 
@@ -226,7 +226,7 @@ class CognitoClient implements ICognitoClient {
   }
 
   private rejectNoUserPool() {
-    const type = this.noUserPoolErrorHandler(poolData);
+    const type = this.noUserPoolErrorHandler(cognitoConfig.poolData);
     return Promise.reject(new NoUserPoolError(type));
   }
 

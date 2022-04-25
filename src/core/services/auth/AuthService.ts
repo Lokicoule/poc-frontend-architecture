@@ -1,6 +1,6 @@
-import { cognitoClient } from "../../cognito/cognitoClient";
+import { cognitoClient } from "../../providers/cognito/cognitoClient";
 import { BroadcastService } from "../BroadcastService";
-import { AUTH_BROADCAST_TYPE } from "./constants/authGlobals";
+import { authConfig } from "./constants/authConfig";
 import { userAttributesBuilder } from "./helpers/userAttributesBuilder";
 import { userAttributesValidationBuilder } from "./helpers/userAttributesValidationBuilder";
 
@@ -13,7 +13,7 @@ class AuthService {
   private channel: BroadcastService<BroadcastMessage>;
 
   constructor() {
-    this.channel = new BroadcastService(AUTH_BROADCAST_TYPE);
+    this.channel = new BroadcastService(authConfig.AUTH_BROADCAST_TYPE);
   }
 
   async signUp(email: string, password: string) {
@@ -60,7 +60,10 @@ class AuthService {
     }
     await cognitoClient.signIn(email, password);
     console.log("next");
-    this.channel.dispatch({ type: AUTH_BROADCAST_TYPE, payload: true });
+    this.channel.dispatch({
+      type: authConfig.AUTH_BROADCAST_TYPE,
+      payload: true,
+    });
   }
 
   async signOut() {
@@ -70,7 +73,7 @@ class AuthService {
     console.log("signOut");
     await cognitoClient.signOut();
     this.channel.dispatch({
-      type: AUTH_BROADCAST_TYPE,
+      type: authConfig.AUTH_BROADCAST_TYPE,
       payload: false,
     });
   }

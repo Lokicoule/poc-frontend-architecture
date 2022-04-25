@@ -3,7 +3,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { apolloClient } from "../providers/apolloClient";
+import { apolloClient } from "../core/providers/apollo/apolloClient";
 import { Routes } from "../routes";
 
 export const App = () => {

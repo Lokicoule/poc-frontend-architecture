@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { authService, BroadcastMessage } from "../authService";
-import { AUTH_BROADCAST_TYPE } from "../constants/authGlobals";
+import { authConfig } from "../constants/authConfig";
 
 export const useAuthentication = () => {
   let [isAuthenticated, setIsAuthenticated] = useState(!!authService.getMe());
 
   useEffect(() => {
     const subscription = authService
-      .messagesOfType(AUTH_BROADCAST_TYPE)
+      .messagesOfType(authConfig.AUTH_BROADCAST_TYPE)
       .subscribe((data: BroadcastMessage) => {
         setIsAuthenticated(data.payload);
       });

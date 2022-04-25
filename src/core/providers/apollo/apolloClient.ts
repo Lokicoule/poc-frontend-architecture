@@ -10,13 +10,15 @@ import { onError } from "@apollo/client/link/error";
 import { WebSocketLink } from "@apollo/client/link/ws";
 import { getMainDefinition } from "@apollo/client/utilities";
 import { Kind } from "graphql";
+import { apolloConfig } from "./config/apolloConfig";
+import { ApolloErrorStrings } from "./constants/ApolloErrorStrings";
 
 const httpLink = new HttpLink({
-  uri: "http://localhost:3004/graphql",
+  uri: apolloConfig.HTTP_URI,
 });
 
 const wsLink = new WebSocketLink({
-  uri: `ws://localhost:3004/graphql`,
+  uri: apolloConfig.WS_URI,
   options: {
     reconnect: false, //true
   },
@@ -58,7 +60,7 @@ const authLink = setContext(async (_, { headers }) => {
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
     graphQLErrors.forEach(({ message, locations, path }) => {
-      console.log("GraphQL error", message);
+      console.log(ApolloErrorStrings.DEFAULT_MSG, message);
 
       /*  if (message === "UNAUTHENTICATED") {
         signOut(client);
@@ -67,7 +69,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   }
 
   if (networkError) {
-    console.log("Network error", networkError);
+    console.log(ApolloErrorStrings.NETWORK_ERROR, networkError);
 
     /* if (networkError.statusCode === 401) {
       signOut(client);
