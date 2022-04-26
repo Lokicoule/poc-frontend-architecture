@@ -4,9 +4,9 @@ import { useTheme } from "@mui/material/styles";
 import { FC } from "react";
 
 export type FormProps = {
-  errors: GraphQLErrors | undefined;
-  onSubmit?: (data: any) => Promise<void>;
-  onReset?: () => void;
+  errors?: GraphQLErrors | undefined;
+  onReset: () => void;
+  onSubmit: (data: any) => Promise<void>;
 };
 
 export const Form: FC<FormProps> = ({
@@ -32,27 +32,23 @@ export const Form: FC<FormProps> = ({
         </Typography>
       )}
 
-      {onReset && (
-        <Grid
-          container
-          justifyContent={"flex-end"}
-          sx={{ mt: 3, mb: 2 }}
-          spacing={3}
-        >
-          <Grid item>
-            <Button onClick={onReset} variant={"outlined"}>
-              Reset
-            </Button>
-          </Grid>
-          <Grid item>
-            {onSubmit && (
-              <Button type="submit" variant="contained">
-                Enregistrer
-              </Button>
-            )}
-          </Grid>
+      <Grid
+        container
+        justifyContent={"flex-end"}
+        sx={{ mt: 3, mb: 2 }}
+        spacing={3}
+      >
+        <Grid item>
+          <Button onClick={onReset} variant={"outlined"}>
+            Reset
+          </Button>
         </Grid>
-      )}
+        <Grid item>
+          <Button type="submit" variant="contained">
+            Enregistrer
+          </Button>
+        </Grid>
+      </Grid>
     </Box>
   );
 };

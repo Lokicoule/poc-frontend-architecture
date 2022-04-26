@@ -1,1 +1,0 @@
-export { MainRoutes } from "./MainRoutes";

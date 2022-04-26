@@ -5,7 +5,7 @@ import { FormInputText } from "../../../../components/Form/FormInput";
 import { ReferentialProductViewModel } from "../../../../viewModels/referential/products/ReferentialProductViewModel";
 import { ReferentialParamsTableForm } from "./ReferentialParamsTableForm";
 
-export type ReferentialFormViewProps = Required<FormProps> & {
+export type ReferentialFormViewProps = FormProps & {
   form: UseFormReturn<ReferentialProductViewModel>;
 };
 

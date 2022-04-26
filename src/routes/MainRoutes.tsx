@@ -1,6 +1,6 @@
 import { Navigate, RouteObject } from "react-router-dom";
-import { MainLayout } from "../../layouts";
-import { NotFoundPage } from "../../pages/main";
+import { MainLayout } from "../layouts";
+import { NotFoundPage } from "../pages/main";
 
 export const MainRoutes: RouteObject[] = [
   {
