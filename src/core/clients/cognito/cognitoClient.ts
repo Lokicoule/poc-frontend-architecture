@@ -167,10 +167,7 @@ class CognitoClient implements ICognitoClient {
     });
   }
 
-  public signIn(
-    username: string,
-    password: string
-  ): Promise<CognitoUser | any> {
+  public signIn(username: string, password: string): Promise<CognitoUser> {
     if (!this.userPool) return this.rejectNoUserPool();
 
     if (!username) return this.rejectAuthError(CognitoErrorTypes.EmptyUsername);

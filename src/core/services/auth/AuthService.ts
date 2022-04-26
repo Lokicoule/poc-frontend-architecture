@@ -9,6 +9,11 @@ export interface BroadcastMessage {
   payload: boolean;
 }
 
+type BaseAuthOptions<TData = any> = {
+  onCompleted?: (data: TData) => void;
+  onError?: (error: Error) => void;
+};
+
 class AuthService {
   private channel: BroadcastService<BroadcastMessage>;
 
@@ -58,12 +63,12 @@ class AuthService {
     if (this.getMe()) {
       throw new Error("You are already logged in.");
     }
-    await cognitoClient.signIn(email, password);
-    console.log("next");
+    const user = await cognitoClient.signIn(email, password);
     this.channel.dispatch({
       type: authConfig.AUTH_BROADCAST_TYPE,
       payload: true,
     });
+    return user;
   }
 
   async signOut() {
