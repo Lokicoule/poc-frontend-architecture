@@ -11,13 +11,25 @@ const SignInPage = Loadable(
   )
 );
 
+const SignUpPage = Loadable(
+  lazy(() =>
+    import("../pages/authentication/SignUpPage").then((module) => ({
+      default: module.SignUpPage,
+    }))
+  )
+);
+
 export const AuthenticationRoutes: RouteObject = {
-  path: "auth",
+  path: "/",
   element: <MainLayout />,
   children: [
     {
-      path: "sign-in",
+      path: "signIn",
       element: <SignInPage />,
+    },
+    {
+      path: "signUp",
+      element: <SignUpPage />,
     },
   ],
 };
