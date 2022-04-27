@@ -1,4 +1,4 @@
-import { authService } from "../../../core/services/auth/authService";
+import { authService } from "../../services/authService";
 import { SignUpLogic } from "./SignUpLogic";
 import { UserSignUpViewModel } from "./types/UserSignUp";
 

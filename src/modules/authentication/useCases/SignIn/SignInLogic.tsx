@@ -39,6 +39,7 @@ export const SignInLogic = ({ defaultValues, onSubmit }: SignInLogicProps) => {
       })
       .catch((error) => {
         console.log(error);
+        if (error instanceof Error) console.log(error.name);
         setError(error.message);
       });
   };

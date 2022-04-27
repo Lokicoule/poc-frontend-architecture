@@ -1,5 +1,5 @@
 import { Page } from "../../components/Page";
-import { SignIn } from "../../features/authentication/SignIn";
+import { SignIn } from "../../modules/authentication/useCases/SignIn";
 
 export const SignInPage = () => {
   return (

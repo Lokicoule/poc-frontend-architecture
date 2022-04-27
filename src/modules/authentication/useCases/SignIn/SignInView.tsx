@@ -9,17 +9,16 @@ import {
   useTheme,
 } from "@mui/material";
 import { UseFormReturn } from "react-hook-form";
-import { FormInputText } from "../../../components/Form/FormInput";
-import { LinkRouter } from "../../../components/LinkRouter";
-import { UserSignUpViewModel } from "./types/UserSignUp";
+import { FormInputText } from "../../../../components/Form/FormInput";
+import { UserSignInViewModel } from "./types/UserSignIn";
 
-export type SignUpViewProps = {
-  form: UseFormReturn<UserSignUpViewModel>;
-  onSubmit: (data: UserSignUpViewModel) => Promise<void>;
+export type SignInViewProps = {
+  form: UseFormReturn<UserSignInViewModel>;
+  onSubmit: (data: UserSignInViewModel) => Promise<void>;
   error: string;
 };
 
-export const SignUpView = ({ form, onSubmit, error }: SignUpViewProps) => {
+export const SignInView = ({ form, onSubmit, error }: SignInViewProps) => {
   const theme = useTheme();
   const { formState, handleSubmit, control } = form;
 
@@ -35,7 +34,7 @@ export const SignUpView = ({ form, onSubmit, error }: SignUpViewProps) => {
         <LockOutlinedIcon />
       </Avatar>
       <Typography component="h1" variant="h5">
-        Enregistrement
+        Authentification
       </Typography>
       <Box
         component="form"
@@ -77,14 +76,19 @@ export const SignUpView = ({ form, onSubmit, error }: SignUpViewProps) => {
           variant="contained"
           sx={{ mt: 3, mb: 2 }}
         >
-          S'enregistrer
+          Se connecter
         </Button>
         <Typography color={theme.palette.error.main}>{error ?? ""}</Typography>
-        <Grid container justifyContent="flex-end">
+        <Grid container marginTop={3}>
+          <Grid item xs>
+            <Link href="#" variant="body2">
+              Mot de passe oublié ?
+            </Link>
+          </Grid>
           <Grid item>
-            <LinkRouter to="/auth/sign-in" variant="body2">
-              Already have an account? Sign in
-            </LinkRouter>
+            <Link href="#" variant="body2">
+              {"Pas de compte? S'enregistrer"}
+            </Link>
           </Grid>
         </Grid>
       </Box>

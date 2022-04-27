@@ -1,5 +1,5 @@
-import { cognitoClient } from "../../clients/cognito/cognitoClient";
-import { BroadcastService } from "../BroadcastService";
+import { cognitoClient } from "../../../core/clients/cognito/cognitoClient";
+import { BroadcastService } from "../../../core/services/BroadcastService";
 import { authConfig } from "./constants/authConfig";
 import { userAttributesBuilder } from "./helpers/userAttributesBuilder";
 import { userAttributesValidationBuilder } from "./helpers/userAttributesValidationBuilder";

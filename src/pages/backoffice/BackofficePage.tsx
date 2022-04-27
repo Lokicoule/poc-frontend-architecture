@@ -1,4 +1,4 @@
-import { authService } from "../../core/services/auth/authService";
+import { authService } from "../../modules/authentication/services";
 
 export const BackofficePage = (props: any) => {
   const handleSignUp = async () =>
