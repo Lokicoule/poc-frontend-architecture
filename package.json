@@ -45,7 +45,10 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "graphql-codegen": "graphql-codegen --config codegen.yml"
+    "graphql-codegen-customers": "graphql-codegen --config configurations/codegen/customers.yml",
+    "graphql-codegen-orders": "graphql-codegen --config configurations/codegen/orders.yml",
+    "graphql-codegen-products": "graphql-codegen --config configurations/codegen/products.yml",
+    "graphql-codegen-all": "npm run graphql-codegen-customers && npm run graphql-codegen-orders && npm run graphql-codegen-products"
   },
   "eslintConfig": {
     "extends": [

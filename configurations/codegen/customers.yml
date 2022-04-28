@@ -1,0 +1,16 @@
+overwrite: true
+schema: "http://localhost:3001/graphql"
+documents:
+  - "./src/**/customers.gql"
+  - "./src/**/referentialCustomers.gql"
+generates:
+  src/modules/customers/dtos/customers.dto.generated.ts:
+    plugins:
+      - typescript
+  src/:
+    preset: near-operation-file
+    presetConfig:
+      baseTypesPath: modules/customers/dtos/customers.dto.generated.ts
+    plugins:
+      - typescript-operations
+      - typescript-react-apollo

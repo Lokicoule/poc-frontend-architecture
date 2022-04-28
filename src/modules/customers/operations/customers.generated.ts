@@ -1,4 +1,4 @@
-import * as Types from '../../../modules/customers/dtos/customers.dto.generated';
+import * as Types from '../dtos/customers.dto.generated';
 
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
