@@ -1,13 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import { Loader } from "../../../../components/Loader";
-import { CustomerViewModel } from "../../../../viewModels/customers";
-import {
-  useRemoveCustomerMutation,
-  useGetCustomerQuery,
-  GetCustomerQuery,
-} from "../../operations/customers.generated";
-
+import { useGetCustomerFacade } from "../../hooks/useGetCustomerFacade";
+import { useRemoveCustomerFacade } from "../../hooks/useRemoveCustomerFacade";
 import { ManageCustomerLogic } from "./ManageCustomerLogic";
 
 type ManageCustomerControllerProps = {
@@ -18,59 +12,16 @@ export const ManageCustomerController = ({
   customerId = "",
 }: ManageCustomerControllerProps) => {
   const navigate = useNavigate();
-  const [removeCustomer] = useRemoveCustomerMutation({
-    update(cache, { data: removeCustomerData }) {
-      cache.modify({
-        fields: {
-          getCustomers(existingCustomersRef, { readField }) {
-            return existingCustomersRef.filter(
-              (customerRef: any) =>
-                removeCustomerData?.removeCustomer.id !==
-                readField("id", customerRef)
-            );
-          },
-        },
-      });
-    },
-  });
-  const { data, loading } = useGetCustomerQuery({
-    variables: {
-      getCustomerId: customerId,
-    },
-    onError: () => navigate("/backoffice/customers"),
-  });
+  const [{ customer, loading, error }] = useGetCustomerFacade(customerId);
+  const [removeCustomer] = useRemoveCustomerFacade();
 
-  const mapDtoToViewModel = (
-    dataDto: GetCustomerQuery | undefined
-  ): Readonly<CustomerViewModel> => {
-    const customer = dataDto?.getCustomer;
-    return {
-      address: customer?.address || "",
-      city: customer?.city || "",
-      code: customer?.code || "",
-      naming: customer?.naming || "",
-      zipCode: customer?.zipCode || "",
-      id: customerId,
-    };
-  };
-  const handleRemove = (id: string) =>
-    removeCustomer({
-      variables: {
-        removeCustomerId: id,
-      },
-      onCompleted: () => {
-        toast.success(
-          `${data?.getCustomer?.naming} a été supprimé(e) avec succès.`
-        );
-        navigate("/backoffice/customers");
-      },
-    });
+  const handleRemove = (id: string) => removeCustomer(id);
 
   if (loading) return <Loader></Loader>;
-
+  if (error) navigate("/backoffice/customers");
   return (
     <ManageCustomerLogic
-      defaultValues={mapDtoToViewModel(data)}
+      defaultValues={customer}
       onRemove={handleRemove}
     ></ManageCustomerLogic>
   );

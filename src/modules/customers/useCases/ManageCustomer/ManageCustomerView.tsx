@@ -3,7 +3,7 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import { Button, Grid, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
 import { FeatureLayout } from "../../../../layouts";
-import { CustomerViewModel } from "../../../../viewModels/customers";
+import { CustomerViewModel } from "../../domain/CustomerViewModel";
 
 export type ManageCustomerViewProps = {
   defaultValues: CustomerViewModel;
@@ -64,7 +64,7 @@ export const ManageCustomerView = ({
           <Button
             component={Link}
             variant="outlined"
-            to={`/backoffice/customers/update/${defaultValues.id}`}
+            to={`/backoffice/customers/update/${defaultValues.customerId}`}
             endIcon={<ModeEditIcon />}
           >
             Modifier
