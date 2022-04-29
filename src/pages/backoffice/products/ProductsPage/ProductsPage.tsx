@@ -1,5 +1,5 @@
 import { Page } from "../../../../components/Page";
-import { ManageProducts } from "../../../../features/products/ManageProducts";
+import { ManageProducts } from "../../../../modules/products/useCases/ManageProducts";
 
 export const ProductsPage = () => {
   return (

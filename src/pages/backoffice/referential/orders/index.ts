@@ -1,2 +1,2 @@
-export * from "./ReferentialOrdersPage";
+export * from "./ReferentialOrderPage";
 export * from "./UpdateReferentiaOrderPage";

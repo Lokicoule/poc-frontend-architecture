@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { Page } from "../../../../../components/Page/Page";
-import { UpdateReferentialProduct } from "../../../../../features/referential/products";
+import { UpdateReferentialProduct } from "../../../../../modules/products/useCases/UpdateReferentialProduct";
 
 export const UpdateReferentialProductPage = () => {
   const { referentialProductId } = useParams();

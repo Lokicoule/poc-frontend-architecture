@@ -3,10 +3,10 @@ import { RouteObject } from "react-router-dom";
 import { CrumbProps } from "../../../../components/Breadcrumbs";
 import { Loadable } from "../../../../components/Loadable";
 
-const ReferentialProductsPage = Loadable(
+const ReferentialProductPage = Loadable(
   lazy(() =>
     import("../../../../pages/backoffice/referential").then((module) => ({
-      default: module.ReferentialProductsPage,
+      default: module.ReferentialProductPage,
     }))
   )
 );
@@ -32,7 +32,7 @@ export const ReferentialProductsRoutes: RouteObject = {
   children: [
     {
       path: "",
-      element: <ReferentialProductsPage />,
+      element: <ReferentialProductPage />,
     },
 
     {

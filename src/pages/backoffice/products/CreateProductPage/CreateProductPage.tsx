@@ -1,5 +1,5 @@
 import { Page } from "../../../../components/Page/Page";
-import { CreateProduct } from "../../../../features/products/CreateProduct";
+import { CreateProduct } from "../../../../modules/products/useCases/CreateProduct";
 
 export const CreateProductPage = () => {
   return (

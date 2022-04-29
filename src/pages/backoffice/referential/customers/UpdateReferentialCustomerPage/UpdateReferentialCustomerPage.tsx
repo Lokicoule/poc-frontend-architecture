@@ -1,14 +1,14 @@
 import { useParams } from "react-router-dom";
 import { Page } from "../../../../../components/Page/Page";
-import { UpdateReferentialCustomer } from "../../../../../features/referential/customers";
+import { UpdateReferentialCustomer } from "../../../../../modules/customers/useCases/UpdateReferentialCustomer";
 
 export const UpdateReferentialCustomerPage = () => {
   const { referentialCustomerId } = useParams();
 
   return (
-    <Page title="UpdateCustomer">
+    <Page title="UpdateReferentialCustomer">
       <UpdateReferentialCustomer
-        referentialCustomerId={referentialCustomerId || ""}
+        referentialCustomerId={referentialCustomerId ?? ""}
       ></UpdateReferentialCustomer>
     </Page>
   );

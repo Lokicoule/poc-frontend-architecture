@@ -1,5 +1,5 @@
 import { Page } from "../../../../components/Page/Page";
-import { CreateOrder } from "../../../../features/orders/CreateOrder";
+import { CreateOrder } from "../../../../modules/orders/useCases/CreateOrder";
 
 export const CreateOrderPage = () => {
   return (

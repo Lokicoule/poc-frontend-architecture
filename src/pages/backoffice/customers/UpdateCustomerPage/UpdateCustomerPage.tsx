@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { Page } from "../../../../components/Page/Page";
-import { CreateCustomer } from "../../../../features/customers/CreateCustomer";
-import { UpdateCustomer } from "../../../../features/customers/UpdateCustomer";
+import { CreateCustomer } from "../../../../modules/customers/useCases/CreateCustomer";
+import { UpdateCustomer } from "../../../../modules/customers/useCases/UpdateCustomer";
 
 export const UpdateCustomerPage = () => {
   const { customerId } = useParams();

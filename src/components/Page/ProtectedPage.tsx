@@ -1,6 +1,6 @@
 import { FC, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuthentication } from "../../modules/authentication/services/hooks/useAuthentication";
+import { useAuthentication } from "../../modules/authentication/services/authService/hooks/useAuthentication";
 import { Page, PageProps } from "./Page";
 
 export const ProtectedPage: FC<PageProps> = ({ children, title }) => {

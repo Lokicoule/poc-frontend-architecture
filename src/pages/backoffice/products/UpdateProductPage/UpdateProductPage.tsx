@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { Page } from "../../../../components/Page/Page";
-import { CreateProduct } from "../../../../features/products/CreateProduct";
-import { UpdateProduct } from "../../../../features/products/UpdateProduct";
+import { CreateProduct } from "../../../../modules/products/useCases/CreateProduct";
+import { UpdateProduct } from "../../../../modules/products/useCases/UpdateProduct";
 
 export const UpdateProductPage = () => {
   const { productId } = useParams();

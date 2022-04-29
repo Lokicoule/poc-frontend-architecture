@@ -1,2 +1,2 @@
-export * from "./ReferentialCustomersPage";
+export * from "./ReferentialCustomerPage";
 export * from "./UpdateReferentialCustomerPage";

@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { Page } from "../../../../components/Page/Page";
-import { ManageProduct } from "../../../../features/products/ManageProduct";
+import { ManageProduct } from "../../../../modules/products/useCases/ManageProduct";
 
 export const ProductPage = () => {
   const { productId } = useParams();
