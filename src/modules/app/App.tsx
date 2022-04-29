@@ -5,13 +5,16 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { apolloClient } from "./clients/apollo/apolloClient";
 import { Routes } from "../../routes";
+import { ErrorBoundary } from "../../components/ErrorBoundary";
 
 export const App = () => {
   return (
     <ApolloProvider client={apolloClient}>
       <HelmetProvider>
         <BrowserRouter>
-          <Routes></Routes>
+          <ErrorBoundary>
+            <Routes></Routes>
+          </ErrorBoundary>
         </BrowserRouter>
       </HelmetProvider>
       <ToastContainer />
