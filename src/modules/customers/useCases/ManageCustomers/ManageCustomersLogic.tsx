@@ -1,5 +1,6 @@
 import { FetchResult } from "@apollo/client";
 import { SetStateAction, useState } from "react";
+import { toast } from "react-toastify";
 import { RemoveCustomersMutation } from "../../operations/customers.generated";
 import {
   ManageCustomersView,
@@ -31,7 +32,15 @@ export const ManageCustomersLogic = ({
   };
 
   const handleRemove = async (ids: string[]) => {
-    await onRemove(ids).catch((err) => console.error(err));
+    await onRemove(ids)
+      .then((result) => {
+        toast.success(
+          `Les clients sélectionné(e)s ont étés supprimé(e)s avec succès.`
+        );
+      })
+      .catch((error) =>
+        toast.error(`La suppression des clients sélectionné(e)s a échouée.`)
+      );
   };
 
   const filteredDataVM = data?.filter(
