@@ -1,7 +1,8 @@
 import { FetchResult } from "@apollo/client";
-import { isEqual } from "lodash";
-import { ReferentialCustomerViewModel } from "../../../../viewModels/referential/customers/ReferentialCustomerViewModel";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { referentialSchema } from "../../../referential/components/ReferentialForm/ReferentialFormLogic";
+import { ReferentialCustomerViewModel } from "../../domain/referential-customer.model";
 import { ParameterReferentialEnum } from "../../dtos/customers.dto.generated";
 import { UpdateReferentialCustomerMutation } from "../../operations/referentialCustomers.generated";
 import {
@@ -30,8 +31,25 @@ export const UpdateReferentialCustomerLogic = ({
   onSubmit,
   errors,
 }: UpdateReferentialCustomerLogicProps) => {
+  const navigate = useNavigate();
+
   const handleSubmit = async (data: ReferentialCustomerViewModel) => {
-    if (!isEqual(defaultValues, data)) await onSubmit(data);
+    if (defaultValues.equals(data)) {
+      toast.info("Nothing to save");
+      return;
+    }
+    await onSubmit(data)
+      .then((result) => {
+        toast.success(
+          `${result.data?.updateReferentialCustomer.useCase} a été modifié(e) avec succès.`
+        );
+        navigate(`/backoffice/referential/customers`);
+      })
+      .catch((error) =>
+        toast.error(
+          `La modification du référentiel client ${defaultValues.useCase} a échouée.`
+        )
+      );
   };
 
   return (

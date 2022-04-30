@@ -1,14 +1,14 @@
 import { ValueObject } from "../../../core/domain/ValueObject";
+import { ReferentialViewModelProps } from "../../referential/domain/referential.type";
 import { UseCaseReferentialEnum } from "../dtos/customers.dto.generated";
 import { ParamReferentialCustomerViewModel } from "./parameter-referential.model";
 
-export interface ReferentialCustomerViewModelProps {
-  id: string;
-  useCase: UseCaseReferentialEnum;
-  parameters: ParamReferentialCustomerViewModel[];
-}
-
-export class ReferentialCustomerViewModel extends ValueObject<ReferentialCustomerViewModelProps> {
+export class ReferentialCustomerViewModel extends ValueObject<
+  ReferentialViewModelProps<
+    UseCaseReferentialEnum,
+    ParamReferentialCustomerViewModel
+  >
+> {
   get id() {
     return this.props.id;
   }
@@ -22,7 +22,10 @@ export class ReferentialCustomerViewModel extends ValueObject<ReferentialCustome
   }
 
   public static create(
-    props: ReferentialCustomerViewModelProps
+    props: ReferentialViewModelProps<
+      UseCaseReferentialEnum,
+      ParamReferentialCustomerViewModel
+    >
   ): ReferentialCustomerViewModel {
     return new ReferentialCustomerViewModel(props);
   }

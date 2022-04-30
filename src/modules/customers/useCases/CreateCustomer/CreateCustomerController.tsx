@@ -11,17 +11,17 @@ const defaultValues = {
 } as Readonly<CreateCustomerViewModel>;
 
 export const CreateCustomerController = () => {
-  const { createCustomer, error } = useCreateCustomerFacade();
+  const { createCustomer } = useCreateCustomerFacade();
 
   const handleSubmit = (data: CreateCustomerViewModel) => {
-    return createCustomer(data);
+    return createCustomer.onCreate(data);
   };
 
   return (
     <CreateCustomerLogic
       defaultValues={defaultValues}
       onSubmit={handleSubmit}
-      errors={error?.graphQLErrors}
+      errors={createCustomer.error?.graphQLErrors}
     ></CreateCustomerLogic>
   );
 };

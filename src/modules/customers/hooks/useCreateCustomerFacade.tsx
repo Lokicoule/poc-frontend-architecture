@@ -43,5 +43,5 @@ export const useCreateCustomerFacade = () => {
     });
   };
 
-  return { createCustomer: handleCreate, error, loading };
+  return { createCustomer: { onCreate: handleCreate, error, loading } };
 };

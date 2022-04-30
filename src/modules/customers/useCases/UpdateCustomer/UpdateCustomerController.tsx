@@ -1,6 +1,5 @@
 import { Loader } from "../../../../components/Loader";
 import { UpdateCustomerViewModel } from "../../../../viewModels/customers";
-import { CustomerViewModel } from "../../domain/customers.model";
 import { useGetCustomerFacade } from "../../hooks/useGetCustomerFacade";
 import { useUpdateCustomerFacade } from "../../hooks/useUpdateCustomerFacade";
 import { UpdateCustomerLogic } from "./UpdateCustomerLogic";
@@ -12,20 +11,18 @@ type UpdateCustomerControllerProps = {
 export const UpdateCustomerController = ({
   customerId,
 }: UpdateCustomerControllerProps) => {
-  const { customer, loading } = useGetCustomerFacade(customerId);
-  const { updateCustomer, error } = useUpdateCustomerFacade();
+  const { getCustomer } = useGetCustomerFacade(customerId);
+  const { updateCustomer } = useUpdateCustomerFacade();
 
-  const handleSubmit = (
-    defaultCustomer: CustomerViewModel,
-    updatedCustomer: UpdateCustomerViewModel
-  ) => updateCustomer(customerId, defaultCustomer, updatedCustomer);
+  const handleSubmit = (updatedCustomer: UpdateCustomerViewModel) =>
+    updateCustomer.onUpdate(customerId, updatedCustomer);
 
-  if (loading) return <Loader></Loader>;
+  if (getCustomer.loading) return <Loader></Loader>;
   return (
     <UpdateCustomerLogic
-      defaultValues={customer}
+      defaultValues={getCustomer.data}
       onSubmit={handleSubmit}
-      errors={error?.graphQLErrors}
+      errors={updateCustomer.error?.graphQLErrors}
     ></UpdateCustomerLogic>
   );
 };

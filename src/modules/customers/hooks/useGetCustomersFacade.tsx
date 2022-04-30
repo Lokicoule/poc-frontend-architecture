@@ -27,5 +27,5 @@ export const useGetCustomersFacade = (
             zipCode: "",
           })
     ) ?? [];
-  return { customers: mapDtoToViewModel(data), loading, error };
+  return { getCustomers: { data: mapDtoToViewModel(data), loading, error } };
 };

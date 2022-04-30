@@ -28,5 +28,12 @@ export const useGetAllReferentialCustomerFacade = (
             parameters: [],
           })
     ) ?? [];
-  return { referentialCustomerList: mapDtoToViewModel(data), loading, error };
+
+  return {
+    getAllReferentialCustomer: {
+      data: mapDtoToViewModel(data),
+      loading,
+      error,
+    },
+  };
 };

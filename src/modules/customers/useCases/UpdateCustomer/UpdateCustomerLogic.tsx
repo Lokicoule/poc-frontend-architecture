@@ -15,7 +15,6 @@ import {
 type UpdateCustomerLogicProps = Pick<UpdateCustomerViewProps, "errors"> & {
   defaultValues: CustomerViewModel;
   onSubmit: (
-    defaultCustomer: CustomerViewModel,
     updatedCustomer: UpdateCustomerViewModel
   ) => Promise<
     FetchResult<
@@ -42,6 +41,17 @@ const schema = yup.object().shape({
   address: yup.string().required("L'adresse du client est requise."),
 });
 
+const areEqual = (
+  defaultValues: CustomerViewModel,
+  updatedCustomer: UpdateCustomerViewModel
+) => {
+  const customer = CustomerViewModel.create({
+    id: defaultValues.id,
+    ...updatedCustomer,
+  });
+  return defaultValues.equals(customer);
+};
+
 export const UpdateCustomerLogic = ({
   defaultValues,
   onSubmit,
@@ -55,7 +65,11 @@ export const UpdateCustomerLogic = ({
   });
 
   const handleSubmit = async (updatedCustomer: UpdateCustomerViewModel) => {
-    await onSubmit(defaultValues, updatedCustomer)
+    if (areEqual(defaultValues, updatedCustomer)) {
+      toast.info("Nothing to save");
+      return;
+    }
+    await onSubmit(updatedCustomer)
       .then((result) => {
         toast.success(
           `${result.data?.updateCustomer.naming} a été modifié(e) avec succès.`

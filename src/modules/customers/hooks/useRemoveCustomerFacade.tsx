@@ -5,7 +5,7 @@ import {
 } from "../operations/customers.generated";
 
 export const useRemoveCustomerFacade = () => {
-  const [removeCustomer] = useRemoveCustomerMutation({
+  const [removeCustomer, { error, loading }] = useRemoveCustomerMutation({
     update(cache, { data }) {
       cache.modify({
         fields: {
@@ -32,5 +32,5 @@ export const useRemoveCustomerFacade = () => {
       onError: options?.onError,
     });
 
-  return { removeCustomer: handleRemove };
+  return { removeCustomer: { onRemove: handleRemove, error, loading } };
 };

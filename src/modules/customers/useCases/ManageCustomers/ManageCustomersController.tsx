@@ -4,17 +4,17 @@ import { useRemoveManyCustomersFacade } from "../../hooks/useRemoveManyCustomers
 import { ManageCustomersLogic } from "./ManageCustomersLogic";
 
 export const ManageCustomersController = () => {
-  const { customers, loading } = useGetCustomersFacade();
+  const { getCustomers } = useGetCustomersFacade();
   const { removeManyCustomers } = useRemoveManyCustomersFacade();
 
   const handleRemove = (ids: string[]) => {
-    return removeManyCustomers(ids);
+    return removeManyCustomers.onRemove(ids);
   };
 
-  if (loading) return <Loader></Loader>;
+  if (getCustomers.loading) return <Loader></Loader>;
   return (
     <ManageCustomersLogic
-      data={customers}
+      data={getCustomers.data}
       onRemove={handleRemove}
     ></ManageCustomersLogic>
   );

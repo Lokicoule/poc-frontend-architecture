@@ -1,5 +1,4 @@
 import { BaseCallbackOptions } from "../../../core/types/BaseCallbackOptions";
-import { CustomerViewModel } from "../domain/customers.model";
 import { UpdateCustomerViewModel } from "../domain/customers.model";
 import { updateCustomerMap } from "../mappers/update-customer.mapper";
 import {
@@ -8,14 +7,12 @@ import {
 } from "../operations/customers.generated";
 
 export const useUpdateCustomerFacade = () => {
-  const [updateCustomer, { error }] = useUpdateCustomerMutation({
-    update(cache, { data: updatedCustomer }) {
+  const [updateCustomer, { error, loading }] = useUpdateCustomerMutation({
+    update(cache, { data }) {
       cache.modify({
         fields: {
           getCustomer(existingCustomer, { toReference }) {
-            return updatedCustomer
-              ? toReference(updatedCustomer)
-              : existingCustomer;
+            return data ? toReference(data) : existingCustomer;
           },
         },
       });
@@ -24,24 +21,18 @@ export const useUpdateCustomerFacade = () => {
 
   const handleUpdate = (
     customerId: any,
-    defaultCustomer: CustomerViewModel,
-    updatedCustomer: UpdateCustomerViewModel,
+    data: UpdateCustomerViewModel,
     options?: BaseCallbackOptions<UpdateCustomerMutation>
   ) => {
-    const customer = CustomerViewModel.create({
-      id: customerId,
-      ...updatedCustomer,
-    });
-    if (!customer.equals(defaultCustomer)) Promise.resolve();
     return updateCustomer({
       variables: {
         updateCustomerId: customerId,
-        updateCustomerInput: updateCustomerMap.toDto(customer),
+        updateCustomerInput: updateCustomerMap.toDto(data),
       },
       onCompleted: options?.onCompleted,
       onError: options?.onError,
     });
   };
 
-  return { updateCustomer: handleUpdate, error };
+  return { updateCustomer: { onUpdate: handleUpdate, error, loading } };
 };

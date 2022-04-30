@@ -3,13 +3,12 @@ import { useGetAllReferentialCustomerFacade } from "../../hooks/useGetAllReferen
 import { ManageReferentialCustomerLogic } from "./ManageReferentialCustomerLogic";
 
 export const ManageReferentialCustomerController = () => {
-  const { referentialCustomerList, loading } =
-    useGetAllReferentialCustomerFacade();
+  const { getAllReferentialCustomer } = useGetAllReferentialCustomerFacade();
 
-  if (loading) return <Loader></Loader>;
+  if (getAllReferentialCustomer.loading) return <Loader></Loader>;
   return (
     <ManageReferentialCustomerLogic
-      referentialCustomerList={referentialCustomerList}
+      referentialCustomerList={getAllReferentialCustomer.data}
     ></ManageReferentialCustomerLogic>
   );
 };

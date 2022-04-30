@@ -30,5 +30,5 @@ export const useGetCustomerFacade = (
           zipCode: "",
         });
 
-  return { customer: mapDtoToViewModel(data), loading, error };
+  return { getCustomer: { data: mapDtoToViewModel(data), loading, error } };
 };

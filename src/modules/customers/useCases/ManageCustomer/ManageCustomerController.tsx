@@ -12,16 +12,16 @@ export const ManageCustomerController = ({
   customerId = "",
 }: ManageCustomerControllerProps) => {
   const navigate = useNavigate();
-  const { customer, loading, error } = useGetCustomerFacade(customerId);
+  const { getCustomer } = useGetCustomerFacade(customerId);
   const { removeCustomer } = useRemoveCustomerFacade();
 
-  const handleRemove = (id: string) => removeCustomer(id);
+  const handleRemove = (id: string) => removeCustomer.onRemove(id);
 
-  if (loading) return <Loader></Loader>;
-  if (error) navigate("/backoffice/customers");
+  if (getCustomer.loading) return <Loader></Loader>;
+  if (getCustomer.error) navigate("/backoffice/customers");
   return (
     <ManageCustomerLogic
-      defaultValues={customer}
+      defaultValues={getCustomer.data}
       onRemove={handleRemove}
     ></ManageCustomerLogic>
   );
