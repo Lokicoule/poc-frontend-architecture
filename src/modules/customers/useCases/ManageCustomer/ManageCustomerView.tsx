@@ -64,7 +64,7 @@ export const ManageCustomerView = ({
           <Button
             component={Link}
             variant="outlined"
-            to={`/backoffice/customers/update/${defaultValues.customerId}`}
+            to={`/backoffice/customers/update/${defaultValues.id}`}
             endIcon={<ModeEditIcon />}
           >
             Modifier

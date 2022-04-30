@@ -16,7 +16,7 @@ export class customerMap implements Mapper {
 
   public static toDto(entity: CustomerViewModel): Customer {
     return {
-      id: entity.customerId.toString(),
+      id: entity.id.toString(),
       code: entity.code.toString(),
       naming: entity.naming.toString(),
       address: entity.address.toString(),

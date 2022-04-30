@@ -10,7 +10,7 @@ export interface CustomerViewModelProps {
 }
 
 export class CustomerViewModel extends ValueObject<CustomerViewModelProps> {
-  get customerId() {
+  get id() {
     return this.props.id;
   }
 

@@ -29,7 +29,7 @@ export const ManageCustomerLogic = ({
   const navigate = useNavigate();
 
   const handleRemove = async () => {
-    await onRemove(defaultValues.customerId)
+    await onRemove(defaultValues.id)
       .then((result) => {
         toast.success(
           `${result?.data?.removeCustomer?.naming} a été supprimé(e) avec succès.`

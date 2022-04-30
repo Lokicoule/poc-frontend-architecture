@@ -1,18 +1,11 @@
 import { toast } from "react-toastify";
 import { Loader } from "../../../../components/Loader";
-import { CustomerViewModel } from "../../../../viewModels/customers";
-import {
-  useGetCustomersQuery,
-  useRemoveCustomersMutation,
-  GetCustomersQuery,
-} from "../../operations/customers.generated";
+import { useGetCustomersFacade } from "../../hooks/useGetCustomersFacade";
+import { useRemoveCustomersMutation } from "../../operations/customers.generated";
 import { ManageCustomersLogic } from "./ManageCustomersLogic";
 
 export const ManageCustomersController = () => {
-  const { data, loading } = useGetCustomersQuery({
-    fetchPolicy: "cache-first", //default
-    pollInterval: 300000,
-  });
+  const { customers, loading } = useGetCustomersFacade();
   const [removeCustomers] = useRemoveCustomersMutation({
     refetchQueries: ["GetCustomers"],
   });
@@ -32,26 +25,10 @@ export const ManageCustomersController = () => {
     });
   };
 
-  const mapDtoToViewModel = (
-    dataDto: GetCustomersQuery | null | undefined
-  ): CustomerViewModel[] => {
-    return dataDto?.getCustomers?.map(
-      (customer) =>
-        ({
-          id: customer?.id,
-          code: customer?.code,
-          naming: customer?.naming,
-          address: customer?.address,
-          city: customer?.city,
-          zipCode: customer?.zipCode,
-        } as CustomerViewModel)
-    ) as CustomerViewModel[];
-  };
-
   if (loading) return <Loader></Loader>;
   return (
     <ManageCustomersLogic
-      data={mapDtoToViewModel(data)}
+      data={customers}
       onRemove={handleRemove}
     ></ManageCustomersLogic>
   );
