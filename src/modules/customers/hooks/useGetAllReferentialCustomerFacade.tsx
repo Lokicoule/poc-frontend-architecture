@@ -1,13 +1,13 @@
 import { BaseCallbackOptions } from "../../../core/types/BaseCallbackOptions";
 import { ReferentialCustomerViewModel } from "../domain/ReferentialCustomerViewModel";
 import { UseCaseReferentialEnum } from "../dtos/customers.dto.generated";
-import { referentialCustomerMap } from "../mappers/referentialCustomerMap";
+import { referentialCustomerMap } from "../mappers/referential-customer.mapper";
 import {
   GetReferentialCustomersQuery,
   useGetReferentialCustomersQuery,
 } from "../operations/referentialCustomers.generated";
 
-export const useGetReferentialCustomersFacade = (
+export const useGetAllReferentialCustomerFacade = (
   options?: BaseCallbackOptions<GetReferentialCustomersQuery>
 ) => {
   const { data, loading, error } = useGetReferentialCustomersQuery({

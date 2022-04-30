@@ -5,7 +5,7 @@ import {
   ParameterReferentialCustomer,
   ReferentialCustomer,
 } from "../dtos/customers.dto.generated";
-import { paramReferentialCustomerMap } from "./paramReferentialCustomerMap";
+import { paramReferentialCustomerMap } from "./param-referential-customer.mapper";
 
 export class referentialCustomerMap implements Mapper {
   public static toViewModel(

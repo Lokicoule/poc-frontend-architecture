@@ -1,6 +1,6 @@
 import { BaseCallbackOptions } from "../../../core/types/BaseCallbackOptions";
 import { CreateCustomerViewModel } from "../domain/CreateCustomerViewModel";
-import { createCustomerMap } from "../mappers/createCustomerMap";
+import { createCustomerMap } from "../mappers/create-customer.mapper";
 import {
   CreateCustomerMutation,
   useCreateCustomerMutation,

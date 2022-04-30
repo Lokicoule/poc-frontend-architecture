@@ -1,6 +1,6 @@
 import { BaseCallbackOptions } from "../../../core/types/BaseCallbackOptions";
 import { CustomerViewModel } from "../domain/CustomerViewModel";
-import { customerMap } from "../mappers/customerMap";
+import { customerMap } from "../mappers/customer.mapper";
 import {
   GetCustomersQuery,
   useGetCustomersQuery,
