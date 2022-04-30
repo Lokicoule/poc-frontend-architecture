@@ -4,7 +4,7 @@ import { FeatureLayout } from "../../../../layouts";
 import { UseFormReturn } from "react-hook-form";
 import { Form } from "../../../../components/Form";
 import { FormInputText } from "../../../../components/Form/FormInput";
-import { CreateCustomerViewModel } from "../../../../viewModels/customers";
+import { CreateCustomerViewModel } from "../../domain/CreateCustomerViewModel";
 
 export type CreateCustomerViewProps = {
   form: UseFormReturn<CreateCustomerViewModel>;

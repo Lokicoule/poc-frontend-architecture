@@ -8,7 +8,7 @@ import {
 
 export const useGetCustomerFacade = (
   customerId: any,
-  options?: BaseCallbackOptions
+  options?: BaseCallbackOptions<GetCustomerQuery>
 ) => {
   const { data, loading, error } = useGetCustomerQuery({
     variables: {
@@ -30,5 +30,5 @@ export const useGetCustomerFacade = (
           zipCode: "",
         });
 
-  return [{ customer: mapDtoToViewModel(data), loading, error }];
+  return { customer: mapDtoToViewModel(data), loading, error };
 };

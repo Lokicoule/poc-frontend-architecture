@@ -1,8 +1,10 @@
 import { FetchResult } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import * as yup from "yup";
-import { CreateCustomerViewModel } from "../../../../viewModels/customers";
+import { CreateCustomerViewModel } from "../../domain/CreateCustomerViewModel";
 import { CreateCustomerMutation } from "../../operations/customers.generated";
 import {
   CreateCustomerView,
@@ -39,6 +41,7 @@ export const CreateCustomerLogic = ({
   onSubmit,
   errors,
 }: CreateCustomerLogicProps) => {
+  const navigate = useNavigate();
   const form = useForm<CreateCustomerViewModel>({
     defaultValues: defaultValues,
     resolver: yupResolver(schema),
@@ -46,7 +49,18 @@ export const CreateCustomerLogic = ({
 
   const handleReset = () => form.reset();
   const handleSubmit = async (data: CreateCustomerViewModel) => {
-    await onSubmit(data);
+    await onSubmit(data)
+      .then((result) => {
+        toast.success(
+          `${result.data?.createCustomer.naming} a été ajouté(e) avec succès.`
+        );
+        navigate(
+          `/backoffice/customers/view/${result.data?.createCustomer.id}`
+        );
+      })
+      .catch((error) =>
+        toast.error(`L'ajout du client ${data.naming} a échoué.`)
+      );
   };
 
   return (

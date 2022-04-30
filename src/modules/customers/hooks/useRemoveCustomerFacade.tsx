@@ -1,5 +1,3 @@
-import { GraphQLError } from "graphql/error/GraphQLError";
-import { useState } from "react";
 import { BaseCallbackOptions } from "../../../core/types/BaseCallbackOptions";
 import {
   RemoveCustomerMutation,
@@ -22,7 +20,10 @@ export const useRemoveCustomerFacade = () => {
     },
   });
 
-  const handleRemove = (customerId: any, options?: BaseCallbackOptions) =>
+  const handleRemove = (
+    customerId: any,
+    options?: BaseCallbackOptions<RemoveCustomerMutation>
+  ) =>
     removeCustomer({
       variables: {
         removeCustomerId: customerId,
@@ -31,5 +32,5 @@ export const useRemoveCustomerFacade = () => {
       onError: options?.onError,
     });
 
-  return [handleRemove];
+  return { removeCustomer: handleRemove };
 };

@@ -12,8 +12,8 @@ export const ManageCustomerController = ({
   customerId = "",
 }: ManageCustomerControllerProps) => {
   const navigate = useNavigate();
-  const [{ customer, loading, error }] = useGetCustomerFacade(customerId);
-  const [removeCustomer] = useRemoveCustomerFacade();
+  const { customer, loading, error } = useGetCustomerFacade(customerId);
+  const { removeCustomer } = useRemoveCustomerFacade();
 
   const handleRemove = (id: string) => removeCustomer(id);
 
