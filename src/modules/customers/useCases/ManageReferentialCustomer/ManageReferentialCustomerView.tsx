@@ -1,20 +1,16 @@
 import SearchIcon from "@mui/icons-material/Search";
-import { Stack, TextField, InputAdornment } from "@mui/material";
+import { InputAdornment, Stack, TextField } from "@mui/material";
 import { SetStateAction } from "react";
-import {
-  ReferentialTableProps,
-  ReferentialTable,
-} from "../../../referential/components/ReferentialTable";
+import { ReferentialTable } from "../../../referential/components/ReferentialTable";
+import { ReferentialCustomerViewModel } from "../../domain/ReferentialCustomerViewModel";
 
-export type ManageReferentialCustomerViewProps = Pick<
-  ReferentialTableProps,
-  "data"
-> & {
+export type ManageReferentialCustomerViewProps = {
+  referentialCustomerList: ReferentialCustomerViewModel[];
   onSearch: (event: { target: { value: SetStateAction<string> } }) => void;
 };
 
 export const ManageReferentialCustomerView = ({
-  data = [],
+  referentialCustomerList = [],
   onSearch,
 }: ManageReferentialCustomerViewProps) => {
   return (
@@ -40,7 +36,10 @@ export const ManageReferentialCustomerView = ({
         ></TextField>
       </Stack>
 
-      <ReferentialTable data={data} path="customers"></ReferentialTable>
+      <ReferentialTable
+        data={referentialCustomerList}
+        path="customers"
+      ></ReferentialTable>
     </>
   );
 };

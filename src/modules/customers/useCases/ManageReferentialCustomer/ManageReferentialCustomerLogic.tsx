@@ -6,11 +6,11 @@ import {
 
 type ManageReferentialCustomerLogicProps = Pick<
   ManageReferentialCustomerViewProps,
-  "data"
+  "referentialCustomerList"
 >;
 
 export const ManageReferentialCustomerLogic = ({
-  data,
+  referentialCustomerList,
 }: ManageReferentialCustomerLogicProps) => {
   const [search, setSearch] = useState("");
 
@@ -20,13 +20,13 @@ export const ManageReferentialCustomerLogic = ({
     setSearch(event.target.value);
   };
 
-  const filteredDataVM = data?.filter((item) =>
+  const filteredDataVM = referentialCustomerList?.filter((item) =>
     item.useCase.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
     <ManageReferentialCustomerView
-      data={filteredDataVM}
+      referentialCustomerList={filteredDataVM}
       onSearch={handleSearch}
     ></ManageReferentialCustomerView>
   );

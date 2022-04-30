@@ -1,9 +1,8 @@
 import { ColumnProps, Table } from "../../../../components/Tables";
-import { ReferentialViewModel } from "../../../../viewModels/referential";
 
 export type ReferentialTableViewProps = {
   columns: ColumnProps[];
-  data: ReferentialViewModel[];
+  data: any[];
 };
 
 export const ReferentialTableView = ({
