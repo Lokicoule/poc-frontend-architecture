@@ -1,6 +1,6 @@
 import { BaseCallbackOptions } from "../../../core/types/BaseCallbackOptions";
 import { CustomerViewModel } from "../domain/customers.model";
-import { customerMap } from "../mappers/customer.mapper";
+import { CustomerMap } from "../mappers/customer.mapper";
 import {
   GetCustomerQuery,
   useGetCustomerQuery,
@@ -20,7 +20,7 @@ export const useGetCustomerFacade = (
 
   const mapDtoToViewModel = (data: GetCustomerQuery | undefined) =>
     data?.getCustomer
-      ? customerMap.toViewModel(data?.getCustomer)
+      ? CustomerMap.toViewModel(data?.getCustomer)
       : CustomerViewModel.create({
           id: "",
           code: "",

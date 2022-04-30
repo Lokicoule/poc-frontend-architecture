@@ -4,7 +4,7 @@ import {
   useRemoveCustomersMutation,
 } from "../operations/customers.generated";
 
-export const useRemoveManyCustomersFacade = () => {
+export const useRemoveCustomerListFacade = () => {
   const [removeCustomers, { error, loading }] = useRemoveCustomersMutation({
     refetchQueries: ["GetCustomers"],
   });
@@ -21,5 +21,5 @@ export const useRemoveManyCustomersFacade = () => {
       onError: options?.onError,
     });
 
-  return { removeManyCustomers: { onRemove: handleRemove, error, loading } };
+  return { removeCustomerList: { onRemove: handleRemove, error, loading } };
 };

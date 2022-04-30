@@ -1,6 +1,6 @@
 import { BaseCallbackOptions } from "../../../core/types/BaseCallbackOptions";
 import { CreateCustomerViewModel } from "../domain/customers.model";
-import { createCustomerMap } from "../mappers/create-customer.mapper";
+import { CreateCustomerMap } from "../mappers/create-customer.mapper";
 import {
   CreateCustomerMutation,
   useCreateCustomerMutation,
@@ -36,7 +36,7 @@ export const useCreateCustomerFacade = () => {
   ) => {
     return createCustomer({
       variables: {
-        createCustomerInput: createCustomerMap.toDto(data),
+        createCustomerInput: CreateCustomerMap.toDto(data),
       },
       onCompleted: options?.onCompleted,
       onError: options?.onError,

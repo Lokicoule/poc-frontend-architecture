@@ -1,12 +1,12 @@
 import { BaseCallbackOptions } from "../../../core/types/BaseCallbackOptions";
 import { CustomerViewModel } from "../domain/customers.model";
-import { customerMap } from "../mappers/customer.mapper";
+import { CustomerMap } from "../mappers/customer.mapper";
 import {
   GetCustomersQuery,
   useGetCustomersQuery,
 } from "../operations/customers.generated";
 
-export const useGetCustomersFacade = (
+export const useGetCustomerListFacade = (
   options?: BaseCallbackOptions<GetCustomersQuery>
 ) => {
   const { data, loading, error } = useGetCustomersQuery({
@@ -17,7 +17,7 @@ export const useGetCustomersFacade = (
   const mapDtoToViewModel = (data: GetCustomersQuery | undefined) =>
     data?.getCustomers?.map((customer) =>
       customer
-        ? customerMap.toViewModel(customer)
+        ? CustomerMap.toViewModel(customer)
         : CustomerViewModel.create({
             id: "",
             code: "",
@@ -27,5 +27,5 @@ export const useGetCustomersFacade = (
             zipCode: "",
           })
     ) ?? [];
-  return { getCustomers: { data: mapDtoToViewModel(data), loading, error } };
+  return { getCustomerList: { data: mapDtoToViewModel(data), loading, error } };
 };

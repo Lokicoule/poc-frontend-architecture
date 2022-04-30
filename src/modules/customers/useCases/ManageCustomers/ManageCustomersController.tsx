@@ -1,20 +1,20 @@
 import { Loader } from "../../../../components/Loader";
-import { useGetCustomersFacade } from "../../hooks/useGetCustomersFacade";
-import { useRemoveManyCustomersFacade } from "../../hooks/useRemoveManyCustomersFacade";
+import { useGetCustomerListFacade } from "../../hooks/useGetCustomerListFacade";
+import { useRemoveCustomerListFacade } from "../../hooks/useRemoveCustomerListFacade";
 import { ManageCustomersLogic } from "./ManageCustomersLogic";
 
 export const ManageCustomersController = () => {
-  const { getCustomers } = useGetCustomersFacade();
-  const { removeManyCustomers } = useRemoveManyCustomersFacade();
+  const { getCustomerList } = useGetCustomerListFacade();
+  const { removeCustomerList } = useRemoveCustomerListFacade();
 
   const handleRemove = (ids: string[]) => {
-    return removeManyCustomers.onRemove(ids);
+    return removeCustomerList.onRemove(ids);
   };
 
-  if (getCustomers.loading) return <Loader></Loader>;
+  if (getCustomerList.loading) return <Loader></Loader>;
   return (
     <ManageCustomersLogic
-      data={getCustomers.data}
+      data={getCustomerList.data}
       onRemove={handleRemove}
     ></ManageCustomersLogic>
   );

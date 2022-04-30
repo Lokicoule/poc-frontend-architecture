@@ -1,14 +1,14 @@
 import { Loader } from "../../../../components/Loader/Loader";
-import { useGetAllReferentialCustomerFacade } from "../../hooks/useGetAllReferentialCustomerFacade";
+import { useGetReferentialCustomerListFacade } from "../../hooks/useGetReferentialCustomerListFacade";
 import { ManageReferentialCustomerLogic } from "./ManageReferentialCustomerLogic";
 
 export const ManageReferentialCustomerController = () => {
-  const { getAllReferentialCustomer } = useGetAllReferentialCustomerFacade();
+  const { getReferentialCustomerList } = useGetReferentialCustomerListFacade();
 
-  if (getAllReferentialCustomer.loading) return <Loader></Loader>;
+  if (getReferentialCustomerList.loading) return <Loader></Loader>;
   return (
     <ManageReferentialCustomerLogic
-      referentialCustomerList={getAllReferentialCustomer.data}
+      referentialCustomerList={getReferentialCustomerList.data}
     ></ManageReferentialCustomerLogic>
   );
 };

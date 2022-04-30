@@ -5,16 +5,16 @@ import {
   ParameterReferentialCustomer,
   ReferentialCustomer,
 } from "../dtos/customers.dto.generated";
-import { paramReferentialCustomerMap } from "./param-referential.mapper";
+import { ParamReferentialCustomerMap } from "./param-referential.mapper";
 
-export class referentialCustomerMap implements Mapper {
+export class ReferentialCustomerMap implements Mapper {
   public static toViewModel(
     dto: ReferentialCustomer
   ): ReferentialCustomerViewModel {
     return ReferentialCustomerViewModel.create({
       id: dto.id,
       useCase: dto.useCase,
-      parameters: referentialCustomerMap.parametersToViewModel(dto?.parameters),
+      parameters: ReferentialCustomerMap.parametersToViewModel(dto?.parameters),
     });
   }
 
@@ -33,7 +33,7 @@ export class referentialCustomerMap implements Mapper {
   ) {
     return (
       parameters?.map((param) =>
-        paramReferentialCustomerMap.toViewModel(param)
+        ParamReferentialCustomerMap.toViewModel(param)
       ) ?? []
     );
   }

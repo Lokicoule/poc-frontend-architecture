@@ -1,6 +1,6 @@
 import { BaseCallbackOptions } from "../../../core/types/BaseCallbackOptions";
 import { ReferentialCustomerViewModel } from "../domain/referential-customer.model";
-import { referentialCustomerMap } from "../mappers/referential-customer.mapper";
+import { ReferentialCustomerMap } from "../mappers/referential-customer.mapper";
 import {
   UpdateReferentialCustomerMutation,
   useUpdateReferentialCustomerMutation,
@@ -20,7 +20,7 @@ export const useUpdateReferentialCustomerFacade = () => {
     return updateReferentialCustomer({
       variables: {
         updateReferentialCustomerId: referentialCustomerId,
-        updateReferentialCustomerInput: referentialCustomerMap.toDto(data),
+        updateReferentialCustomerInput: ReferentialCustomerMap.toDto(data),
       },
       onCompleted: options?.onCompleted,
       onError: options?.onError,
