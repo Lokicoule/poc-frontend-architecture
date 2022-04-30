@@ -2,7 +2,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { InputAdornment, Stack, TextField } from "@mui/material";
 import { SetStateAction } from "react";
 import { ReferentialTable } from "../../../referential/components/ReferentialTable";
-import { ReferentialCustomerViewModel } from "../../domain/ReferentialCustomerViewModel";
+import { ReferentialCustomerViewModel } from "../../domain/referential-customer.model";
 
 export type ManageReferentialCustomerViewProps = {
   referentialCustomerList: ReferentialCustomerViewModel[];

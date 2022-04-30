@@ -3,7 +3,7 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import { Button, Grid, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
 import { FeatureLayout } from "../../../../layouts";
-import { CustomerViewModel } from "../../domain/CustomerViewModel";
+import { CustomerViewModel } from "../../domain/customers.model";
 
 export type ManageCustomerViewProps = {
   defaultValues: CustomerViewModel;

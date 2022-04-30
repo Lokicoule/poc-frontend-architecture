@@ -1,5 +1,5 @@
 import { Mapper } from "../../../core/mapper/Mapper";
-import { CreateCustomerViewModel } from "../domain/CreateCustomerViewModel";
+import { CreateCustomerViewModel } from "../domain/customers.model";
 import { CreateCustomerInput } from "../dtos/customers.dto.generated";
 
 export class createCustomerMap implements Mapper {

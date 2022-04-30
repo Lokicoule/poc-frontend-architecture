@@ -1,4 +1,4 @@
-import { CreateCustomerViewModel } from "../../domain/CreateCustomerViewModel";
+import { CreateCustomerViewModel } from "../../domain/customers.model";
 import { useCreateCustomerFacade } from "../../hooks/useCreateCustomerFacade";
 import { CreateCustomerLogic } from "./CreateCustomerLogic";
 

@@ -1,5 +1,5 @@
 import { BaseCallbackOptions } from "../../../core/types/BaseCallbackOptions";
-import { ReferentialCustomerViewModel } from "../domain/ReferentialCustomerViewModel";
+import { ReferentialCustomerViewModel } from "../domain/referential-customer.model";
 import { UseCaseReferentialEnum } from "../dtos/customers.dto.generated";
 import { referentialCustomerMap } from "../mappers/referential-customer.mapper";
 import {

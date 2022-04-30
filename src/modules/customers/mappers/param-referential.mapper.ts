@@ -1,5 +1,5 @@
 import { Mapper } from "../../../core/mapper/Mapper";
-import { ParamReferentialCustomerViewModel } from "../domain/ParamReferentialCustomerViewModel";
+import { ParamReferentialCustomerViewModel } from "../domain/parameter-referential.model";
 import { ParameterReferentialCustomer } from "../dtos/customers.dto.generated";
 
 export class paramReferentialCustomerMap implements Mapper {

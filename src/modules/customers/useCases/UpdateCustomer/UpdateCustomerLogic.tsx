@@ -4,8 +4,8 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as yup from "yup";
-import { CustomerViewModel } from "../../domain/CustomerViewModel";
-import { UpdateCustomerViewModel } from "../../domain/UpdateCustomerViewModel";
+import { CustomerViewModel } from "../../domain/customers.model";
+import { UpdateCustomerViewModel } from "../../domain/customers.model";
 import { UpdateCustomerMutation } from "../../operations/customers.generated";
 import {
   UpdateCustomerView,

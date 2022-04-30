@@ -1,11 +1,11 @@
 import { Maybe } from "graphql/jsutils/Maybe";
 import { Mapper } from "../../../core/mapper/Mapper";
-import { ReferentialCustomerViewModel } from "../domain/ReferentialCustomerViewModel";
+import { ReferentialCustomerViewModel } from "../domain/referential-customer.model";
 import {
   ParameterReferentialCustomer,
   ReferentialCustomer,
 } from "../dtos/customers.dto.generated";
-import { paramReferentialCustomerMap } from "./param-referential-customer.mapper";
+import { paramReferentialCustomerMap } from "./param-referential.mapper";
 
 export class referentialCustomerMap implements Mapper {
   public static toViewModel(

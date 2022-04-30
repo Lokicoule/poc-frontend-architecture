@@ -1,6 +1,6 @@
 import { BaseCallbackOptions } from "../../../core/types/BaseCallbackOptions";
-import { CustomerViewModel } from "../domain/CustomerViewModel";
-import { UpdateCustomerViewModel } from "../domain/UpdateCustomerViewModel";
+import { CustomerViewModel } from "../domain/customers.model";
+import { UpdateCustomerViewModel } from "../domain/customers.model";
 import { updateCustomerMap } from "../mappers/update-customer.mapper";
 import {
   UpdateCustomerMutation,

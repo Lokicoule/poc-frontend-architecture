@@ -1,6 +1,6 @@
 import { ValueObject } from "../../../core/domain/ValueObject";
-import { UseCaseReferentialEnum } from "../../../modules/customers/dtos/customers.dto.generated";
-import { ParamReferentialCustomerViewModel } from "./ParamReferentialCustomerViewModel";
+import { UseCaseReferentialEnum } from "../dtos/customers.dto.generated";
+import { ParamReferentialCustomerViewModel } from "./parameter-referential.model";
 
 export interface ReferentialCustomerViewModelProps {
   id: string;

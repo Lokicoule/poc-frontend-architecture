@@ -1,5 +1,21 @@
 import { ValueObject } from "../../../core/domain/ValueObject";
 
+export interface CreateCustomerViewModel {
+  code?: string;
+  naming: string;
+  zipCode: string;
+  city: string;
+  address: string;
+}
+
+export interface UpdateCustomerViewModel {
+  code: string;
+  naming: string;
+  zipCode: string;
+  city: string;
+  address: string;
+}
+
 export interface CustomerViewModelProps {
   address: string;
   city: string;

@@ -1,5 +1,5 @@
 import { Mapper } from "../../../core/mapper/Mapper";
-import { CustomerViewModel } from "../domain/CustomerViewModel";
+import { CustomerViewModel } from "../domain/customers.model";
 import { Customer } from "../dtos/customers.dto.generated";
 
 export class customerMap implements Mapper {

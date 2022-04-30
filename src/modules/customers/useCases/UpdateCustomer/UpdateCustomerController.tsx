@@ -1,6 +1,6 @@
 import { Loader } from "../../../../components/Loader";
 import { UpdateCustomerViewModel } from "../../../../viewModels/customers";
-import { CustomerViewModel } from "../../domain/CustomerViewModel";
+import { CustomerViewModel } from "../../domain/customers.model";
 import { useGetCustomerFacade } from "../../hooks/useGetCustomerFacade";
 import { useUpdateCustomerFacade } from "../../hooks/useUpdateCustomerFacade";
 import { UpdateCustomerLogic } from "./UpdateCustomerLogic";
