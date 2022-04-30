@@ -1,9 +1,11 @@
 import { FetchResult } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { isEqual } from "lodash";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import * as yup from "yup";
-import { UpdateCustomerViewModel } from "../../../../viewModels/customers";
+import { CustomerViewModel } from "../../domain/CustomerViewModel";
+import { UpdateCustomerViewModel } from "../../domain/UpdateCustomerViewModel";
 import { UpdateCustomerMutation } from "../../operations/customers.generated";
 import {
   UpdateCustomerView,
@@ -11,9 +13,10 @@ import {
 } from "./UpdateCustomerView";
 
 type UpdateCustomerLogicProps = Pick<UpdateCustomerViewProps, "errors"> & {
-  defaultValues: UpdateCustomerViewModel;
+  defaultValues: CustomerViewModel;
   onSubmit: (
-    data: UpdateCustomerViewModel
+    defaultCustomer: CustomerViewModel,
+    updatedCustomer: UpdateCustomerViewModel
   ) => Promise<
     FetchResult<
       UpdateCustomerMutation,
@@ -44,13 +47,29 @@ export const UpdateCustomerLogic = ({
   onSubmit,
   errors,
 }: UpdateCustomerLogicProps) => {
+  const navigate = useNavigate();
+
   const form = useForm<UpdateCustomerViewModel>({
-    defaultValues: defaultValues,
+    defaultValues: defaultValues.props,
     resolver: yupResolver(schema),
   });
 
-  const handleSubmit = async (data: UpdateCustomerViewModel) => {
-    if (!isEqual(defaultValues, data)) await onSubmit(data);
+  const handleSubmit = async (updatedCustomer: UpdateCustomerViewModel) => {
+    await onSubmit(defaultValues, updatedCustomer)
+      .then((result) => {
+        toast.success(
+          `${result.data?.updateCustomer.naming} a été modifié(e) avec succès.`
+        );
+        navigate(
+          `/backoffice/customers/view/${result.data?.updateCustomer.id}`
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error(
+          `La modification du client ${updatedCustomer.naming} a échouée.`
+        );
+      });
   };
 
   const handleReset = () => form.reset();

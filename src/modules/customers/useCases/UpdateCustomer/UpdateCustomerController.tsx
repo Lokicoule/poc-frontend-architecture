@@ -1,12 +1,8 @@
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import { Loader } from "../../../../components/Loader";
 import { UpdateCustomerViewModel } from "../../../../viewModels/customers";
-import {
-  useGetCustomerQuery,
-  useUpdateCustomerMutation,
-  GetCustomerQuery,
-} from "../../operations/customers.generated";
+import { CustomerViewModel } from "../../domain/CustomerViewModel";
+import { useGetCustomerFacade } from "../../hooks/useGetCustomerFacade";
+import { useUpdateCustomerFacade } from "../../hooks/useUpdateCustomerFacade";
 import { UpdateCustomerLogic } from "./UpdateCustomerLogic";
 
 type UpdateCustomerControllerProps = {
@@ -16,70 +12,18 @@ type UpdateCustomerControllerProps = {
 export const UpdateCustomerController = ({
   customerId,
 }: UpdateCustomerControllerProps) => {
-  const navigate = useNavigate();
-  const { data, loading } = useGetCustomerQuery({
-    variables: {
-      getCustomerId: customerId,
-    },
-  });
-  const [updateCustomer, { error }] = useUpdateCustomerMutation({
-    update(cache, { data: updatedCustomer }) {
-      cache.modify({
-        fields: {
-          getCustomer(existingCustomer, { toReference }) {
-            return updatedCustomer
-              ? toReference(updatedCustomer)
-              : existingCustomer;
-          },
-        },
-      });
-    },
-  });
+  const { customer, loading } = useGetCustomerFacade(customerId);
+  const { updateCustomer, error } = useUpdateCustomerFacade();
 
-  const mapViewModelToDto = (dataVM: UpdateCustomerViewModel) => {
-    return {
-      address: dataVM.address,
-      city: dataVM.city,
-      code: dataVM.code,
-      naming: dataVM.naming,
-      zipCode: dataVM.zipCode,
-    };
-  };
-
-  const mapDtoToViewModel = (
-    dataDto: GetCustomerQuery | undefined
-  ): UpdateCustomerViewModel => {
-    const customer = dataDto?.getCustomer;
-    return {
-      address: customer?.address || "",
-      city: customer?.city || "",
-      code: customer?.code || "",
-      naming: customer?.naming || "",
-      zipCode: customer?.zipCode || "",
-    };
-  };
-
-  const handleSubmit = (dataVM: UpdateCustomerViewModel) => {
-    return updateCustomer({
-      variables: {
-        updateCustomerId: customerId,
-        updateCustomerInput: mapViewModelToDto(dataVM),
-      },
-      onCompleted: ({ updateCustomer }) => {
-        toast.success(`${updateCustomer.naming} a été modifié(e) avec succès.`);
-        navigate(`/backoffice/customers/view/${updateCustomer.id}`);
-      },
-      onError: () =>
-        toast.error(
-          `La modification du client ${data?.getCustomer?.naming} a échouée.`
-        ),
-    });
-  };
+  const handleSubmit = (
+    defaultCustomer: CustomerViewModel,
+    updatedCustomer: UpdateCustomerViewModel
+  ) => updateCustomer(customerId, defaultCustomer, updatedCustomer);
 
   if (loading) return <Loader></Loader>;
   return (
     <UpdateCustomerLogic
-      defaultValues={mapDtoToViewModel(data)}
+      defaultValues={customer}
       onSubmit={handleSubmit}
       errors={error?.graphQLErrors}
     ></UpdateCustomerLogic>
