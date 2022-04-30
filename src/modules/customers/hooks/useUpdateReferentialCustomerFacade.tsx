@@ -4,7 +4,7 @@ import { referentialCustomerMap } from "../mappers/referential-customer.mapper";
 import {
   UpdateReferentialCustomerMutation,
   useUpdateReferentialCustomerMutation,
-} from "../operations/referentialCustomers.generated";
+} from "../operations/referential-customers.generated";
 
 export const useUpdateReferentialCustomerFacade = () => {
   const [updateReferentialCustomer, { error, loading }] =

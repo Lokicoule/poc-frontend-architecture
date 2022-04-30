@@ -5,7 +5,7 @@ import {
   GetReferentialCustomerQuery,
   UseCaseReferentialEnum,
   useGetReferentialCustomerQuery,
-} from "../operations/referentialCustomers.generated";
+} from "../operations/referential-customers.generated";
 
 export const useGetReferentialCustomerFacade = (
   referentialCustomerId: any,

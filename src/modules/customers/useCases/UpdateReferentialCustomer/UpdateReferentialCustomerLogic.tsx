@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { referentialSchema } from "../../../referential/components/ReferentialForm/ReferentialFormLogic";
 import { ReferentialCustomerViewModel } from "../../domain/referential-customer.model";
 import { ParameterReferentialEnum } from "../../dtos/customers.dto.generated";
-import { UpdateReferentialCustomerMutation } from "../../operations/referentialCustomers.generated";
+import { UpdateReferentialCustomerMutation } from "../../operations/referential-customers.generated";
 import {
   UpdateReferentialCustomerView,
   UpdateReferentialCustomerViewProps,

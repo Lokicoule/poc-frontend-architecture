@@ -5,7 +5,7 @@ import { referentialCustomerMap } from "../mappers/referential-customer.mapper";
 import {
   GetReferentialCustomersQuery,
   useGetReferentialCustomersQuery,
-} from "../operations/referentialCustomers.generated";
+} from "../operations/referential-customers.generated";
 
 export const useGetAllReferentialCustomerFacade = (
   options?: BaseCallbackOptions<GetReferentialCustomersQuery>
