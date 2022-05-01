@@ -4,7 +4,7 @@ import { ResponsiveLinkButton } from "../../../../components/ResponsiveButton";
 import {
   CustomersTableProps,
   CustomersTable,
-} from "../../components/CustomersTable";
+} from "./components/CustomersTable";
 import AddIcon from "@mui/icons-material/Add";
 import SearchIcon from "@mui/icons-material/Search";
 

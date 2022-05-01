@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { ColumnProps } from "../../../../components/Tables";
-import { CustomerViewModel } from "../../domain/customers.model";
+import { ColumnProps } from "../../../../../../components/Tables";
+import { CustomerViewModel } from "../../../../domain/customers.model";
 import {
   CustomersTableView,
   CustomersTableViewProps,
