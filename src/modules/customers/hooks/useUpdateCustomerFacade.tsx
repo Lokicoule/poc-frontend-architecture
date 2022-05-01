@@ -1,5 +1,5 @@
 import { BaseCallbackOptions } from "../../../core/types/BaseCallbackOptions";
-import { UpdateCustomerViewModel } from "../domain/customers.model";
+import { UpdateCustomerViewModelProps } from "../domain/customers.model";
 import { UpdateCustomerMap } from "../mappers/update-customer.mapper";
 import {
   UpdateCustomerMutation,
@@ -21,7 +21,7 @@ export const useUpdateCustomerFacade = () => {
 
   const handleUpdate = (
     customerId: any,
-    data: UpdateCustomerViewModel,
+    data: UpdateCustomerViewModelProps,
     options?: BaseCallbackOptions<UpdateCustomerMutation>
   ) => {
     return updateCustomer({

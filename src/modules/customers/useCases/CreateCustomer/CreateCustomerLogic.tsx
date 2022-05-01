@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as yup from "yup";
-import { CreateCustomerViewModel } from "../../domain/customers.model";
+import { CreateCustomerViewModelProps } from "../../domain/customers.model";
 import { CreateCustomerMutation } from "../../operations/customers.generated";
 import {
   CreateCustomerView,
@@ -12,9 +12,9 @@ import {
 } from "./CreateCustomerView";
 
 type CreateCustomerLogicProps = Pick<CreateCustomerViewProps, "errors"> & {
-  defaultValues: CreateCustomerViewModel;
+  defaultValues: CreateCustomerViewModelProps;
   onSubmit: (
-    data: CreateCustomerViewModel
+    data: CreateCustomerViewModelProps
   ) => Promise<
     FetchResult<
       CreateCustomerMutation,
@@ -42,13 +42,13 @@ export const CreateCustomerLogic = ({
   errors,
 }: CreateCustomerLogicProps) => {
   const navigate = useNavigate();
-  const form = useForm<CreateCustomerViewModel>({
+  const form = useForm<CreateCustomerViewModelProps>({
     defaultValues: defaultValues,
     resolver: yupResolver(schema),
   });
 
   const handleReset = () => form.reset();
-  const handleSubmit = async (data: CreateCustomerViewModel) => {
+  const handleSubmit = async (data: CreateCustomerViewModelProps) => {
     await onSubmit(data)
       .then((result) => {
         toast.success(

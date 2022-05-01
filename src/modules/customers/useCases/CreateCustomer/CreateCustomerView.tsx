@@ -4,12 +4,12 @@ import { FeatureLayout } from "../../../../layouts";
 import { UseFormReturn } from "react-hook-form";
 import { Form } from "../../../../components/Form";
 import { FormInputText } from "../../../../components/Form/FormInput";
-import { CreateCustomerViewModel } from "../../domain/customers.model";
+import { CreateCustomerViewModelProps } from "../../domain/customers.model";
 
 export type CreateCustomerViewProps = {
-  form: UseFormReturn<CreateCustomerViewModel>;
+  form: UseFormReturn<CreateCustomerViewModelProps>;
   errors: GraphQLErrors | undefined;
-  onSubmit: (data: CreateCustomerViewModel) => Promise<void>;
+  onSubmit: (data: CreateCustomerViewModelProps) => Promise<void>;
   onReset: () => void;
 };
 

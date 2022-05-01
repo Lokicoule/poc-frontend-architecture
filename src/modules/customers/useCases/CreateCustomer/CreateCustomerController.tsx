@@ -1,4 +1,4 @@
-import { CreateCustomerViewModel } from "../../domain/customers.model";
+import { CreateCustomerViewModelProps } from "../../domain/customers.model";
 import { useCreateCustomerFacade } from "../../hooks/useCreateCustomerFacade";
 import { CreateCustomerLogic } from "./CreateCustomerLogic";
 
@@ -8,12 +8,12 @@ const defaultValues = {
   zipCode: "",
   city: "",
   address: "",
-} as Readonly<CreateCustomerViewModel>;
+} as Readonly<CreateCustomerViewModelProps>;
 
 export const CreateCustomerController = () => {
   const { createCustomer } = useCreateCustomerFacade();
 
-  const handleSubmit = (data: CreateCustomerViewModel) => {
+  const handleSubmit = (data: CreateCustomerViewModelProps) => {
     return createCustomer.onCreate(data);
   };
 

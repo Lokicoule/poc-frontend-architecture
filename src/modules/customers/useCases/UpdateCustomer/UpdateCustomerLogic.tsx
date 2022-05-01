@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as yup from "yup";
 import { CustomerViewModel } from "../../domain/customers.model";
-import { UpdateCustomerViewModel } from "../../domain/customers.model";
+import { UpdateCustomerViewModelProps } from "../../domain/customers.model";
 import { UpdateCustomerMutation } from "../../operations/customers.generated";
 import {
   UpdateCustomerView,
@@ -15,7 +15,7 @@ import {
 type UpdateCustomerLogicProps = Pick<UpdateCustomerViewProps, "errors"> & {
   defaultValues: CustomerViewModel;
   onSubmit: (
-    updatedCustomer: UpdateCustomerViewModel
+    updatedCustomer: UpdateCustomerViewModelProps
   ) => Promise<
     FetchResult<
       UpdateCustomerMutation,
@@ -43,7 +43,7 @@ const schema = yup.object().shape({
 
 const areEqual = (
   defaultValues: CustomerViewModel,
-  updatedCustomer: UpdateCustomerViewModel
+  updatedCustomer: UpdateCustomerViewModelProps
 ) => {
   const customer = CustomerViewModel.create({
     id: defaultValues.id,
@@ -59,12 +59,14 @@ export const UpdateCustomerLogic = ({
 }: UpdateCustomerLogicProps) => {
   const navigate = useNavigate();
 
-  const form = useForm<UpdateCustomerViewModel>({
+  const form = useForm<UpdateCustomerViewModelProps>({
     defaultValues: defaultValues.props,
     resolver: yupResolver(schema),
   });
 
-  const handleSubmit = async (updatedCustomer: UpdateCustomerViewModel) => {
+  const handleSubmit = async (
+    updatedCustomer: UpdateCustomerViewModelProps
+  ) => {
     if (areEqual(defaultValues, updatedCustomer)) {
       toast.info("Nothing to save");
       return;

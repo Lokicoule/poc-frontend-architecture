@@ -9,12 +9,12 @@ export interface CustomerViewModelProps {
   zipCode: string;
 }
 
-export interface UpdateCustomerViewModel
+export interface UpdateCustomerViewModelProps
   extends Omit<CustomerViewModelProps, "id"> {}
 
-export interface CreateCustomerViewModel
-  extends Omit<UpdateCustomerViewModel, "code">,
-    Partial<Pick<UpdateCustomerViewModel, "code">> {}
+export interface CreateCustomerViewModelProps
+  extends Omit<UpdateCustomerViewModelProps, "code">,
+    Partial<Pick<UpdateCustomerViewModelProps, "code">> {}
 
 export class CustomerViewModel extends ValueObject<CustomerViewModelProps> {
   get id() {

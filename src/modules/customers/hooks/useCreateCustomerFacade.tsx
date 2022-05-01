@@ -1,5 +1,5 @@
 import { BaseCallbackOptions } from "../../../core/types/BaseCallbackOptions";
-import { CreateCustomerViewModel } from "../domain/customers.model";
+import { CreateCustomerViewModelProps } from "../domain/customers.model";
 import { CreateCustomerMap } from "../mappers/create-customer.mapper";
 import {
   CreateCustomerMutation,
@@ -31,7 +31,7 @@ export const useCreateCustomerFacade = () => {
   });
 
   const handleCreate = (
-    data: CreateCustomerViewModel,
+    data: CreateCustomerViewModelProps,
     options?: BaseCallbackOptions<CreateCustomerMutation>
   ) => {
     return createCustomer({
