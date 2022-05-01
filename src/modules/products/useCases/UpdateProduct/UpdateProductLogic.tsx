@@ -1,14 +1,18 @@
 import { FetchResult } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { isEqual } from "lodash";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import * as yup from "yup";
-import { UpdateProductViewModel } from "../../../../viewModels/products";
+import {
+  ProductViewModel,
+  UpdateProductViewModel,
+} from "../../domain/products.model";
 import { UpdateProductMutation } from "../../operations/products.generated";
 import { UpdateProductView, UpdateProductViewProps } from "./UpdateProductView";
 
 type UpdateProductLogicProps = Pick<UpdateProductViewProps, "errors"> & {
-  defaultValues: UpdateProductViewModel;
+  defaultValues: ProductViewModel;
   onSubmit: (
     data: UpdateProductViewModel
   ) => Promise<
@@ -24,18 +28,47 @@ const schema = yup.object().shape({
   label: yup.string().required("Le label produit est requis."),
 });
 
+const areEqual = (
+  defaultValues: ProductViewModel,
+  updatedProduct: UpdateProductViewModel
+) => {
+  const product = ProductViewModel.create({
+    id: defaultValues.id,
+    ...updatedProduct,
+  });
+  return defaultValues.equals(product);
+};
+
 export const UpdateProductLogic = ({
   defaultValues,
   onSubmit,
   errors,
 }: UpdateProductLogicProps) => {
+  const navigate = useNavigate();
+
   const form = useForm<UpdateProductViewModel>({
-    defaultValues: defaultValues,
+    defaultValues: defaultValues.props,
     resolver: yupResolver(schema),
   });
 
-  const handleSubmit = async (data: UpdateProductViewModel) => {
-    if (!isEqual(defaultValues, data)) await onSubmit(data);
+  const handleSubmit = async (updatedProduct: UpdateProductViewModel) => {
+    if (areEqual(defaultValues, updatedProduct)) {
+      toast.info("Nothing to save");
+      return;
+    }
+    await onSubmit(updatedProduct)
+      .then((result) => {
+        toast.success(
+          `${result.data?.updateProduct.label} a été modifié avec succès.`
+        );
+        navigate(`/backoffice/products/view/${result.data?.updateProduct.id}`);
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error(
+          `La modification du produit ${updatedProduct.label} a échouée.`
+        );
+      });
   };
 
   const handleReset = () => form.reset();

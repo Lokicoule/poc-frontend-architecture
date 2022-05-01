@@ -1,6 +1,8 @@
 import { FetchResult } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import * as yup from "yup";
 import { CreateProductViewModel } from "../../../../viewModels/products";
 import { CreateProductMutation } from "../../operations/products.generated";
@@ -24,6 +26,8 @@ export const CreateProductLogic = ({
   onSubmit,
   errors,
 }: CreateProductLogicProps) => {
+  const navigate = useNavigate();
+
   const form = useForm<CreateProductViewModel>({
     defaultValues: defaultValues,
     resolver: yupResolver(schema),
@@ -31,7 +35,16 @@ export const CreateProductLogic = ({
 
   const handleReset = () => form.reset();
   const handleSubmit = async (data: CreateProductViewModel) => {
-    await onSubmit(data);
+    await onSubmit(data)
+      .then((result) => {
+        toast.success(
+          `${result.data?.createProduct.label} a été ajouté avec succès.`
+        );
+        navigate(`/backoffice/products/view/${result.data?.createProduct.id}`);
+      })
+      .catch((error) =>
+        toast.error(`L'ajout du produit ${data.label} a échoué.`)
+      );
   };
 
   return (

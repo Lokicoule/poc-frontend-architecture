@@ -1,9 +1,10 @@
 import { FetchResult } from "@apollo/client";
-import { isEqual } from "lodash";
-import { ParameterReferentialEnum } from "../../dtos/products.dto.generated";
-import { UpdateReferentialProductMutation } from "../../operations/referentialProducts.generated";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { referentialSchema } from "../../../referential/components/ReferentialForm/ReferentialFormLogic";
-import { ReferentialProductViewModel } from "../../../../viewModels/referential/products/ReferentialProductViewModel";
+import { ReferentialProductViewModel } from "../../domain/referential-product.model";
+import { ParameterReferentialEnum } from "../../dtos/products.dto.generated";
+import { UpdateReferentialProductMutation } from "../../operations/referential-products.generated";
 import {
   UpdateReferentialProductView,
   UpdateReferentialProductViewProps,
@@ -30,8 +31,25 @@ export const UpdateReferentialProductLogic = ({
   onSubmit,
   errors,
 }: UpdateReferentialProductLogicProps) => {
+  const navigate = useNavigate();
+
   const handleSubmit = async (data: ReferentialProductViewModel) => {
-    if (!isEqual(defaultValues, data)) await onSubmit(data);
+    if (defaultValues.equals(data)) {
+      toast.info("Nothing to save");
+      return;
+    }
+    await onSubmit(data)
+      .then((result) => {
+        toast.success(
+          `${result.data?.updateReferentialProduct.useCase} a été modifié(e) avec succès.`
+        );
+        navigate(`/backoffice/referential/products`);
+      })
+      .catch((error) =>
+        toast.error(
+          `La modification du référentiel produit ${defaultValues.useCase} a échouée.`
+        )
+      );
   };
 
   return (

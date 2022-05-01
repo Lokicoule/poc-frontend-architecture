@@ -4,7 +4,7 @@ import { UseFormReturn } from "react-hook-form";
 import { Form } from "../../../../components/Form";
 import { FormInputText } from "../../../../components/Form/FormInput";
 import { FeatureLayout } from "../../../../layouts";
-import { UpdateProductViewModel } from "../../../../viewModels/products";
+import { UpdateProductViewModel } from "../../domain/products.model";
 
 export type UpdateProductViewProps = {
   form: UseFormReturn<UpdateProductViewModel>;

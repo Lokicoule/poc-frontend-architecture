@@ -6,11 +6,11 @@ import {
 
 type ManageReferentialProductsLogicProps = Pick<
   ManageReferentialProductViewProps,
-  "data"
+  "referentialProductList"
 >;
 
 export const ManageReferentialProductLogic = ({
-  data,
+  referentialProductList,
 }: ManageReferentialProductsLogicProps) => {
   const [search, setSearch] = useState("");
 
@@ -20,13 +20,13 @@ export const ManageReferentialProductLogic = ({
     setSearch(event.target.value);
   };
 
-  const filteredDataVM = data?.filter((item) =>
+  const filteredDataVM = referentialProductList?.filter((item) =>
     item.useCase.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
     <ManageReferentialProductView
-      data={filteredDataVM}
+      referentialProductList={filteredDataVM}
       onSearch={handleSearch}
     ></ManageReferentialProductView>
   );

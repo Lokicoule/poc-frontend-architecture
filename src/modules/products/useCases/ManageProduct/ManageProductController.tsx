@@ -1,13 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import { Loader } from "../../../../components/Loader";
-import { ProductViewModel } from "../../../../viewModels/products";
-import {
-  useRemoveProductMutation,
-  useGetProductQuery,
-  GetProductQuery,
-} from "../../operations/products.generated";
-
+import { useGetProductFacade } from "../../hooks/useGetProductFacade";
+import { useRemoveProductFacade } from "../../hooks/useRemoveProductFacade";
 import { ManageProductLogic } from "./ManageProductLogic";
 
 type ManageProductControllerProps = {
@@ -18,54 +12,17 @@ export const ManageProductController = ({
   productId = "",
 }: ManageProductControllerProps) => {
   const navigate = useNavigate();
-  const [removeProduct] = useRemoveProductMutation({
-    update(cache, { data: removeProductData }) {
-      cache.modify({
-        fields: {
-          getProducts(existingProductsRef, { readField }) {
-            return existingProductsRef.filter(
-              (ProductRef: any) =>
-                removeProductData?.removeProduct.id !==
-                readField("id", ProductRef)
-            );
-          },
-        },
-      });
-    },
-  });
-  const { data, loading } = useGetProductQuery({
-    variables: {
-      getProductId: productId,
-    },
-    onError: () => navigate("/backoffice/products"),
-  });
+  const { getProduct } = useGetProductFacade(productId);
+  const { removeProduct } = useRemoveProductFacade();
 
-  const mapDtoToViewModel = (
-    dataDto: GetProductQuery | undefined
-  ): Readonly<ProductViewModel> => {
-    const product = dataDto?.getProduct;
-    return {
-      code: product?.code || "",
-      label: product?.label || "",
-      id: productId,
-    };
-  };
-  const handleRemove = (id: string) =>
-    removeProduct({
-      variables: {
-        removeProductId: id,
-      },
-      onCompleted: () => {
-        toast.success(`${data?.getProduct?.label} a été supprimé avec succès.`);
-        navigate("/backoffice/products");
-      },
-    });
+  const handleRemove = (id: string) => removeProduct.onRemove(id);
 
-  if (loading) return <Loader></Loader>;
+  if (getProduct.loading) return <Loader></Loader>;
+  if (getProduct.error) navigate("/backoffice/customers");
 
   return (
     <ManageProductLogic
-      defaultValues={mapDtoToViewModel(data)}
+      defaultValues={getProduct.data}
       onRemove={handleRemove}
     ></ManageProductLogic>
   );
