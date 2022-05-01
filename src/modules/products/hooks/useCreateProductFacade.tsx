@@ -1,5 +1,5 @@
 import { BaseCallbackOptions } from "../../../core/types/BaseCallbackOptions";
-import { CreateProductViewModel } from "../domain/products.model";
+import { CreateProductViewModelProps } from "../domain/products.model";
 import { CreateProductMap } from "../mappers/create-product.mapper";
 import {
   CreateProductMutation,
@@ -29,7 +29,7 @@ export const useCreateProductFacade = () => {
   });
 
   const handleCreate = (
-    data: CreateProductViewModel,
+    data: CreateProductViewModelProps,
     options?: BaseCallbackOptions<CreateProductMutation>
   ) => {
     return createProduct({

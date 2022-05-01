@@ -6,12 +6,12 @@ export interface ProductViewModelProps {
   label: string;
 }
 
-export interface UpdateProductViewModel
+export interface UpdateProductViewModelProps
   extends Omit<ProductViewModelProps, "id"> {}
 
-export interface CreateProductViewModel
-  extends Omit<UpdateProductViewModel, "code">,
-    Partial<Pick<UpdateProductViewModel, "code">> {}
+export interface CreateProductViewModelProps
+  extends Omit<UpdateProductViewModelProps, "code">,
+    Partial<Pick<UpdateProductViewModelProps, "code">> {}
 
 export class ProductViewModel extends ValueObject<ProductViewModelProps> {
   get id() {

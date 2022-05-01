@@ -1,16 +1,16 @@
-import { CreateProductViewModel } from "../../domain/products.model";
+import { CreateProductViewModelProps } from "../../domain/products.model";
 import { useCreateProductFacade } from "../../hooks/useCreateProductFacade";
 import { CreateProductLogic } from "./CreateProductLogic";
 
 const defaultValues = {
   code: "",
   label: "",
-} as Readonly<CreateProductViewModel>;
+} as Readonly<CreateProductViewModelProps>;
 
 export const CreateProductController = () => {
   const { createProduct } = useCreateProductFacade();
 
-  const handleSubmit = (data: CreateProductViewModel) => {
+  const handleSubmit = (data: CreateProductViewModelProps) => {
     return createProduct.onCreate(data);
   };
 

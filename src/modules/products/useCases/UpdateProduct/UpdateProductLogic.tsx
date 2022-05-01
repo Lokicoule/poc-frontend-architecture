@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import * as yup from "yup";
 import {
   ProductViewModel,
-  UpdateProductViewModel,
+  UpdateProductViewModelProps,
 } from "../../domain/products.model";
 import { UpdateProductMutation } from "../../operations/products.generated";
 import { UpdateProductView, UpdateProductViewProps } from "./UpdateProductView";
@@ -14,7 +14,7 @@ import { UpdateProductView, UpdateProductViewProps } from "./UpdateProductView";
 type UpdateProductLogicProps = Pick<UpdateProductViewProps, "errors"> & {
   defaultValues: ProductViewModel;
   onSubmit: (
-    data: UpdateProductViewModel
+    data: UpdateProductViewModelProps
   ) => Promise<
     FetchResult<UpdateProductMutation, Record<string, any>, Record<string, any>>
   >;
@@ -30,7 +30,7 @@ const schema = yup.object().shape({
 
 const areEqual = (
   defaultValues: ProductViewModel,
-  updatedProduct: UpdateProductViewModel
+  updatedProduct: UpdateProductViewModelProps
 ) => {
   const product = ProductViewModel.create({
     id: defaultValues.id,
@@ -46,12 +46,12 @@ export const UpdateProductLogic = ({
 }: UpdateProductLogicProps) => {
   const navigate = useNavigate();
 
-  const form = useForm<UpdateProductViewModel>({
+  const form = useForm<UpdateProductViewModelProps>({
     defaultValues: defaultValues.props,
     resolver: yupResolver(schema),
   });
 
-  const handleSubmit = async (updatedProduct: UpdateProductViewModel) => {
+  const handleSubmit = async (updatedProduct: UpdateProductViewModelProps) => {
     if (areEqual(defaultValues, updatedProduct)) {
       toast.info("Nothing to save");
       return;

@@ -1,5 +1,5 @@
 import { BaseCallbackOptions } from "../../../core/types/BaseCallbackOptions";
-import { UpdateProductViewModel } from "../domain/products.model";
+import { UpdateProductViewModelProps } from "../domain/products.model";
 import { UpdateProductMap } from "../mappers/update-product.mapper";
 import {
   UpdateProductMutation,
@@ -21,7 +21,7 @@ export const useUpdateProductFacade = () => {
 
   const handleUpdate = (
     productId: any,
-    data: UpdateProductViewModel,
+    data: UpdateProductViewModelProps,
     options?: BaseCallbackOptions<UpdateProductMutation>
   ) => {
     return updateProduct({
