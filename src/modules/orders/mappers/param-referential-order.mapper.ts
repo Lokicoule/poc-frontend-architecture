@@ -1,5 +1,5 @@
 import { Mapper } from "../../../core/mapper/Mapper";
-import { ParamReferentialOrderViewModel } from "../domain/parameter-referential.model";
+import { ParamReferentialOrderViewModel } from "../domain/parameter-referential-order.model";
 import { ParameterReferentialOrder } from "../dtos/orders.dto.generated";
 
 export class ParamReferentialOrderMap implements Mapper {
@@ -11,15 +11,5 @@ export class ParamReferentialOrderMap implements Mapper {
       key: dto.key,
       value: dto.value,
     });
-  }
-
-  public static toDto(
-    entity: ParamReferentialOrderViewModel
-  ): ParameterReferentialOrder {
-    return {
-      id: entity.id.toString(),
-      value: entity.value.toString(),
-      key: entity.key,
-    };
   }
 }

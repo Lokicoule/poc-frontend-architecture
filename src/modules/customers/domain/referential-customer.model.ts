@@ -1,31 +1,22 @@
-import { ValueObject } from "../../../core/domain/ValueObject";
-import { ReferentialViewModelProps } from "../../referential/domain/referential.type";
+import {
+  ReferentialViewModel,
+  ReferentialViewModelProps,
+} from "../../referential/domain/referential.model";
 import { UseCaseReferentialEnum } from "../dtos/customers.dto.generated";
-import { ParamReferentialCustomerViewModel } from "./parameter-referential.model";
+import { ParamReferentialCustomerViewModelProps } from "./parameter-referential-customer.model";
 
-export class ReferentialCustomerViewModel extends ValueObject<
-  ReferentialViewModelProps<
+export interface ReferentialCustomerViewModelProps
+  extends ReferentialViewModelProps<
     UseCaseReferentialEnum,
-    ParamReferentialCustomerViewModel
-  >
+    ParamReferentialCustomerViewModelProps
+  > {}
+
+export class ReferentialCustomerViewModel extends ReferentialViewModel<
+  UseCaseReferentialEnum,
+  ParamReferentialCustomerViewModelProps
 > {
-  get id() {
-    return this.props.id;
-  }
-
-  get useCase() {
-    return this.props.useCase;
-  }
-
-  get parameters() {
-    return this.props.parameters;
-  }
-
   public static create(
-    props: ReferentialViewModelProps<
-      UseCaseReferentialEnum,
-      ParamReferentialCustomerViewModel
-    >
+    props: ReferentialCustomerViewModelProps
   ): ReferentialCustomerViewModel {
     return new ReferentialCustomerViewModel(props);
   }

@@ -1,18 +1,17 @@
 import { Button, Grid } from "@mui/material";
-import { ColumnProps, Table } from "../../../../../components/Tables";
-import { ReferentialParamsViewModel } from "../../../../../viewModels/referential";
+import { ColumnProps, Table } from "../../../../../../components/Tables";
 
-export type ReferentialParamsTableFormViewProps = {
+export type ReferentialCustomerTableFormViewProps = {
   columns: ColumnProps[];
-  data: Partial<ReferentialParamsViewModel>[];
+  fields: Record<"id", string>[];
   onAppend: () => void;
 };
 
-export const ReferentialParamsTableFormView = ({
+export const ReferentialCustomerTableFormView = ({
   columns,
-  data,
+  fields,
   onAppend,
-}: ReferentialParamsTableFormViewProps) => {
+}: ReferentialCustomerTableFormViewProps) => {
   return (
     <>
       <Grid
@@ -31,7 +30,7 @@ export const ReferentialParamsTableFormView = ({
           </Button>
         </Grid>
       </Grid>
-      <Table size="small" columns={columns} data={data}></Table>
+      <Table size="small" columns={columns} data={fields}></Table>
     </>
   );
 };

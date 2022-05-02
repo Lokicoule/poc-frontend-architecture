@@ -1,9 +1,7 @@
 import { FetchResult } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { referentialSchema } from "../../../referential/components/ReferentialForm/ReferentialFormLogic";
 import { ReferentialCustomerViewModel } from "../../domain/referential-customer.model";
-import { ParameterReferentialEnum } from "../../dtos/customers.dto.generated";
 import { UpdateReferentialCustomerMutation } from "../../operations/referential-customers.generated";
 import {
   UpdateReferentialCustomerView,
@@ -47,7 +45,7 @@ export const UpdateReferentialCustomerLogic = ({
       })
       .catch((error) =>
         toast.error(
-          `La modification du référentiel client ${defaultValues.useCase} a échouée.`
+          `Le paramètrage du gestionnaire de commande ${defaultValues.useCase} a échoué.`
         )
       );
   };
@@ -57,8 +55,6 @@ export const UpdateReferentialCustomerLogic = ({
       onSubmit={handleSubmit}
       errors={errors}
       defaultValues={defaultValues}
-      schema={referentialSchema(ParameterReferentialEnum)}
-      parameterReferentialEnum={ParameterReferentialEnum}
     ></UpdateReferentialCustomerView>
   );
 };

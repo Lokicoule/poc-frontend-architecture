@@ -13,11 +13,13 @@ export const useUpdateReferentialOrderFacade = () => {
     });
 
   const handleUpdate = (
+    updateReferentialOrderId: string,
     data: ReferentialOrderViewModel,
     options?: BaseCallbackOptions<UpdateReferentialOrderMutation>
   ) => {
     return updateReferentialOrder({
       variables: {
+        updateReferentialOrderId,
         updateReferentialOrderInput: UpdateReferentialOrderMap.toDto(data),
       },
       onCompleted: options?.onCompleted,

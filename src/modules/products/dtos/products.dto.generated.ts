@@ -14,13 +14,18 @@ export type Scalars = {
   DateTime: any;
 };
 
+export type CreateParameterReferentialProductInput = {
+  key: ParameterReferentialEnum;
+  value: Scalars['String'];
+};
+
 export type CreateProductInput = {
   code?: InputMaybe<Scalars['String']>;
   label: Scalars['String'];
 };
 
 export type CreateReferentialProductInput = {
-  parameters: Array<ParameterReferentialProductInput>;
+  parameters: Array<CreateParameterReferentialProductInput>;
   useCase: UseCaseReferentialEnum;
 };
 
@@ -93,11 +98,6 @@ export type ParameterReferentialProduct = {
   value: Scalars['String'];
 };
 
-export type ParameterReferentialProductInput = {
-  key: ParameterReferentialEnum;
-  value: Scalars['String'];
-};
-
 export type Product = {
   __typename?: 'Product';
   code: Scalars['String'];
@@ -140,14 +140,19 @@ export type ReferentialProductParametersArgs = {
   populate: Scalars['Boolean'];
 };
 
+export type UpdateParameterReferentialProductInput = {
+  key?: InputMaybe<ParameterReferentialEnum>;
+  value?: InputMaybe<Scalars['String']>;
+};
+
 export type UpdateProductInput = {
   code?: InputMaybe<Scalars['String']>;
   label?: InputMaybe<Scalars['String']>;
 };
 
 export type UpdateReferentialProductInput = {
-  parameters?: InputMaybe<Array<ParameterReferentialProductInput>>;
-  useCase?: InputMaybe<UseCaseReferentialEnum>;
+  parameters: Array<UpdateParameterReferentialProductInput>;
+  useCase: UseCaseReferentialEnum;
 };
 
 export enum UseCaseReferentialEnum {

@@ -2,17 +2,16 @@ import { Mapper } from "../../../core/mapper/Mapper";
 import {
   ParamReferentialOrderViewModel,
   ParamReferentialOrderViewModelProps,
-} from "../domain/parameter-referential.model";
+} from "../domain/parameter-referential-order.model";
 import { ReferentialOrderViewModelProps } from "../domain/referential-order.model";
 import { UpdateReferentialOrderInput } from "../dtos/orders.dto.generated";
-import { ParamReferentialOrderMap } from "./param-referential.mapper";
+import { UpdateParamReferentialOrderMap } from "./update-param-referential-order.mapper";
 
 export class UpdateReferentialOrderMap implements Mapper {
   public static toDto(
     entity: ReferentialOrderViewModelProps
   ): UpdateReferentialOrderInput {
     return {
-      id: entity.id.toString(),
       useCase: entity.useCase,
       parameters: UpdateReferentialOrderMap.parametersToDto(entity.parameters),
     };
@@ -22,7 +21,7 @@ export class UpdateReferentialOrderMap implements Mapper {
     parameters: ParamReferentialOrderViewModelProps[]
   ) {
     return parameters.map((param) =>
-      ParamReferentialOrderMap.toDto(
+      UpdateParamReferentialOrderMap.toDto(
         ParamReferentialOrderViewModel.create(param)
       )
     );

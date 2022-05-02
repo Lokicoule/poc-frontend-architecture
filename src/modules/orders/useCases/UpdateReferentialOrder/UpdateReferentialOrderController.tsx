@@ -16,7 +16,7 @@ export const UpdateReferentialOrderController = ({
   const { updateReferentialOrder } = useUpdateReferentialOrderFacade();
 
   const handleSubmit = (data: ReferentialOrderViewModel) =>
-    updateReferentialOrder.onUpdate(data);
+    updateReferentialOrder.onUpdate(referentialOrderId, data);
 
   if (getReferentialOrder.loading) return <Loader></Loader>;
   return (

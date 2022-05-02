@@ -82,6 +82,7 @@ export type MutationUpdateOrderArgs = {
 
 
 export type MutationUpdateReferentialOrderArgs = {
+  id: Scalars['String'];
   updateReferentialOrderInput: UpdateReferentialOrderInput;
 };
 
@@ -202,13 +203,11 @@ export type UpdateOrderInput = {
 };
 
 export type UpdateParameterReferentialOrderInput = {
-  id: Scalars['ID'];
   key?: InputMaybe<ParameterReferentialEnum>;
   value?: InputMaybe<Scalars['String']>;
 };
 
 export type UpdateReferentialOrderInput = {
-  id: Scalars['ID'];
   parameters: Array<UpdateParameterReferentialOrderInput>;
   useCase: UseCaseReferentialEnum;
 };

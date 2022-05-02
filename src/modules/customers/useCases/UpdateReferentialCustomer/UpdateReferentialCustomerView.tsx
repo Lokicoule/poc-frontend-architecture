@@ -1,27 +1,23 @@
-import {
-  ReferentialFormProps,
-  ReferentialForm,
-} from "../../../referential/components/ReferentialForm";
 import { FeatureLayout } from "../../../../layouts";
+import {
+  ReferentialCustomerForm,
+  ReferentialCustomerFormProps,
+} from "./components/ReferentialCustomerForm";
 
-export type UpdateReferentialCustomerViewProps = ReferentialFormProps;
+export type UpdateReferentialCustomerViewProps = ReferentialCustomerFormProps;
 
 export const UpdateReferentialCustomerView = ({
+  defaultValues,
   onSubmit,
   errors,
-  defaultValues,
-  parameterReferentialEnum,
-  schema,
 }: UpdateReferentialCustomerViewProps) => {
   return (
-    <FeatureLayout title="Formulaire référentiel client">
-      <ReferentialForm
+    <FeatureLayout title="Formulaire référentiel commande">
+      <ReferentialCustomerForm
         errors={errors}
         onSubmit={onSubmit}
         defaultValues={defaultValues}
-        schema={schema}
-        parameterReferentialEnum={parameterReferentialEnum}
-      ></ReferentialForm>
+      ></ReferentialCustomerForm>
     </FeatureLayout>
   );
 };

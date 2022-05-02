@@ -1,27 +1,23 @@
 import { FeatureLayout } from "../../../../layouts";
 import {
-  ReferentialForm,
-  ReferentialFormProps,
-} from "../../../referential/components/ReferentialForm";
+  ReferentialProductForm,
+  ReferentialProductFormProps,
+} from "./components/ReferentialProductForm";
 
-export type UpdateReferentialProductViewProps = ReferentialFormProps;
+export type UpdateReferentialProductViewProps = ReferentialProductFormProps;
 
 export const UpdateReferentialProductView = ({
   defaultValues,
-  schema,
-  parameterReferentialEnum,
   onSubmit,
   errors,
 }: UpdateReferentialProductViewProps) => {
   return (
-    <FeatureLayout title="Formulaire référentiel produit">
-      <ReferentialForm
+    <FeatureLayout title="Formulaire référentiel commande">
+      <ReferentialProductForm
         errors={errors}
         onSubmit={onSubmit}
         defaultValues={defaultValues}
-        schema={schema}
-        parameterReferentialEnum={parameterReferentialEnum}
-      ></ReferentialForm>
+      ></ReferentialProductForm>
     </FeatureLayout>
   );
 };

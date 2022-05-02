@@ -1,9 +1,7 @@
 import { FetchResult } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { referentialSchema } from "../../../referential/components/ReferentialForm/ReferentialFormLogic";
 import { ReferentialProductViewModel } from "../../domain/referential-product.model";
-import { ParameterReferentialEnum } from "../../dtos/products.dto.generated";
 import { UpdateReferentialProductMutation } from "../../operations/referential-products.generated";
 import {
   UpdateReferentialProductView,
@@ -47,7 +45,7 @@ export const UpdateReferentialProductLogic = ({
       })
       .catch((error) =>
         toast.error(
-          `La modification du référentiel produit ${defaultValues.useCase} a échouée.`
+          `Le paramètrage du gestionnaire de commande ${defaultValues.useCase} a échoué.`
         )
       );
   };
@@ -57,8 +55,6 @@ export const UpdateReferentialProductLogic = ({
       onSubmit={handleSubmit}
       errors={errors}
       defaultValues={defaultValues}
-      schema={referentialSchema(ParameterReferentialEnum)}
-      parameterReferentialEnum={ParameterReferentialEnum}
     ></UpdateReferentialProductView>
   );
 };

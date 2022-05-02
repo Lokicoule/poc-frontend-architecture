@@ -1,7 +1,9 @@
-import { ValueObject } from "../../../core/domain/ValueObject";
-import { ReferentialViewModelProps } from "../../referential/domain/referential.type";
+import {
+  ReferentialViewModel,
+  ReferentialViewModelProps,
+} from "../../referential/domain/referential.model";
 import { UseCaseReferentialEnum } from "../dtos/orders.dto.generated";
-import { ParamReferentialOrderViewModelProps } from "./parameter-referential.model";
+import { ParamReferentialOrderViewModelProps } from "./parameter-referential-order.model";
 
 export interface ReferentialOrderViewModelProps
   extends ReferentialViewModelProps<
@@ -9,19 +11,10 @@ export interface ReferentialOrderViewModelProps
     ParamReferentialOrderViewModelProps
   > {}
 
-export class ReferentialOrderViewModel extends ValueObject<ReferentialOrderViewModelProps> {
-  get id() {
-    return this.props.id;
-  }
-
-  get useCase() {
-    return this.props.useCase;
-  }
-
-  get parameters() {
-    return this.props.parameters;
-  }
-
+export class ReferentialOrderViewModel extends ReferentialViewModel<
+  UseCaseReferentialEnum,
+  ParamReferentialOrderViewModelProps
+> {
   public static create(
     props: ReferentialOrderViewModelProps
   ): ReferentialOrderViewModel {

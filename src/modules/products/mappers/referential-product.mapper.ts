@@ -5,7 +5,7 @@ import {
   ParameterReferentialProduct,
   ReferentialProduct,
 } from "../dtos/products.dto.generated";
-import { ParamReferentialProductMap } from "./param-referential.mapper";
+import { ParamReferentialProductMap } from "./param-referential-product.mapper";
 
 export class ReferentialProductMap implements Mapper {
   public static toViewModel(
@@ -18,20 +18,12 @@ export class ReferentialProductMap implements Mapper {
     });
   }
 
-  public static toDto(entity: ReferentialProductViewModel): ReferentialProduct {
-    return {
-      id: entity.id.toString(),
-      useCase: entity.useCase,
-      parameters: entity.parameters,
-    };
-  }
-
   private static parametersToViewModel(
     parameters?: Maybe<ParameterReferentialProduct[]> | undefined
   ) {
     return (
-      parameters?.map((param) =>
-        ParamReferentialProductMap.toViewModel(param)
+      parameters?.map(
+        (param) => ParamReferentialProductMap.toViewModel(param).props
       ) ?? []
     );
   }

@@ -27,8 +27,13 @@ export type CreateCustomerInput = {
   zipCode: Scalars['String'];
 };
 
+export type CreateParameterReferentialCustomerInput = {
+  key: ParameterReferentialEnum;
+  value: Scalars['String'];
+};
+
 export type CreateReferentialCustomerInput = {
-  parameters: Array<ParameterReferentialCustomerInput>;
+  parameters: Array<CreateParameterReferentialCustomerInput>;
   useCase: UseCaseReferentialEnum;
 };
 
@@ -107,11 +112,6 @@ export type ParameterReferentialCustomer = {
   value: Scalars['String'];
 };
 
-export type ParameterReferentialCustomerInput = {
-  key: ParameterReferentialEnum;
-  value: Scalars['String'];
-};
-
 export enum ParameterReferentialEnum {
   Counter = 'COUNTER',
   Prefix = 'PREFIX',
@@ -159,9 +159,14 @@ export type UpdateCustomerInput = {
   zipCode?: InputMaybe<Scalars['String']>;
 };
 
+export type UpdateParameterReferentialCustomerInput = {
+  key?: InputMaybe<ParameterReferentialEnum>;
+  value?: InputMaybe<Scalars['String']>;
+};
+
 export type UpdateReferentialCustomerInput = {
-  parameters?: InputMaybe<Array<ParameterReferentialCustomerInput>>;
-  useCase?: InputMaybe<UseCaseReferentialEnum>;
+  parameters: Array<UpdateParameterReferentialCustomerInput>;
+  useCase: UseCaseReferentialEnum;
 };
 
 export enum UseCaseReferentialEnum {

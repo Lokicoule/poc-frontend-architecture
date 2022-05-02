@@ -4,19 +4,19 @@ import { Control, FormState, useFieldArray } from "react-hook-form";
 import { FormInputText } from "../../../../../../components/Form/FormInput";
 import { ColumnProps } from "../../../../../../components/Tables";
 import { SelectParamKey } from "../../../../../referential/components/SelectParamKey";
-import { ReferentialOrderViewModelProps } from "../../../../domain/referential-order.model";
-import { ParameterReferentialEnum } from "../../../../dtos/orders.dto.generated";
-import { ReferentialOrderTableFormView } from "./ReferentialOrderTableFormView";
+import { ReferentialCustomerViewModelProps } from "../../../../domain/referential-customer.model";
+import { ParameterReferentialEnum } from "../../../../dtos/customers.dto.generated";
+import { ReferentialCustomerTableFormView } from "./ReferentialCustomerTableFormView";
 
-export type ReferentialOrderTableFormLogicProps = {
+export type ReferentialCustomerTableFormLogicProps = {
   control: Control<any, any>;
-  formState: FormState<ReferentialOrderViewModelProps>;
+  formState: FormState<ReferentialCustomerViewModelProps>;
 };
 
-export const ReferentialOrderTableFormLogic = ({
+export const ReferentialCustomerTableFormLogic = ({
   control,
   formState,
-}: ReferentialOrderTableFormLogicProps) => {
+}: ReferentialCustomerTableFormLogicProps) => {
   const { fields, append, remove } = useFieldArray({
     name: "parameters",
     control,
@@ -69,7 +69,7 @@ export const ReferentialOrderTableFormLogic = ({
   ];
 
   const getParameter = (
-    formState: FormState<ReferentialOrderViewModelProps>,
+    formState: FormState<ReferentialCustomerViewModelProps>,
     idx: number
   ) => formState?.errors?.parameters?.[idx];
 
@@ -79,10 +79,10 @@ export const ReferentialOrderTableFormLogic = ({
       value: "",
     });
   return (
-    <ReferentialOrderTableFormView
+    <ReferentialCustomerTableFormView
       columns={columns}
       fields={fields}
       onAppend={handleAppend}
-    ></ReferentialOrderTableFormView>
+    ></ReferentialCustomerTableFormView>
   );
 };

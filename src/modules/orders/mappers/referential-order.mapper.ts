@@ -5,7 +5,7 @@ import {
   ParameterReferentialOrder,
   ReferentialOrder,
 } from "../dtos/orders.dto.generated";
-import { ParamReferentialOrderMap } from "./param-referential.mapper";
+import { ParamReferentialOrderMap } from "./param-referential-order.mapper";
 
 export class ReferentialOrderMap implements Mapper {
   public static toViewModel(dto: ReferentialOrder): ReferentialOrderViewModel {

@@ -1,5 +1,5 @@
 import { Mapper } from "../../../core/mapper/Mapper";
-import { ParamReferentialCustomerViewModel } from "../domain/parameter-referential.model";
+import { ParamReferentialCustomerViewModel } from "../domain/parameter-referential-customer.model";
 import { ParameterReferentialCustomer } from "../dtos/customers.dto.generated";
 
 export class ParamReferentialCustomerMap implements Mapper {
@@ -11,15 +11,5 @@ export class ParamReferentialCustomerMap implements Mapper {
       key: dto.key,
       value: dto.value,
     });
-  }
-
-  public static toDto(
-    entity: ParamReferentialCustomerViewModel
-  ): ParameterReferentialCustomer {
-    return {
-      id: entity.id.toString(),
-      value: entity.value.toString(),
-      key: entity.key,
-    };
   }
 }

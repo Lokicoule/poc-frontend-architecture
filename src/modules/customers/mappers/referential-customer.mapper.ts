@@ -5,7 +5,7 @@ import {
   ParameterReferentialCustomer,
   ReferentialCustomer,
 } from "../dtos/customers.dto.generated";
-import { ParamReferentialCustomerMap } from "./param-referential.mapper";
+import { ParamReferentialCustomerMap } from "./param-referential-customer.mapper";
 
 export class ReferentialCustomerMap implements Mapper {
   public static toViewModel(
@@ -18,22 +18,12 @@ export class ReferentialCustomerMap implements Mapper {
     });
   }
 
-  public static toDto(
-    entity: ReferentialCustomerViewModel
-  ): ReferentialCustomer {
-    return {
-      id: entity.id.toString(),
-      useCase: entity.useCase,
-      parameters: entity.parameters,
-    };
-  }
-
   private static parametersToViewModel(
     parameters?: Maybe<ParameterReferentialCustomer[]> | undefined
   ) {
     return (
-      parameters?.map((param) =>
-        ParamReferentialCustomerMap.toViewModel(param)
+      parameters?.map(
+        (param) => ParamReferentialCustomerMap.toViewModel(param).props
       ) ?? []
     );
   }

@@ -1,6 +1,6 @@
 import { BaseCallbackOptions } from "../../../core/types/BaseCallbackOptions";
 import { ReferentialProductViewModel } from "../domain/referential-product.model";
-import { ReferentialProductMap } from "../mappers/referential-product.mapper";
+import { UpdateReferentialProductMap } from "../mappers/update-referential-product.mapper";
 import {
   UpdateReferentialProductMutation,
   useUpdateReferentialProductMutation,
@@ -13,14 +13,14 @@ export const useUpdateReferentialProductFacade = () => {
     });
 
   const handleUpdate = (
-    referentialProductId: any,
+    updateReferentialProductId: string,
     data: ReferentialProductViewModel,
     options?: BaseCallbackOptions<UpdateReferentialProductMutation>
   ) => {
     return updateReferentialProduct({
       variables: {
-        updateReferentialProductId: referentialProductId,
-        updateReferentialProductInput: ReferentialProductMap.toDto(data),
+        updateReferentialProductId,
+        updateReferentialProductInput: UpdateReferentialProductMap.toDto(data),
       },
       onCompleted: options?.onCompleted,
       onError: options?.onError,
