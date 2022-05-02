@@ -10,12 +10,4 @@ export class ProductMap implements Mapper {
       label: dto.label,
     });
   }
-
-  public static toDto(entity: ProductViewModel): Product {
-    return {
-      id: entity.id.toString(),
-      code: entity.code.toString(),
-      label: entity.label.toString(),
-    };
-  }
 }

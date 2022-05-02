@@ -13,15 +13,4 @@ export class CustomerMap implements Mapper {
       zipCode: dto.zipCode,
     });
   }
-
-  public static toDto(entity: CustomerViewModel): Customer {
-    return {
-      id: entity.id.toString(),
-      code: entity.code.toString(),
-      naming: entity.naming.toString(),
-      address: entity.address.toString(),
-      city: entity.city.toString(),
-      zipCode: entity.zipCode.toString(),
-    };
-  }
 }
