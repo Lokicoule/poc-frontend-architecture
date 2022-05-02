@@ -2,7 +2,7 @@ overwrite: true
 schema: "http://localhost:3003/graphql"
 documents:
   - "./src/**/products.gql"
-  - "./src/**/referentialProducts.gql"
+  - "./src/**/referential-products.gql"
 generates:
   src/modules/products/dtos/products.dto.generated.ts:
     plugins:
