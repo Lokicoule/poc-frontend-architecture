@@ -4,12 +4,12 @@ import { UseFormReturn } from "react-hook-form";
 import { Form } from "../../../../components/Form";
 import { FormInputText } from "../../../../components/Form/FormInput";
 import { FeatureLayout } from "../../../../layouts";
-import { UpdateCustomerViewModel } from "../../../../viewModels/customers";
+import { UpdateCustomerViewModelProps } from "../../domain/customers.model";
 
 export type UpdateCustomerViewProps = {
-  form: UseFormReturn<UpdateCustomerViewModel>;
+  form: UseFormReturn<UpdateCustomerViewModelProps>;
   errors: GraphQLErrors | undefined;
-  onSubmit: (data: UpdateCustomerViewModel) => Promise<void>;
+  onSubmit: (data: UpdateCustomerViewModelProps) => Promise<void>;
   onReset: () => void;
 };
 
