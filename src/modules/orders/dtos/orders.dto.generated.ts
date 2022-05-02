@@ -22,8 +22,13 @@ export type CreateOrderInput = {
   items?: InputMaybe<Array<OrderItemInput>>;
 };
 
+export type CreateParameterReferentialOrderInput = {
+  key: ParameterReferentialEnum;
+  value: Scalars['String'];
+};
+
 export type CreateReferentialOrderInput = {
-  parameters: Array<ParameterReferentialOrderInput>;
+  parameters: Array<CreateParameterReferentialOrderInput>;
   useCase: UseCaseReferentialEnum;
 };
 
@@ -77,7 +82,6 @@ export type MutationUpdateOrderArgs = {
 
 
 export type MutationUpdateReferentialOrderArgs = {
-  id: Scalars['String'];
   updateReferentialOrderInput: UpdateReferentialOrderInput;
 };
 
@@ -156,11 +160,6 @@ export type ParameterReferentialOrder = {
   value: Scalars['String'];
 };
 
-export type ParameterReferentialOrderInput = {
-  key: ParameterReferentialEnum;
-  value: Scalars['String'];
-};
-
 export type Query = {
   __typename?: 'Query';
   _service: _Service;
@@ -202,9 +201,16 @@ export type UpdateOrderInput = {
   items?: InputMaybe<Array<OrderItemInput>>;
 };
 
+export type UpdateParameterReferentialOrderInput = {
+  id: Scalars['ID'];
+  key?: InputMaybe<ParameterReferentialEnum>;
+  value?: InputMaybe<Scalars['String']>;
+};
+
 export type UpdateReferentialOrderInput = {
-  parameters?: InputMaybe<Array<ParameterReferentialOrderInput>>;
-  useCase?: InputMaybe<UseCaseReferentialEnum>;
+  id: Scalars['ID'];
+  parameters: Array<UpdateParameterReferentialOrderInput>;
+  useCase: UseCaseReferentialEnum;
 };
 
 export enum UseCaseReferentialEnum {

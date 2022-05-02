@@ -26,11 +26,9 @@ query GetReferentialOrders($populate: Boolean!) {
 }
 
 mutation UpdateReferentialOrder(
-  $updateReferentialOrderId: String!
   $updateReferentialOrderInput: UpdateReferentialOrderInput!
 ) {
   updateReferentialOrder(
-    id: $updateReferentialOrderId
     updateReferentialOrderInput: $updateReferentialOrderInput
   ) {
     id

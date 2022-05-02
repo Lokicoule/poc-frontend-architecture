@@ -1,20 +1,16 @@
 import SearchIcon from "@mui/icons-material/Search";
 import { InputAdornment, Stack, TextField } from "@mui/material";
 import { SetStateAction } from "react";
-import {
-  ReferentialTableProps,
-  ReferentialTable,
-} from "../../../referential/components/ReferentialTable";
+import { ReferentialTable } from "../../../referential/components/ReferentialTable";
+import { ReferentialOrderViewModel } from "../../domain/referential-order.model";
 
-export type ManageReferentialOrderViewProps = Pick<
-  ReferentialTableProps,
-  "data"
-> & {
+export type ManageReferentialOrderViewProps = {
+  referentialOrderList: ReferentialOrderViewModel[];
   onSearch: (event: { target: { value: SetStateAction<string> } }) => void;
 };
 
 export const ManageReferentialOrderView = ({
-  data = [],
+  referentialOrderList = [],
   onSearch,
 }: ManageReferentialOrderViewProps) => {
   return (
@@ -40,7 +36,10 @@ export const ManageReferentialOrderView = ({
         ></TextField>
       </Stack>
 
-      <ReferentialTable data={data} path="orders"></ReferentialTable>
+      <ReferentialTable
+        data={referentialOrderList}
+        path="orders"
+      ></ReferentialTable>
     </>
   );
 };

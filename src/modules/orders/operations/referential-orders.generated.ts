@@ -19,7 +19,6 @@ export type GetReferentialOrdersQueryVariables = Types.Exact<{
 export type GetReferentialOrdersQuery = { __typename?: 'Query', getReferentialOrders?: Array<{ __typename?: 'ReferentialOrder', id: string, useCase: Types.UseCaseReferentialEnum, parameters?: Array<{ __typename?: 'ParameterReferentialOrder', id: string, key: Types.ParameterReferentialEnum, value: string }> | null }> | null };
 
 export type UpdateReferentialOrderMutationVariables = Types.Exact<{
-  updateReferentialOrderId: Types.Scalars['String'];
   updateReferentialOrderInput: Types.UpdateReferentialOrderInput;
 }>;
 
@@ -111,9 +110,8 @@ export type GetReferentialOrdersQueryHookResult = ReturnType<typeof useGetRefere
 export type GetReferentialOrdersLazyQueryHookResult = ReturnType<typeof useGetReferentialOrdersLazyQuery>;
 export type GetReferentialOrdersQueryResult = Apollo.QueryResult<GetReferentialOrdersQuery, GetReferentialOrdersQueryVariables>;
 export const UpdateReferentialOrderDocument = gql`
-    mutation UpdateReferentialOrder($updateReferentialOrderId: String!, $updateReferentialOrderInput: UpdateReferentialOrderInput!) {
+    mutation UpdateReferentialOrder($updateReferentialOrderInput: UpdateReferentialOrderInput!) {
   updateReferentialOrder(
-    id: $updateReferentialOrderId
     updateReferentialOrderInput: $updateReferentialOrderInput
   ) {
     id
@@ -136,7 +134,6 @@ export type UpdateReferentialOrderMutationFn = Apollo.MutationFunction<UpdateRef
  * @example
  * const [updateReferentialOrderMutation, { data, loading, error }] = useUpdateReferentialOrderMutation({
  *   variables: {
- *      updateReferentialOrderId: // value for 'updateReferentialOrderId'
  *      updateReferentialOrderInput: // value for 'updateReferentialOrderInput'
  *   },
  * });

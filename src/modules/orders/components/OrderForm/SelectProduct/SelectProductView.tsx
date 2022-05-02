@@ -22,7 +22,7 @@ export const SelectProductView = ({
   control,
   defaultValue,
 }: SelectProductViewProps) => {
-  const createKey = (id: string) => `create_order_select_product_${id}`;
+  const createKey = (id: string) => `select_product_${id}`;
   return (
     <FormInputSelect
       defaultValue={defaultValue?.id}

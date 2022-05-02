@@ -21,7 +21,7 @@ export const SelectCustomerView = ({
   name,
   defaultValue,
 }: SelectCustomerViewProps) => {
-  const createKey = (id: string) => `create_order_select_customer_${id}`;
+  const createKey = (id: string) => `select_customer_${id}`;
 
   return (
     <FormInputSelect

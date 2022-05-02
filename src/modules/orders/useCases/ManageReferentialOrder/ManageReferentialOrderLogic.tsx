@@ -6,11 +6,11 @@ import {
 
 type ManageReferentialOrderLogicProps = Pick<
   ManageReferentialOrderViewProps,
-  "data"
+  "referentialOrderList"
 >;
 
 export const ManageReferentialOrderLogic = ({
-  data,
+  referentialOrderList,
 }: ManageReferentialOrderLogicProps) => {
   const [search, setSearch] = useState("");
 
@@ -20,13 +20,13 @@ export const ManageReferentialOrderLogic = ({
     setSearch(event.target.value);
   };
 
-  const filteredDataVM = data?.filter((item) =>
+  const filteredDataVM = referentialOrderList?.filter((item) =>
     item.useCase.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
     <ManageReferentialOrderView
-      data={filteredDataVM}
+      referentialOrderList={filteredDataVM}
       onSearch={handleSearch}
     ></ManageReferentialOrderView>
   );

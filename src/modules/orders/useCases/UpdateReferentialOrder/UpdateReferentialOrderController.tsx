@@ -1,13 +1,7 @@
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import { Loader } from "../../../../components/Loader/Loader";
-import { UpdateReferentialOrderInput } from "../../dtos/orders.dto.generated";
-import {
-  useGetReferentialOrderQuery,
-  useUpdateReferentialOrderMutation,
-  GetReferentialOrderQuery,
-} from "../../operations/referentialOrders.generated";
-import { ReferentialOrderViewModel } from "../../../../viewModels/referential/orders/ReferentialOrderViewModel";
+import { ReferentialOrderViewModel } from "../../domain/referential-order.model";
+import { useGetReferentialOrderFacade } from "../../hooks/useGetReferentialOrderFacade";
+import { useUpdateReferentialOrderFacade } from "../../hooks/useUpdateReferentialOrderFacade";
 import { UpdateReferentialOrderLogic } from "./UpdateReferentialOrderLogic";
 
 type UpdateReferentialOrderControllerProps = {
@@ -17,72 +11,19 @@ type UpdateReferentialOrderControllerProps = {
 export const UpdateReferentialOrderController = ({
   referentialOrderId,
 }: UpdateReferentialOrderControllerProps) => {
-  const navigate = useNavigate();
-  const { data, loading } = useGetReferentialOrderQuery({
-    variables: {
-      getReferentialOrderId: referentialOrderId,
-      populate: true,
-    },
-  });
+  const { getReferentialOrder } =
+    useGetReferentialOrderFacade(referentialOrderId);
+  const { updateReferentialOrder } = useUpdateReferentialOrderFacade();
 
-  const [updateReferentialOrder, { error }] = useUpdateReferentialOrderMutation(
-    {
-      refetchQueries: ["GetReferentialOrders"],
-    }
-  );
+  const handleSubmit = (data: ReferentialOrderViewModel) =>
+    updateReferentialOrder.onUpdate(data);
 
-  const mapViewModelToDto = (
-    dataVM: ReferentialOrderViewModel
-  ): UpdateReferentialOrderInput => {
-    return {
-      useCase: dataVM.useCase,
-      parameters: dataVM.parameters.map((param) => ({
-        key: param.key,
-        value: param.value,
-      })),
-    };
-  };
-
-  const mapDtoToViewModel = (
-    dataDto: GetReferentialOrderQuery | undefined
-  ): ReferentialOrderViewModel => {
-    const referentialOrder = dataDto?.getReferentialOrder;
-    return {
-      id: referentialOrder?.id,
-      useCase: referentialOrder?.useCase,
-      parameters: referentialOrder?.parameters?.map((refC) => ({
-        id: refC.id,
-        key: refC.key,
-        value: refC.value,
-      })),
-    } as ReferentialOrderViewModel;
-  };
-
-  const handleSubmit = (dataVM: ReferentialOrderViewModel) => {
-    return updateReferentialOrder({
-      variables: {
-        updateReferentialOrderId: referentialOrderId,
-        updateReferentialOrderInput: mapViewModelToDto(dataVM),
-      },
-      onCompleted: ({ updateReferentialOrder }) => {
-        toast.success(
-          `${updateReferentialOrder.useCase} a été modifié(e) avec succès.`
-        );
-        navigate(`/backoffice/referential/orders`);
-      },
-      onError: () =>
-        toast.error(
-          `La modification du référentiel commande ${data?.getReferentialOrder?.useCase} a échouée.`
-        ),
-    });
-  };
-
-  if (loading) return <Loader></Loader>;
+  if (getReferentialOrder.loading) return <Loader></Loader>;
   return (
     <UpdateReferentialOrderLogic
-      defaultValues={mapDtoToViewModel(data)}
+      defaultValues={getReferentialOrder.data}
       onSubmit={handleSubmit}
-      errors={error?.graphQLErrors}
+      errors={updateReferentialOrder.error?.graphQLErrors}
     ></UpdateReferentialOrderLogic>
   );
 };
