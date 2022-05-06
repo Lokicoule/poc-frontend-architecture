@@ -1,13 +1,22 @@
 import { ValueObject } from "../../../core/domain/ValueObject";
 
-export interface ReferentialViewModelProps<T, U> {
+export interface ReferentialViewModelProps<
+  TypeUseCaseReferentialEnum,
+  TypeParameterReferentialProps
+> {
   id: string;
-  useCase: T;
-  parameters: U[];
+  useCase: TypeUseCaseReferentialEnum;
+  parameters: TypeParameterReferentialProps[];
 }
 
-export class ReferentialViewModel<T, U> extends ValueObject<
-  ReferentialViewModelProps<T, U>
+export class ReferentialViewModel<
+  TypeUseCaseReferentialEnum,
+  TypeParameterReferentialProps
+> extends ValueObject<
+  ReferentialViewModelProps<
+    TypeUseCaseReferentialEnum,
+    TypeParameterReferentialProps
+  >
 > {
   get id() {
     return this.props.id;

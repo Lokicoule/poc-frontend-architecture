@@ -3,6 +3,11 @@ import { TypeOfShape, Assign, ObjectShape } from "yup/lib/object";
 import { RequiredStringSchema } from "yup/lib/string";
 import { AnyObject } from "yup/lib/types";
 
+/**
+ *
+ * @param counterKey TODO: improve code quality
+ * @returns
+ */
 export const createReferentialValidationSchema = (counterKey: string) =>
   yup.object().shape({
     useCase: yup.string().required("Le cas d'usage est requis."),
@@ -44,7 +49,7 @@ const uniqKeyRule = (
   const { createError } = ctx;
   const stack = new Set();
   const errors: yup.ValidationError[] = [];
-  //TODO to improve with reduce
+  //TODO can be done with reduce
   parameters?.forEach((param, idx) => {
     if (stack.has(param["key"]))
       errors.push(

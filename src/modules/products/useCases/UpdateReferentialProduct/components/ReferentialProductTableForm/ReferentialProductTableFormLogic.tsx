@@ -1,9 +1,11 @@
 import DeleteIcon from "@mui/icons-material/Delete";
-import { IconButton } from "@mui/material";
+import { IconButton, MenuItem } from "@mui/material";
 import { Control, FormState, useFieldArray } from "react-hook-form";
-import { FormInputText } from "../../../../../../components/Form/FormInput";
+import {
+  FormInputSelect,
+  FormInputText,
+} from "../../../../../../components/Form/FormInput";
 import { ColumnProps } from "../../../../../../components/Tables";
-import { SelectParamKey } from "../../../../../referential/components/SelectParamKey";
 import { ReferentialProductViewModelProps } from "../../../../domain/referential-product.model";
 import { ParameterReferentialEnum } from "../../../../dtos/products.dto.generated";
 import { ReferentialProductTableFormView } from "./ReferentialProductTableFormView";
@@ -28,13 +30,22 @@ export const ReferentialProductTableFormLogic = ({
       label: "Clé",
       content: (item, idx) => {
         return (
-          <SelectParamKey
+          <FormInputSelect
+            label="Type du paramètre"
+            name={`parameters[${idx}].key`}
             control={control}
             error={!!getParameter(formState, idx)?.key}
             helperText={getParameter(formState, idx)?.key?.message}
-            name={`parameters[${idx}].key`}
-            values={Object.values(ParameterReferentialEnum)}
-          ></SelectParamKey>
+          >
+            {Object.values(ParameterReferentialEnum)?.map((item, idx) => (
+              <MenuItem
+                key={`menu-item-parameter-referential-product-${idx}`}
+                value={item}
+              >
+                {item}
+              </MenuItem>
+            ))}
+          </FormInputSelect>
         );
       },
     },

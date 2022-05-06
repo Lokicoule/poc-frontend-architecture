@@ -1,10 +1,10 @@
+import { BaseID } from "../../../core/domain/BaseID";
 import { ValueObject } from "../../../core/domain/ValueObject";
 
-export interface CustomerViewModelProps {
+export interface CustomerViewModelProps extends BaseID {
   address: string;
   city: string;
   code: string;
-  id: string;
   naming: string;
   zipCode: string;
 }

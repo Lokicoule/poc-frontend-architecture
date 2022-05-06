@@ -1,8 +1,8 @@
+import { BaseID } from "../../../core/domain/BaseID";
 import { ValueObject } from "../../../core/domain/ValueObject";
 
-export interface ProductViewModelProps {
+export interface ProductViewModelProps extends BaseID {
   code: string;
-  id: string;
   label: string;
 }
 

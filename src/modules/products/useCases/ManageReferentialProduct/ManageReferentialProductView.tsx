@@ -2,7 +2,12 @@ import SearchIcon from "@mui/icons-material/Search";
 import { InputAdornment, Stack, TextField } from "@mui/material";
 import { SetStateAction } from "react";
 import { ReferentialTable } from "../../../referential/components/ReferentialTable";
+import { ParamReferentialProductViewModelProps } from "../../domain/parameter-referential-product.model";
 import { ReferentialProductViewModel } from "../../domain/referential-product.model";
+import {
+  ParameterReferentialEnum,
+  UseCaseReferentialEnum,
+} from "../../dtos/products.dto.generated";
 
 export type ManageReferentialProductViewProps = {
   referentialProductList: ReferentialProductViewModel[];
@@ -36,7 +41,12 @@ export const ManageReferentialProductView = ({
         ></TextField>
       </Stack>
 
-      <ReferentialTable
+      <ReferentialTable<
+        UseCaseReferentialEnum,
+        ParameterReferentialEnum,
+        ParamReferentialProductViewModelProps,
+        ReferentialProductViewModel
+      >
         data={referentialProductList}
         path="products"
       ></ReferentialTable>

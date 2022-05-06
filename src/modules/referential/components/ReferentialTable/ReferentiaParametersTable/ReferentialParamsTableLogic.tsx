@@ -4,14 +4,12 @@ import {
   ReferentialParamsTableViewProps,
 } from "./ReferentialParamsTableView";
 
-export type ReferentialParamsTableLogicProps = Pick<
-  ReferentialParamsTableViewProps,
-  "data"
->;
+export type ReferentialParamsTableLogicProps<TypeParameterReferentialProps> =
+  Pick<ReferentialParamsTableViewProps<TypeParameterReferentialProps>, "data">;
 
-export const ReferentialParamsTableLogic = ({
+export const ReferentialParamsTableLogic = <TypeParameterReferentialProps,>({
   data = [],
-}: ReferentialParamsTableLogicProps) => {
+}: ReferentialParamsTableLogicProps<TypeParameterReferentialProps>) => {
   const columns: ColumnProps[] = [
     {
       label: "Clé",
@@ -26,7 +24,7 @@ export const ReferentialParamsTableLogic = ({
   ];
 
   return (
-    <ReferentialParamsTableView
+    <ReferentialParamsTableView<TypeParameterReferentialProps>
       columns={columns}
       data={data}
     ></ReferentialParamsTableView>

@@ -2,7 +2,12 @@ import SearchIcon from "@mui/icons-material/Search";
 import { InputAdornment, Stack, TextField } from "@mui/material";
 import { SetStateAction } from "react";
 import { ReferentialTable } from "../../../referential/components/ReferentialTable";
+import { ParamReferentialCustomerViewModelProps } from "../../domain/parameter-referential-customer.model";
 import { ReferentialCustomerViewModel } from "../../domain/referential-customer.model";
+import {
+  ParameterReferentialEnum,
+  UseCaseReferentialEnum,
+} from "../../dtos/customers.dto.generated";
 
 export type ManageReferentialCustomerViewProps = {
   referentialCustomerList: ReferentialCustomerViewModel[];
@@ -36,7 +41,12 @@ export const ManageReferentialCustomerView = ({
         ></TextField>
       </Stack>
 
-      <ReferentialTable
+      <ReferentialTable<
+        UseCaseReferentialEnum,
+        ParameterReferentialEnum,
+        ParamReferentialCustomerViewModelProps,
+        ReferentialCustomerViewModel
+      >
         data={referentialCustomerList}
         path="customers"
       ></ReferentialTable>

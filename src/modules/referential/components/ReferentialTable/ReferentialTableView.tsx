@@ -1,13 +1,13 @@
 import { ColumnProps, Table } from "../../../../components/Tables";
 
-export type ReferentialTableViewProps = {
+export type ReferentialTableViewProps<TypeReferentialViewModel> = {
   columns: ColumnProps[];
-  data: any[];
+  data: TypeReferentialViewModel[];
 };
 
-export const ReferentialTableView = ({
+export function ReferentialTableView<TypeReferentialViewModel>({
   columns,
   data = [],
-}: ReferentialTableViewProps) => {
+}: ReferentialTableViewProps<TypeReferentialViewModel>) {
   return <Table columns={columns} data={data}></Table>;
-};
+}

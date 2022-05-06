@@ -1,28 +1,37 @@
 import { Link } from "react-router-dom";
 import { ColumnProps } from "../../../../components/Tables";
-import { ReferentialViewModel } from "../../../../viewModels/referential";
-import { ReferentialParamsTable } from "./ReferentiaParametersTable";
+import { ParamReferentialViewModelProps } from "../../domain/parameter-referential.model";
+import { ReferentialViewModel } from "../../domain/referential.model";
 import {
   ReferentialTableView,
   ReferentialTableViewProps,
 } from "./ReferentialTableView";
+import { ReferentialParamsTable } from "./ReferentiaParametersTable";
 
-export type ReferentialTableLogicProps = Pick<
-  ReferentialTableViewProps,
+export type ReferentialTableLogicProps<T> = Pick<
+  ReferentialTableViewProps<T>,
   "data"
 > & {
   path: string;
 };
 
-export const ReferentialTableLogic = ({
-  data = [],
+export const ReferentialTableLogic = <
+  TypeUseCaseReferentialEnum,
+  TypeParameterReferentialEnum,
+  TypeParameterReferentialProps extends ParamReferentialViewModelProps<TypeParameterReferentialEnum>,
+  TypeReferentialViewModel extends ReferentialViewModel<
+    TypeUseCaseReferentialEnum,
+    TypeParameterReferentialProps
+  >
+>({
+  data,
   path,
-}: ReferentialTableLogicProps) => {
+}: ReferentialTableLogicProps<TypeReferentialViewModel>) => {
   const columns: ColumnProps[] = [
     {
       label: "Cas d'usage",
       key: "useCase",
-      content: (item: ReferentialViewModel) => (
+      content: (item: TypeReferentialViewModel) => (
         <Link to={`/backoffice/referential/${path}/update/${item.id}`}>
           {item.useCase}
         </Link>
@@ -31,9 +40,9 @@ export const ReferentialTableLogic = ({
     {
       label: "Paramètres",
       key: "parameters",
-      content: (item: ReferentialViewModel) => {
+      content: (item: TypeReferentialViewModel) => {
         return (
-          <ReferentialParamsTable
+          <ReferentialParamsTable<TypeParameterReferentialProps>
             data={item.parameters}
           ></ReferentialParamsTable>
         );
@@ -42,6 +51,9 @@ export const ReferentialTableLogic = ({
   ];
 
   return (
-    <ReferentialTableView columns={columns} data={data}></ReferentialTableView>
+    <ReferentialTableView<TypeReferentialViewModel>
+      columns={columns}
+      data={data}
+    ></ReferentialTableView>
   );
 };

@@ -1,14 +1,13 @@
 import { ColumnProps, Table } from "../../../../../components/Tables";
-import { ReferentialParamsViewModel } from "../../../../../viewModels/referential";
 
-export type ReferentialParamsTableViewProps = {
+export type ReferentialParamsTableViewProps<TypeParameterReferentialProps> = {
   columns: ColumnProps[];
-  data: ReferentialParamsViewModel[];
+  data: TypeParameterReferentialProps[];
 };
 
-export const ReferentialParamsTableView = ({
+export const ReferentialParamsTableView = <TypeParameterReferentialProps,>({
   columns,
   data = [],
-}: ReferentialParamsTableViewProps) => {
+}: ReferentialParamsTableViewProps<TypeParameterReferentialProps>) => {
   return <Table columns={columns} data={data}></Table>;
 };
