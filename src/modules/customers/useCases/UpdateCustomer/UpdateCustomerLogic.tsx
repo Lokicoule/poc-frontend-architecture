@@ -4,8 +4,11 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as yup from "yup";
-import { CustomerViewModel } from "../../domain/customers.model";
-import { UpdateCustomerViewModelProps } from "../../domain/customers.model";
+import {
+  CustomerViewModel,
+  UpdateCustomerViewModelProps,
+} from "../../domain/customers.model";
+import { customersNavigationHelper } from "../../helpers/customers-navigation.helper";
 import { UpdateCustomerMutation } from "../../operations/customers.generated";
 import {
   UpdateCustomerView,
@@ -73,12 +76,16 @@ export const UpdateCustomerLogic = ({
     }
     await onSubmit(updatedCustomer)
       .then((result) => {
-        toast.success(
-          `${result.data?.updateCustomer.naming} a été modifié(e) avec succès.`
-        );
-        navigate(
-          `/backoffice/customers/view/${result.data?.updateCustomer.id}`
-        );
+        const { id, naming } = result.data?.updateCustomer ?? {
+          id: undefined,
+          naming: "",
+        };
+        if (id) {
+          toast.success(`${naming} a été modifié(e) avec succès.`);
+          navigate(customersNavigationHelper.view(id));
+        } else {
+          toast.warn(`Le client retourné par le serveur n'est pas valide.`);
+        }
       })
       .catch((error) => {
         console.log(error);

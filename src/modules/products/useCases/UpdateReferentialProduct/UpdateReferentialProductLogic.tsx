@@ -2,6 +2,7 @@ import { FetchResult } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { ReferentialProductViewModel } from "../../domain/referential-product.model";
+import { productsNavigationHelper } from "../../helpers/products-navigation.helper";
 import { UpdateReferentialProductMutation } from "../../operations/referential-products.generated";
 import {
   UpdateReferentialProductView,
@@ -41,7 +42,7 @@ export const UpdateReferentialProductLogic = ({
         toast.success(
           `${result.data?.updateReferentialProduct.useCase} a été modifié(e) avec succès.`
         );
-        navigate(`/backoffice/referential/products`);
+        navigate(productsNavigationHelper.rootReferential());
       })
       .catch((error) =>
         toast.error(

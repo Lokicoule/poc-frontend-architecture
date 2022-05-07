@@ -4,6 +4,7 @@ import { Button, Grid, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
 import { FeatureLayout } from "../../../../layouts";
 import { ProductViewModel } from "../../domain/products.model";
+import { productsNavigationHelper } from "../../helpers/products-navigation.helper";
 
 export type ManageProductViewProps = {
   defaultValues: ProductViewModel;
@@ -40,7 +41,7 @@ export const ManageProductView = ({
           <Button
             component={Link}
             variant="outlined"
-            to={`/backoffice/products/update/${defaultValues.id}`}
+            to={productsNavigationHelper.update(defaultValues.id)}
             endIcon={<ModeEditIcon />}
           >
             Modifier

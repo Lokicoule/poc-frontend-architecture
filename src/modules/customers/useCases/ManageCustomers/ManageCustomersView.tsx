@@ -7,6 +7,7 @@ import {
 } from "./components/CustomersTable";
 import AddIcon from "@mui/icons-material/Add";
 import SearchIcon from "@mui/icons-material/Search";
+import { customersNavigationHelper } from "../../helpers/customers-navigation.helper";
 
 export type ManageCustomersViewProps = Pick<
   CustomersTableProps,
@@ -44,7 +45,7 @@ export const ManageCustomersView = ({
 
         <ResponsiveLinkButton
           label="Ajouter un nouveau client"
-          to="/backoffice/customers/create"
+          to={customersNavigationHelper.create()}
           iconComponent={<AddIcon></AddIcon>}
         ></ResponsiveLinkButton>
       </Stack>

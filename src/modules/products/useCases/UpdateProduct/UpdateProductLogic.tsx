@@ -8,6 +8,7 @@ import {
   ProductViewModel,
   UpdateProductViewModelProps,
 } from "../../domain/products.model";
+import { productsNavigationHelper } from "../../helpers/products-navigation.helper";
 import { UpdateProductMutation } from "../../operations/products.generated";
 import { UpdateProductView, UpdateProductViewProps } from "./UpdateProductView";
 
@@ -58,10 +59,16 @@ export const UpdateProductLogic = ({
     }
     await onSubmit(updatedProduct)
       .then((result) => {
-        toast.success(
-          `${result.data?.updateProduct.label} a été modifié avec succès.`
-        );
-        navigate(`/backoffice/products/view/${result.data?.updateProduct.id}`);
+        const { id, label } = result.data?.updateProduct ?? {
+          id: undefined,
+          label: "",
+        };
+        if (id) {
+          toast.success(`${label} a été modifié(e) avec succès.`);
+          navigate(productsNavigationHelper.view(id));
+        } else {
+          toast.warn(`Le produit retourné par le serveur n'est pas valide.`);
+        }
       })
       .catch((error) => {
         console.log(error);

@@ -1,1 +1,0 @@
-export { CreateCustomerPage } from "./CreateCustomerPage";

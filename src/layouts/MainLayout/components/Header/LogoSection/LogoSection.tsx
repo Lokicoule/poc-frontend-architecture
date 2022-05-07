@@ -1,16 +1,16 @@
 import { ButtonBase, Toolbar } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
-import { routesConfiguration } from "../../../../../constants/routesConfiguration";
+import { DEFAULT_PATH } from "../../../../../constants/globals";
 
-export const LogoSection = () => {
+type LogoSectionProps = {
+  to?: string;
+};
+
+export const LogoSection = ({ to = DEFAULT_PATH }: LogoSectionProps) => {
   return (
     <Toolbar>
-      <ButtonBase
-        disableRipple
-        component={Link}
-        to={routesConfiguration.defaultPath}
-      >
+      <ButtonBase disableRipple component={Link} to={to}>
         <Typography
           fontFamily="fantasy"
           variant="h5"

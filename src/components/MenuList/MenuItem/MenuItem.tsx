@@ -51,11 +51,15 @@ export const MenuItem = ({ item }: MenuItemProps) => {
       <List
         subheader={
           <ListSubheader component="div">
-            <ListItemLink
-              to={item?.to || ""}
-              primary={item.title}
-              icon={item.icon}
-            />
+            {item?.to ? (
+              <ListItemLink
+                to={item.to}
+                primary={item.title}
+                icon={item.icon}
+              />
+            ) : (
+              <ListItemText primary={item.title} />
+            )}
           </ListSubheader>
         }
       >

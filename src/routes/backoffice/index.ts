@@ -1,1 +1,0 @@
-export { BackofficeRoutes } from "./BackofficeRoutes";

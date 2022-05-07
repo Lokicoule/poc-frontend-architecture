@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Loader } from "../../../../components/Loader";
+import { productsNavigationHelper } from "../../helpers/products-navigation.helper";
 import { useGetProductFacade } from "../../hooks/useGetProductFacade";
 import { useRemoveProductFacade } from "../../hooks/useRemoveProductFacade";
 import { ManageProductLogic } from "./ManageProductLogic";
@@ -18,7 +19,7 @@ export const ManageProductController = ({
   const handleRemove = (id: string) => removeProduct.onRemove(id);
 
   if (getProduct.loading) return <Loader></Loader>;
-  if (getProduct.error) navigate("/backoffice/customers");
+  if (getProduct.error) navigate(productsNavigationHelper.root());
 
   return (
     <ManageProductLogic

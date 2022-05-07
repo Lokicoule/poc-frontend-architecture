@@ -1,6 +1,7 @@
 import { FetchResult } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { customersNavigationHelper } from "../../helpers/customers-navigation.helper";
 import { RemoveCustomerMutation } from "../../operations/customers.generated";
 import {
   ManageCustomerView,
@@ -34,7 +35,7 @@ export const ManageCustomerLogic = ({
         toast.success(
           `${result?.data?.removeCustomer?.naming} a été supprimé(e) avec succès.`
         );
-        navigate("/backoffice/customers");
+        navigate(customersNavigationHelper.root());
       })
       .catch((err) => console.error(err));
   };

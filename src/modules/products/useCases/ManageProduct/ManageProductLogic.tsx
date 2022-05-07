@@ -1,6 +1,7 @@
 import { FetchResult } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { productsNavigationHelper } from "../../helpers/products-navigation.helper";
 import { RemoveProductMutation } from "../../operations/products.generated";
 import { ManageProductView, ManageProductViewProps } from "./ManageProductView";
 
@@ -24,7 +25,7 @@ export const ManageProductLogic = ({
         toast.success(
           `${result?.data?.removeProduct?.label} a été supprimé(e) avec succès.`
         );
-        navigate("/backoffice/products");
+        navigate(productsNavigationHelper.root());
       })
       .catch((err) => console.error(err));
   };

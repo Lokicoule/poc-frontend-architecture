@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as yup from "yup";
 import { CreateCustomerViewModelProps } from "../../domain/customers.model";
+import { customersNavigationHelper } from "../../helpers/customers-navigation.helper";
 import { CreateCustomerMutation } from "../../operations/customers.generated";
 import {
   CreateCustomerView,
@@ -51,12 +52,16 @@ export const CreateCustomerLogic = ({
   const handleSubmit = async (data: CreateCustomerViewModelProps) => {
     await onSubmit(data)
       .then((result) => {
-        toast.success(
-          `${result.data?.createCustomer.naming} a été ajouté(e) avec succès.`
-        );
-        navigate(
-          `/backoffice/customers/view/${result.data?.createCustomer.id}`
-        );
+        const { id, naming } = result.data?.createCustomer ?? {
+          id: undefined,
+          naming: "",
+        };
+        if (id) {
+          toast.success(`${naming} a été ajouté(e) avec succès.`);
+          navigate(customersNavigationHelper.view(id));
+        } else {
+          toast.warn(`Le client retourné par le serveur n'est pas valide.`);
+        }
       })
       .catch((error) =>
         toast.error(`L'ajout du client ${data.naming} a échoué.`)

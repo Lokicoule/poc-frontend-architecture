@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as yup from "yup";
 import { CreateProductViewModel } from "../../../../viewModels/products";
+import { productsNavigationHelper } from "../../helpers/products-navigation.helper";
 import { CreateProductMutation } from "../../operations/products.generated";
 import { CreateProductView, CreateProductViewProps } from "./CreateProductView";
 
@@ -37,10 +38,16 @@ export const CreateProductLogic = ({
   const handleSubmit = async (data: CreateProductViewModel) => {
     await onSubmit(data)
       .then((result) => {
-        toast.success(
-          `${result.data?.createProduct.label} a été ajouté avec succès.`
-        );
-        navigate(`/backoffice/products/view/${result.data?.createProduct.id}`);
+        const { id, label } = result.data?.createProduct ?? {
+          id: undefined,
+          label: "",
+        };
+        if (id) {
+          toast.success(`${label} a été ajouté(e) avec succès.`);
+          navigate(productsNavigationHelper.view(id));
+        } else {
+          toast.warn(`Le produit retourné par le serveur n'est pas valide.`);
+        }
       })
       .catch((error) =>
         toast.error(`L'ajout du produit ${data.label} a échoué.`)

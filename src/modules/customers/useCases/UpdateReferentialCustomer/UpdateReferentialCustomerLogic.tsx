@@ -2,6 +2,7 @@ import { FetchResult } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { ReferentialCustomerViewModel } from "../../domain/referential-customer.model";
+import { customersNavigationHelper } from "../../helpers/customers-navigation.helper";
 import { UpdateReferentialCustomerMutation } from "../../operations/referential-customers.generated";
 import {
   UpdateReferentialCustomerView,
@@ -41,7 +42,7 @@ export const UpdateReferentialCustomerLogic = ({
         toast.success(
           `${result.data?.updateReferentialCustomer.useCase} a été modifié(e) avec succès.`
         );
-        navigate(`/backoffice/referential/customers`);
+        navigate(customersNavigationHelper.rootReferential());
       })
       .catch((error) =>
         toast.error(

@@ -3,6 +3,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { InputAdornment, Stack, TextField } from "@mui/material";
 import { SetStateAction } from "react";
 import { ResponsiveLinkButton } from "../../../../components/ResponsiveButton";
+import { productsNavigationHelper } from "../../helpers/products-navigation.helper";
 import { ProductsTable, ProductsTableProps } from "./components/ProductsTable";
 
 export type ManageProductsViewProps = Pick<
@@ -41,7 +42,7 @@ export const ManageProductsView = ({
 
         <ResponsiveLinkButton
           label="Ajouter un nouveau produit"
-          to="/backoffice/products/create"
+          to={productsNavigationHelper.create()}
           iconComponent={<AddIcon></AddIcon>}
         ></ResponsiveLinkButton>
       </Stack>

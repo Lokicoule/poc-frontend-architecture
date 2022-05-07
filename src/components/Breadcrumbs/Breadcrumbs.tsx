@@ -12,7 +12,7 @@ export type BreadcrumbsProps = {
 export const Breadcrumbs = ({ crumbs }: BreadcrumbsProps) => {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
-
+  console.log(crumbs);
   return (
     <BreadcrumbsMui separator="›" aria-label="breadcrumb">
       <LinkRouter underline="hover" color="inherit" to="/">
@@ -21,7 +21,9 @@ export const Breadcrumbs = ({ crumbs }: BreadcrumbsProps) => {
       {pathnames.map((value, index) => {
         const lastPath = index === pathnames.length - 1;
         const to = `/${pathnames.slice(0, index + 1).join("/")}`;
+        console.log(to);
         const { alias, last } = !!crumbs[to] && crumbs[to];
+        console.log(alias);
         return (
           alias && (
             <Crumb

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ColumnProps } from "../../../../../../components/Tables";
 import { CustomerViewModel } from "../../../../domain/customers.model";
+import { customersNavigationHelper } from "../../../../helpers/customers-navigation.helper";
 import {
   CustomersTableView,
   CustomersTableViewProps,
@@ -21,7 +22,7 @@ export const CustomersTableLogic = ({
       key: "code",
       sortable: true,
       content: (item: CustomerViewModel) => (
-        <Link to={`/backoffice/customers/view/${item.id}`}>{item.code}</Link>
+        <Link to={customersNavigationHelper.view(item.id)}>{item.code}</Link>
       ),
     },
     {

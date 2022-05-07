@@ -1,1 +1,0 @@
-export { UpdateProductPage } from "./UpdateProductPage";

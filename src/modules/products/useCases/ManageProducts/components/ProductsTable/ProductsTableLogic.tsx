@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ColumnProps } from "../../../../../../components/Tables";
 import { ProductViewModel } from "../../../../domain/products.model";
+import { productsNavigationHelper } from "../../../../helpers/products-navigation.helper";
 
 import { ProductsTableView, ProductsTableViewProps } from "./ProductsTableView";
 
@@ -19,7 +20,7 @@ export const ProductsTableLogic = ({
       key: "code",
       sortable: true,
       content: (item: ProductViewModel) => (
-        <Link to={`/backoffice/products/view/${item.id}`}>{item.code}</Link>
+        <Link to={productsNavigationHelper.view(item.id)}>{item.code}</Link>
       ),
     },
     {

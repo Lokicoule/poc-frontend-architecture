@@ -4,6 +4,7 @@ import { Button, Grid, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
 import { FeatureLayout } from "../../../../layouts";
 import { CustomerViewModel } from "../../domain/customers.model";
+import { customersNavigationHelper } from "../../helpers/customers-navigation.helper";
 
 export type ManageCustomerViewProps = {
   defaultValues: CustomerViewModel;
@@ -64,7 +65,7 @@ export const ManageCustomerView = ({
           <Button
             component={Link}
             variant="outlined"
-            to={`/backoffice/customers/update/${defaultValues.id}`}
+            to={customersNavigationHelper.update(defaultValues.id)}
             endIcon={<ModeEditIcon />}
           >
             Modifier
