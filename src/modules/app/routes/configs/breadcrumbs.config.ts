@@ -59,6 +59,13 @@ export const ordersBreadcrumbs: Readonly<CrumbProps> = {
     alias: "Mise à jour",
     last: true,
   },
+  [absoluteViewPath([
+    featuresRoutesConfig.ordersPath,
+    featuresRoutesConfig.customerPath,
+  ])]: {
+    alias: "Information client de la commande",
+    last: true,
+  },
 };
 
 export const productsBreadcrumbs: Readonly<CrumbProps> = {

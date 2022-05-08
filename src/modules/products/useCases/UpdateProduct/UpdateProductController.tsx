@@ -1,5 +1,5 @@
 import { Loader } from "../../../../components/Loader";
-import { UpdateProductViewModel } from "../../../../viewModels/products";
+import { UpdateProductViewModelProps } from "../../domain/products.model";
 import { useGetProductFacade } from "../../hooks/useGetProductFacade";
 import { useUpdateProductFacade } from "../../hooks/useUpdateProductFacade";
 import { UpdateProductLogic } from "./UpdateProductLogic";
@@ -14,7 +14,7 @@ export const UpdateProductController = ({
   const { getProduct } = useGetProductFacade(productId);
   const { updateProduct } = useUpdateProductFacade();
 
-  const handleSubmit = (updatedProduct: UpdateProductViewModel) =>
+  const handleSubmit = (updatedProduct: UpdateProductViewModelProps) =>
     updateProduct.onUpdate(productId, updatedProduct);
 
   if (getProduct.loading) return <Loader></Loader>;

@@ -2,7 +2,7 @@ import {
   ColumnProps,
   EnhancedTable,
 } from "../../../../../../components/Tables";
-import { OrderViewModel } from "../../../../../../viewModels/orders";
+import { OrderViewModel } from "../../../../domain/orders.model";
 
 export type OrdersTableViewProps = {
   columns: ColumnProps[];

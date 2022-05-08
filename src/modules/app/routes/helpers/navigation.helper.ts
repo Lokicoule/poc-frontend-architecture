@@ -27,8 +27,10 @@ export abstract class NavigationHelper {
     return absolutePath([this._referential]);
   }
 
-  view(id: string) {
-    const path = relativeViewPath([this._root]);
+  view(id: string, optionalPaths?: string[]) {
+    const path = optionalPaths
+      ? relativeViewPath([this._root, ...optionalPaths])
+      : relativeViewPath([this._root]);
     return absolutePath([path, id]);
   }
 

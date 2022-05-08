@@ -3,7 +3,6 @@ import { ReferentialCustomerViewModel } from "../domain/referential-customer.mod
 import { ReferentialCustomerMap } from "../mappers/referential-customer.mapper";
 import {
   GetReferentialCustomerQuery,
-  UseCaseReferentialEnum,
   useGetReferentialCustomerQuery,
 } from "../operations/referential-customers.generated";
 
@@ -23,11 +22,7 @@ export const useGetReferentialCustomerFacade = (
   const mapDtoToViewModel = (data: GetReferentialCustomerQuery | undefined) =>
     data?.getReferentialCustomer
       ? ReferentialCustomerMap.toViewModel(data?.getReferentialCustomer)
-      : ReferentialCustomerViewModel.create({
-          id: "",
-          useCase: UseCaseReferentialEnum.CodeGenerator,
-          parameters: [],
-        });
+      : ({} as ReferentialCustomerViewModel);
 
   return {
     getReferentialCustomer: { data: mapDtoToViewModel(data), loading, error },

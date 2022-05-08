@@ -1,10 +1,9 @@
 import { Button, Grid } from "@mui/material";
-import { ColumnProps, Table } from "../../../../../components/Tables";
-import { FormOrderItemViewModel } from "../../../../../viewModels/orders";
+import { ColumnProps, Table } from "../../../../components/Tables";
 
 export type OrderItemTableFormViewProps = {
   columns: ColumnProps[];
-  data: Partial<FormOrderItemViewModel>[];
+  data: Record<"id", string>[];
   onAppend: () => void;
 };
 

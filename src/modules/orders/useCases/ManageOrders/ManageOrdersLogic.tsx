@@ -1,5 +1,6 @@
 import { FetchResult } from "@apollo/client";
 import { SetStateAction, useState } from "react";
+import { toast } from "react-toastify";
 import { RemoveOrdersMutation } from "../../operations/orders.generated";
 import { ManageOrdersView, ManageOrdersViewProps } from "./ManageOrdersView";
 
@@ -24,7 +25,15 @@ export const ManageOrdersLogic = ({
   };
 
   const handleRemove = async (ids: string[]) => {
-    await onRemove(ids).catch((err) => console.error(err));
+    await onRemove(ids)
+      .then((result) => {
+        toast.success(
+          `Les commandes sélectionné(e)s ont étés supprimé(e)s avec succès.`
+        );
+      })
+      .catch((error) =>
+        toast.error(`La suppression des commandes sélectionné(e)s a échouée.`)
+      );
   };
 
   const filteredDataVM = data?.filter((item) =>

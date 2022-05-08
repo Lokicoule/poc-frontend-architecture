@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { ColumnProps } from "../../../../../../components/Tables";
 import { currency } from "../../../../../../core/utils/CurrencyUtils";
-import { OrderViewModel } from "../../../../../../viewModels/orders";
+import { OrderViewModel } from "../../../../domain/orders.model";
+import { ordersNavigationHelper } from "../../../../helpers/orders-navigation.helper";
 import { OrdersTableView, OrdersTableViewProps } from "./OrdersTableView";
 
 export type OrdersTableLogicProps = Pick<
@@ -19,14 +20,16 @@ export const OrdersTableLogic = ({
       key: "code",
       sortable: true,
       content: (item: OrderViewModel) => (
-        <Link to={`/backoffice/orders/view/${item.id}`}>{item.code}</Link>
+        <Link to={ordersNavigationHelper.view(item.id)}>{item.code}</Link>
       ),
     },
     {
       label: "Code client",
       content: (order: OrderViewModel) => {
         return (
-          <Link to={`/backoffice/orders/customer/${order.customer.id}`}>
+          <Link
+            to={ordersNavigationHelper.customerView(order.customer.id ?? "")}
+          >
             {order.customer.code}
           </Link>
         );

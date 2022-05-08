@@ -1,13 +1,11 @@
 import { Document, Font, Page, StyleSheet, View } from "@react-pdf/renderer";
 import React from "react";
-import { OrderViewModel } from "../../viewModels/orders";
+import { OrderViewModel } from "../../modules/orders/domain/orders.model";
 import { CompanySection } from "./CompanySection/CompanySection";
 import { Delivery } from "./Delivery/Delivery";
 import { Footer } from "./Footer/Footer";
 import { Header } from "./Header/Header";
 import { ProductsSection } from "./ProductsSection/ProductsSection";
-import { StateSection } from "./StateSection/StateSection";
-import { TotalSection } from "./TotalSection/TotalSection";
 
 const styles = StyleSheet.create({
   page: {

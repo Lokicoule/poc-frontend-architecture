@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "@react-pdf/renderer";
 import React from "react";
-import { OrderViewModel } from "../../../viewModels/orders";
+import { OrderViewModel } from "../../../modules/orders/domain/orders.model";
 import { InvoiceTableHeader } from "./InvoiceTableHeader";
 import { InvoiceTableRow } from "./InvoiceTableRow";
 

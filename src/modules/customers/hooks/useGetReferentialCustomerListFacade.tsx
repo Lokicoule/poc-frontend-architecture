@@ -1,6 +1,5 @@
 import { BaseCallbackOptions } from "../../../core/types/BaseCallbackOptions";
 import { ReferentialCustomerViewModel } from "../domain/referential-customer.model";
-import { UseCaseReferentialEnum } from "../dtos/customers.dto.generated";
 import { ReferentialCustomerMap } from "../mappers/referential-customer.mapper";
 import {
   GetReferentialCustomersQuery,
@@ -22,11 +21,7 @@ export const useGetReferentialCustomerListFacade = (
     data?.getReferentialCustomers?.map((referentialCustomer) =>
       referentialCustomer
         ? ReferentialCustomerMap.toViewModel(referentialCustomer)
-        : ReferentialCustomerViewModel.create({
-            id: "",
-            useCase: UseCaseReferentialEnum.CodeGenerator,
-            parameters: [],
-          })
+        : ({} as ReferentialCustomerViewModel)
     ) ?? [];
 
   return {

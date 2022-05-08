@@ -16,16 +16,7 @@ export const useGetCustomerListFacade = (
 
   const mapDtoToViewModel = (data: GetCustomersQuery | undefined) =>
     data?.getCustomers?.map((customer) =>
-      customer
-        ? CustomerMap.toViewModel(customer)
-        : CustomerViewModel.create({
-            id: "",
-            code: "",
-            naming: "",
-            address: "",
-            city: "",
-            zipCode: "",
-          })
+      customer ? CustomerMap.toViewModel(customer) : ({} as CustomerViewModel)
     ) ?? [];
   return { getCustomerList: { data: mapDtoToViewModel(data), loading, error } };
 };

@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "@react-pdf/renderer";
 import React, { Fragment } from "react";
 import { currency } from "../../../core/utils/CurrencyUtils";
-import { OrderViewModel } from "../../../viewModels/orders";
+import { OrderViewModel } from "../../../modules/orders/domain/orders.model";
 
 const styles = StyleSheet.create({
   row: {

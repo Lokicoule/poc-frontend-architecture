@@ -1,8 +1,8 @@
-import { OrderItemViewModel } from "../../../../../../viewModels/orders";
+import { OrderItemViewModelProps } from "../../../../domain/order-item.model";
 import { TotalOrderView } from "./TotalOrderView";
 
 export type TotalOrderLogicProps = {
-  data: OrderItemViewModel[];
+  data: OrderItemViewModelProps[];
 };
 
 export const TotalOrderLogic = ({ data }: TotalOrderLogicProps) => {

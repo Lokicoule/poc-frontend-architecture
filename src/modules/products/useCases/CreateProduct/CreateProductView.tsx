@@ -4,12 +4,12 @@ import { FeatureLayout } from "../../../../layouts";
 import { UseFormReturn } from "react-hook-form";
 import { Form } from "../../../../components/Form";
 import { FormInputText } from "../../../../components/Form/FormInput";
-import { CreateProductViewModel } from "../../../../viewModels/products";
+import { CreateProductViewModelProps } from "../../domain/products.model";
 
 export type CreateProductViewProps = {
-  form: UseFormReturn<CreateProductViewModel>;
+  form: UseFormReturn<CreateProductViewModelProps>;
   errors: GraphQLErrors | undefined;
-  onSubmit: (data: CreateProductViewModel) => Promise<void>;
+  onSubmit: (data: CreateProductViewModelProps) => Promise<void>;
   onReset: () => void;
 };
 

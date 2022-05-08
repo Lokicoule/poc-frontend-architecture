@@ -4,15 +4,15 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as yup from "yup";
-import { CreateProductViewModel } from "../../../../viewModels/products";
+import { CreateProductViewModelProps } from "../../domain/products.model";
 import { productsNavigationHelper } from "../../helpers/products-navigation.helper";
 import { CreateProductMutation } from "../../operations/products.generated";
 import { CreateProductView, CreateProductViewProps } from "./CreateProductView";
 
 type CreateProductLogicProps = Pick<CreateProductViewProps, "errors"> & {
-  defaultValues: CreateProductViewModel;
+  defaultValues: CreateProductViewModelProps;
   onSubmit: (
-    data: CreateProductViewModel
+    data: CreateProductViewModelProps
   ) => Promise<
     FetchResult<CreateProductMutation, Record<string, any>, Record<string, any>>
   >;
@@ -29,13 +29,13 @@ export const CreateProductLogic = ({
 }: CreateProductLogicProps) => {
   const navigate = useNavigate();
 
-  const form = useForm<CreateProductViewModel>({
+  const form = useForm<CreateProductViewModelProps>({
     defaultValues: defaultValues,
     resolver: yupResolver(schema),
   });
 
   const handleReset = () => form.reset();
-  const handleSubmit = async (data: CreateProductViewModel) => {
+  const handleSubmit = async (data: CreateProductViewModelProps) => {
     await onSubmit(data)
       .then((result) => {
         const { id, label } = result.data?.createProduct ?? {

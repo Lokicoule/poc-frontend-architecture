@@ -5,7 +5,8 @@ import { PDFViewer } from "@react-pdf/renderer";
 import { Link } from "react-router-dom";
 import { Invoice } from "../../../../features/invoice/Invoice";
 import { FeatureLayout } from "../../../../layouts";
-import { OrderViewModel } from "../../../../viewModels/orders";
+import { OrderViewModel } from "../../domain/orders.model";
+import { ordersNavigationHelper } from "../../helpers/orders-navigation.helper";
 import { OrderItemTable } from "./components/OrderItemTable";
 import { TotalOrder } from "./components/TotalOrder";
 
@@ -64,7 +65,7 @@ export const ManageOrderView = ({
           <Button
             component={Link}
             variant="outlined"
-            to={`/backoffice/orders/update/${defaultValues.id}`}
+            to={ordersNavigationHelper.update(defaultValues.id)}
             endIcon={<ModeEditIcon />}
           >
             Modifier

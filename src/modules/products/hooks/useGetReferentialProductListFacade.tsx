@@ -1,9 +1,6 @@
 import { BaseCallbackOptions } from "../../../core/types/BaseCallbackOptions";
 import { ReferentialProductViewModel } from "../domain/referential-product.model";
-import {
-  ReferentialProduct,
-  UseCaseReferentialEnum,
-} from "../dtos/products.dto.generated";
+import { ReferentialProduct } from "../dtos/products.dto.generated";
 import { ReferentialProductMap } from "../mappers/referential-product.mapper";
 import {
   GetReferentialProductsQuery,
@@ -26,11 +23,7 @@ export const useGetReferentialProductListFacade = (
       (referentialProduct: ReferentialProduct) =>
         referentialProduct
           ? ReferentialProductMap.toViewModel(referentialProduct)
-          : ReferentialProductViewModel.create({
-              id: "",
-              useCase: UseCaseReferentialEnum.CodeGenerator,
-              parameters: [],
-            })
+          : ({} as ReferentialProductViewModel)
     ) ?? [];
 
   return {

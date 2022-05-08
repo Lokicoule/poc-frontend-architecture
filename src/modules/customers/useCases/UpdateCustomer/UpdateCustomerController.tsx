@@ -1,5 +1,5 @@
 import { Loader } from "../../../../components/Loader";
-import { UpdateCustomerViewModel } from "../../../../viewModels/customers";
+import { UpdateCustomerViewModelProps } from "../../domain/customers.model";
 import { useGetCustomerFacade } from "../../hooks/useGetCustomerFacade";
 import { useUpdateCustomerFacade } from "../../hooks/useUpdateCustomerFacade";
 import { UpdateCustomerLogic } from "./UpdateCustomerLogic";
@@ -14,7 +14,7 @@ export const UpdateCustomerController = ({
   const { getCustomer } = useGetCustomerFacade(customerId);
   const { updateCustomer } = useUpdateCustomerFacade();
 
-  const handleSubmit = (updatedCustomer: UpdateCustomerViewModel) =>
+  const handleSubmit = (updatedCustomer: UpdateCustomerViewModelProps) =>
     updateCustomer.onUpdate(customerId, updatedCustomer);
 
   if (getCustomer.loading) return <Loader></Loader>;

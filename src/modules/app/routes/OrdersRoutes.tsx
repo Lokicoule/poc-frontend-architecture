@@ -62,6 +62,14 @@ const UpdateReferentialOrderPage = Loadable(
   )
 );
 
+const OrderCustomerPage = Loadable(
+  lazy(() =>
+    import("../pages/orders/OrderCustomerPage").then((module) => ({
+      default: module.OrderCustomerPage,
+    }))
+  )
+);
+
 export const OrdersRoutes: RouteObject = {
   path: featuresRoutesConfig.ordersPath,
   element: <BackofficeLayout items={menuItems} crumbs={ordersBreadcrumbs} />,
@@ -93,13 +101,26 @@ export const OrdersRoutes: RouteObject = {
       ],
     },
     {
+      path: featuresRoutesConfig.customerPath,
+      children: [
+        {
+          path: useCasesRoutesConfig.viewPath,
+          children: [
+            {
+              path: `:${paramsRoutesConfig.id}`,
+              element: <OrderCustomerPage />,
+            },
+          ],
+        },
+      ],
+    },
+    {
       path: featuresRoutesConfig.referentialPath,
       children: [
         {
           path: "",
           element: <ReferentialOrderPage />,
         },
-
         {
           path: useCasesRoutesConfig.updatePath,
           children: [

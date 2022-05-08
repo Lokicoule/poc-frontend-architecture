@@ -7,6 +7,7 @@ export const routesConfig = {
 
 export const featuresRoutesConfig = {
   customersPath: "customers",
+  customerPath: "customer",
   ordersPath: "orders",
   productsPath: "products",
   referentialPath: "referential",

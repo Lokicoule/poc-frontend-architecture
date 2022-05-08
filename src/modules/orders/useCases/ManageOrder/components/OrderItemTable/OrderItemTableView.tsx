@@ -1,9 +1,9 @@
 import { ColumnProps, Table } from "../../../../../../components/Tables";
-import { OrderItemViewModel } from "../../../../../../viewModels/orders";
+import { OrderItemViewModelProps } from "../../../../domain/order-item.model";
 
 export type OrderItemTableViewProps = {
   columns: ColumnProps[];
-  data: OrderItemViewModel[];
+  data: OrderItemViewModelProps[];
 };
 
 export const OrderItemTableView = ({

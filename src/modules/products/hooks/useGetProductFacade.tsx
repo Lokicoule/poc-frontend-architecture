@@ -21,11 +21,7 @@ export const useGetProductFacade = (
   const mapDtoToViewModel = (data: GetProductQuery | undefined) =>
     data?.getProduct
       ? ProductMap.toViewModel(data?.getProduct)
-      : ProductViewModel.create({
-          id: "",
-          code: "",
-          label: "",
-        });
+      : ({} as ProductViewModel);
 
   return { getProduct: { data: mapDtoToViewModel(data), loading, error } };
 };

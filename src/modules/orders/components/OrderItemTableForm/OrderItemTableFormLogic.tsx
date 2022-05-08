@@ -1,55 +1,58 @@
 import DeleteIcon from "@mui/icons-material/Delete";
-import { IconButton } from "@mui/material";
+import { IconButton, MenuItem } from "@mui/material";
 import { Control, FormState, useFieldArray } from "react-hook-form";
-import { ColumnProps } from "../../../../../components/Tables";
-import { FormInputText } from "../../../../../components/Form/FormInput";
 import {
-  FormOrderItemViewModel,
-  FormOrderViewModel,
-} from "../../../../../viewModels/orders";
-import { OrderProductViewModel } from "../../../../../viewModels/orders/OrderProductViewModel";
-import { SelectProduct } from "../SelectProduct";
+  FormInputSelect,
+  FormInputText,
+} from "../../../../components/Form/FormInput";
+import { ColumnProps } from "../../../../components/Tables";
+import { ProductViewModel } from "../../../products/domain/products.model";
+import { OrderItemViewModelProps } from "../../domain/order-item.model";
+import { OrderProductViewModelProps } from "../../domain/order-product.model";
+import { CreateOrderViewModelProps } from "../../domain/orders.model";
 import { OrderItemTableFormView } from "./OrderItemTableFormView";
 
 export type OrderItemTableFormLogicProps = {
   control: Control<any, any>;
-  formState: FormState<FormOrderViewModel>;
-  defaultProducts?: OrderProductViewModel[];
+  formState: FormState<CreateOrderViewModelProps>;
+  products: ProductViewModel[];
 };
 
 export const OrderItemTableFormLogic = ({
   control,
   formState,
-  defaultProducts,
+  products,
 }: OrderItemTableFormLogicProps) => {
   const { fields, append, remove } = useFieldArray({ name: "items", control });
-
+  const createKey = (id: string) => `select_product_${id}`;
   const columns: ColumnProps[] = [
     {
       key: "product",
       label: "Code produit",
-      content: (item: FormOrderItemViewModel, idx) => {
-        const defaultProduct = defaultProducts?.find(
-          (product) => product.id === item.productId
-        );
+      content: (item: OrderItemViewModelProps, idx) => {
         return (
-          <SelectProduct
+          <FormInputSelect
+            label="Produit"
+            name={`items[${idx}].product.id`}
             control={control}
-            name={`items[${idx}].productId`}
             error={
               formState?.errors?.items &&
-              !!formState?.errors?.items[idx]?.productId
+              !!formState?.errors?.items[idx]?.product?.id
             }
             helperText={
               formState?.errors?.items &&
-              formState?.errors?.items[idx]?.productId?.message
+              formState?.errors?.items[idx]?.product?.id?.message
             }
-            defaultValue={defaultProduct}
-          ></SelectProduct>
+          >
+            {products?.map((item) => (
+              <MenuItem key={createKey(item.id)} value={item.id}>
+                {item.code}
+              </MenuItem>
+            ))}
+          </FormInputSelect>
         );
       },
     },
-
     {
       key: "amount",
       label: "Quantité",
@@ -112,8 +115,8 @@ export const OrderItemTableFormLogic = ({
     append({
       amount: 0,
       unitPrice: 0,
-      productId: "",
-    } as FormOrderItemViewModel);
+      product: {} as OrderProductViewModelProps,
+    } as OrderItemViewModelProps);
 
   return (
     <OrderItemTableFormView

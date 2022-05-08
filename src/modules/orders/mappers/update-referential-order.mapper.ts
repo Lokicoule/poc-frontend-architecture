@@ -13,7 +13,7 @@ export class UpdateReferentialOrderMap implements Mapper {
   ): UpdateReferentialOrderInput {
     return {
       useCase: entity.useCase,
-      parameters: UpdateReferentialOrderMap.parametersToDto(entity.parameters),
+      parameters: this.parametersToDto(entity.parameters),
     };
   }
 

@@ -1,6 +1,6 @@
 import { Document, Font, Page, StyleSheet, View } from "@react-pdf/renderer";
 import React from "react";
-import { OrderViewModel } from "../../viewModels/orders";
+import { OrderViewModel } from "../../modules/orders/domain/orders.model";
 import { CompanySection } from "./CompanySection/CompanySection";
 import { Footer } from "./Footer/Footer";
 import { Header } from "./Header/Header";
